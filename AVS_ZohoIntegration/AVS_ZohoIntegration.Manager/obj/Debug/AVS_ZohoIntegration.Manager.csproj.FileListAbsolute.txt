@@ -1,0 +1,17 @@
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\AVS_ZohoIntegration.Manager.dll
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\AVS_ZohoIntegration.Manager.pdb
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\AVSSAPConector.dll
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\AVS_LicValidator.dll
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\log4net.dll
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\AVS_Security.dll
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\AVS_LicValidator.pdb
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\AVSSAPConector.pdb
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\log4net.pdb
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\log4net.xml
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\obj\Debug\AVS_ZohoIntegration.Manager.csproj.AssemblyReference.cache
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\obj\Debug\AVS_ZohoIntegration.Manager.csproj.CoreCompileInputs.cache
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\obj\Debug\AVS_ZohoIntegration.Manager.csproj.CopyComplete
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\obj\Debug\AVS_ZohoIntegration.Manager.dll
+C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\obj\Debug\AVS_ZohoIntegration.Manager.pdb

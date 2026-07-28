@@ -1,0 +1,866 @@
+2026-07-28 14:43:24,429 INFO AVS_ZohoIntegration.Program - AVS SFTPSync Version [1.0.0.0]
+2026-07-28 14:43:24,449 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-07-28 14:43:24,583 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-07-28 14:43:24,583 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-07-28 14:43:24,583 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-07-28 14:43:29,226 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-07-28 14:43:29,226 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-07-28 14:43:29,226 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-07-28 14:43:29,230 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-07-28 14:43:29,234 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-07-28 14:43:29,528 INFO AVS_ZohoIntegration.Program - Se han obtenido 95 resultados pendientes de procesar.
+2026-07-28 14:43:29,529 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 1 *
+2026-07-28 14:43:29,529 INFO AVS_ZohoIntegration.Program - Product_Code: A00001
+2026-07-28 14:43:29,530 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Officeprint 1420
+2026-07-28 14:43:29,530 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,533 INFO AVS_ZohoIntegration.Program - Unit_Price: 76757.3
+2026-07-28 14:43:29,533 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,534 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,534 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 799
+2026-07-28 14:43:29,534 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,535 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 2 *
+2026-07-28 14:43:29,535 INFO AVS_ZohoIntegration.Program - Product_Code: A00002
+2026-07-28 14:43:29,535 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Officeprint 1111
+2026-07-28 14:43:29,536 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,536 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,536 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,537 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,537 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 949
+2026-07-28 14:43:29,538 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,538 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 3 *
+2026-07-28 14:43:29,538 INFO AVS_ZohoIntegration.Program - Product_Code: A00003
+2026-07-28 14:43:29,539 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Officeprint 1186
+2026-07-28 14:43:29,539 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,539 INFO AVS_ZohoIntegration.Program - Unit_Price: 57567.81
+2026-07-28 14:43:29,541 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,541 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,541 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1123
+2026-07-28 14:43:29,541 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,542 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 4 *
+2026-07-28 14:43:29,542 INFO AVS_ZohoIntegration.Program - Product_Code: A00004
+2026-07-28 14:43:29,542 INFO AVS_ZohoIntegration.Program - Product_Name: Rainbow Color Printer 5.0
+2026-07-28 14:43:29,542 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,543 INFO AVS_ZohoIntegration.Program - Unit_Price: 95946.4
+2026-07-28 14:43:29,543 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,543 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,544 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1106
+2026-07-28 14:43:29,544 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,544 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 5 *
+2026-07-28 14:43:29,545 INFO AVS_ZohoIntegration.Program - Product_Code: A00005
+2026-07-28 14:43:29,545 INFO AVS_ZohoIntegration.Program - Product_Name: Rainbow Color Printer 7.5
+2026-07-28 14:43:29,545 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,545 INFO AVS_ZohoIntegration.Program - Unit_Price: 50
+2026-07-28 14:43:29,545 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,546 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,546 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1187
+2026-07-28 14:43:29,546 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,546 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 6 *
+2026-07-28 14:43:29,546 INFO AVS_ZohoIntegration.Program - Product_Code: A00006
+2026-07-28 14:43:29,547 INFO AVS_ZohoIntegration.Program - Product_Name: Rainbow 1200 Laser Series
+2026-07-28 14:43:29,548 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,548 INFO AVS_ZohoIntegration.Program - Unit_Price: 76757.18
+2026-07-28 14:43:29,548 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,549 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,549 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 528
+2026-07-28 14:43:29,549 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 7 *
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Code: A00020
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Officeprint 1420
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Unit_Price: 76757.18
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 8 *
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Code: B10000
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Name: Printer Label
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Unit_Price: 191.95
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1628.5
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 9 *
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Code: B10001
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Name: Articulo de Prueba para Lotes
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Unit_Price: 100
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1131
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 10 *
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Code: B11000
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Name: Printer Label
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Unit_Price: 191.95
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 11 *
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Code: B12000
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Name: Printer Label
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Unit_Price: 191.95
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: -8.5
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 12 *
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Code: B13000
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Name: Printer Label
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Unit_Price: 191.95
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 13 *
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Code: B20000
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Name: Prueba de series
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Unit_Price: 100
+2026-07-28 14:43:29,550 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,565 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 2
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 14 *
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Code: B21000
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Name: Prueba de series
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Unit_Price: 100
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 15 *
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Code: C00001
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Name: Motherboard BTX
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Unit_Price: 76757.18
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1417.7
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 16 *
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Code: C00002
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Name: Motherboard MicroATX
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Unit_Price: 57567.81
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1648
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 17 *
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Code: C00003
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Name: Quadcore CPU 3.4 GHz
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Unit_Price: 24946.08
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1190.7
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 18 *
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Code: C00004
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Name: Tower Case with Power supply
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Unit_Price: 6716.19
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1153.7
+2026-07-28 14:43:29,566 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,581 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 19 *
+2026-07-28 14:43:29,581 INFO AVS_ZohoIntegration.Program - Product_Code: C00005
+2026-07-28 14:43:29,581 INFO AVS_ZohoIntegration.Program - Product_Name: WLAN Card
+2026-07-28 14:43:29,583 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,583 INFO AVS_ZohoIntegration.Program - Unit_Price: 11513.56
+2026-07-28 14:43:29,583 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,583 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,583 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1086.7
+2026-07-28 14:43:29,583 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,584 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 20 *
+2026-07-28 14:43:29,584 INFO AVS_ZohoIntegration.Program - Product_Code: C00006
+2026-07-28 14:43:29,584 INFO AVS_ZohoIntegration.Program - Product_Name: Gigabit Network Card
+2026-07-28 14:43:29,584 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,584 INFO AVS_ZohoIntegration.Program - Unit_Price: 2878.43
+2026-07-28 14:43:29,585 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,585 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,585 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 983.7
+2026-07-28 14:43:29,585 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,586 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 21 *
+2026-07-28 14:43:29,586 INFO AVS_ZohoIntegration.Program - Product_Code: C00007
+2026-07-28 14:43:29,586 INFO AVS_ZohoIntegration.Program - Product_Name: Hard Disk 3TB
+2026-07-28 14:43:29,587 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,587 INFO AVS_ZohoIntegration.Program - Unit_Price: 95946.4
+2026-07-28 14:43:29,588 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,588 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,588 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1081.7
+2026-07-28 14:43:29,588 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,588 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 22 *
+2026-07-28 14:43:29,588 INFO AVS_ZohoIntegration.Program - Product_Code: C00008
+2026-07-28 14:43:29,588 INFO AVS_ZohoIntegration.Program - Product_Name: Computer Monitor 24" HDMI
+2026-07-28 14:43:29,590 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,590 INFO AVS_ZohoIntegration.Program - Unit_Price: 38378.59
+2026-07-28 14:43:29,590 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,591 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,591 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1046.7
+2026-07-28 14:43:29,591 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,592 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 23 *
+2026-07-28 14:43:29,592 INFO AVS_ZohoIntegration.Program - Product_Code: C00009
+2026-07-28 14:43:29,592 INFO AVS_ZohoIntegration.Program - Product_Name: Keyboard Comfort USB
+2026-07-28 14:43:29,592 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,593 INFO AVS_ZohoIntegration.Program - Unit_Price: 3837.9
+2026-07-28 14:43:29,593 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,593 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,593 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1032.7
+2026-07-28 14:43:29,594 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,594 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 24 *
+2026-07-28 14:43:29,594 INFO AVS_ZohoIntegration.Program - Product_Code: C00010
+2026-07-28 14:43:29,594 INFO AVS_ZohoIntegration.Program - Product_Name: Mouse USB
+2026-07-28 14:43:29,594 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,595 INFO AVS_ZohoIntegration.Program - Unit_Price: 3837.9
+2026-07-28 14:43:29,595 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,595 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,595 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1065.7
+2026-07-28 14:43:29,595 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,596 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 25 *
+2026-07-28 14:43:29,596 INFO AVS_ZohoIntegration.Program - Product_Code: C00011
+2026-07-28 14:43:29,596 INFO AVS_ZohoIntegration.Program - Product_Name: Memory DDR RAM 8GB
+2026-07-28 14:43:29,596 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,596 INFO AVS_ZohoIntegration.Program - Unit_Price: 7675.66
+2026-07-28 14:43:29,597 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,597 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,597 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 12.7
+2026-07-28 14:43:29,598 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,598 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 26 *
+2026-07-28 14:43:29,598 INFO AVS_ZohoIntegration.Program - Product_Code: C00012
+2026-07-28 14:43:29,598 INFO AVS_ZohoIntegration.Program - Product_Name: Cabinet for external HD
+2026-07-28 14:43:29,599 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,599 INFO AVS_ZohoIntegration.Program - Unit_Price: 6500
+2026-07-28 14:43:29,599 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,599 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,599 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 463
+2026-07-28 14:43:29,601 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,601 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 27 *
+2026-07-28 14:43:29,601 INFO AVS_ZohoIntegration.Program - Product_Code: C00013
+2026-07-28 14:43:29,601 INFO AVS_ZohoIntegration.Program - Product_Name: 1 TB disk for external HD
+2026-07-28 14:43:29,602 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,602 INFO AVS_ZohoIntegration.Program - Unit_Price: 3400
+2026-07-28 14:43:29,603 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,603 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,603 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 479
+2026-07-28 14:43:29,604 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,604 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 28 *
+2026-07-28 14:43:29,604 INFO AVS_ZohoIntegration.Program - Product_Code: C00014
+2026-07-28 14:43:29,605 INFO AVS_ZohoIntegration.Program - Product_Name: Laptop case
+2026-07-28 14:43:29,605 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,605 INFO AVS_ZohoIntegration.Program - Unit_Price: 2100
+2026-07-28 14:43:29,606 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,606 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,606 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 434
+2026-07-28 14:43:29,606 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,606 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 29 *
+2026-07-28 14:43:29,607 INFO AVS_ZohoIntegration.Program - Product_Code: D00001
+2026-07-28 14:43:29,607 INFO AVS_ZohoIntegration.Program - Product_Name: Portable Hard Disk 1TB
+2026-07-28 14:43:29,607 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,607 INFO AVS_ZohoIntegration.Program - Unit_Price: 3400
+2026-07-28 14:43:29,607 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,608 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,608 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 435
+2026-07-28 14:43:29,608 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,608 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 30 *
+2026-07-28 14:43:29,608 INFO AVS_ZohoIntegration.Program - Product_Code: D00002
+2026-07-28 14:43:29,609 INFO AVS_ZohoIntegration.Program - Product_Name: Portable Hard Disk 2TB
+2026-07-28 14:43:29,609 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,609 INFO AVS_ZohoIntegration.Program - Unit_Price: 6233
+2026-07-28 14:43:29,610 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,610 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,610 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 420
+2026-07-28 14:43:29,610 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,611 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 31 *
+2026-07-28 14:43:29,611 INFO AVS_ZohoIntegration.Program - Product_Code: E00001
+2026-07-28 14:43:29,611 INFO AVS_ZohoIntegration.Program - Product_Name: Secondhand Tablets
+2026-07-28 14:43:29,611 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,611 INFO AVS_ZohoIntegration.Program - Unit_Price: 4100
+2026-07-28 14:43:29,612 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,612 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,612 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 500
+2026-07-28 14:43:29,613 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,613 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 32 *
+2026-07-28 14:43:29,613 INFO AVS_ZohoIntegration.Program - Product_Code: EMP0001
+2026-07-28 14:43:29,613 INFO AVS_ZohoIntegration.Program - Product_Name: Empaque 01
+2026-07-28 14:43:29,614 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,614 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,615 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,615 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,615 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 464
+2026-07-28 14:43:29,615 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 33 *
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Code: EMP0002
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Name: Empaque 02
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 464
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 34 *
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Code: EMP0003
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Name: Empaque 03
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 464
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 35 *
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Code: FLR001
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Name: Ramo de Flores 1
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 124
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 36 *
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Code: FLR001-GIRASOL
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 93
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 37 *
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Code: FLR001-LIRIO
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 77
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 38 *
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Code: FLR001-ROSA
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 96
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 39 *
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Code: FLR002
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Name: Ramo de Flores 2
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,616 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 146
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 40 *
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Code: FLR002-MARGARITAS
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 95
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 41 *
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Code: FLR002-ROSAS
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 11
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 42 *
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Code: FLR002-TULIPANES
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 146
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 43 *
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Code: I00001
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Name: Blu-Ray Disc 10-Pack
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Unit_Price: 575.71
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1003
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 44 *
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Code: I00002
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Name: Blu-Ray DL Disc 10-Pack
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Unit_Price: 2302.71
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,632 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 906
+2026-07-28 14:43:29,648 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,648 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 45 *
+2026-07-28 14:43:29,650 INFO AVS_ZohoIntegration.Program - Product_Code: I00003
+2026-07-28 14:43:29,650 INFO AVS_ZohoIntegration.Program - Product_Name: USB Flashdrive 128GB
+2026-07-28 14:43:29,650 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,651 INFO AVS_ZohoIntegration.Program - Unit_Price: 3837.9
+2026-07-28 14:43:29,651 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,651 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,652 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 931
+2026-07-28 14:43:29,652 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,653 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 46 *
+2026-07-28 14:43:29,653 INFO AVS_ZohoIntegration.Program - Product_Code: I00004
+2026-07-28 14:43:29,654 INFO AVS_ZohoIntegration.Program - Product_Name: USB Flashdrive 256GB
+2026-07-28 14:43:29,655 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,655 INFO AVS_ZohoIntegration.Program - Unit_Price: 5756.85
+2026-07-28 14:43:29,656 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,656 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,656 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 852
+2026-07-28 14:43:29,657 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,657 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 47 *
+2026-07-28 14:43:29,657 INFO AVS_ZohoIntegration.Program - Product_Code: I00005
+2026-07-28 14:43:29,657 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Laptop Batteries X1 series
+2026-07-28 14:43:29,658 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,658 INFO AVS_ZohoIntegration.Program - Unit_Price: 17270.41
+2026-07-28 14:43:29,658 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,659 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,659 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1001
+2026-07-28 14:43:29,659 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,659 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 48 *
+2026-07-28 14:43:29,660 INFO AVS_ZohoIntegration.Program - Product_Code: I00006
+2026-07-28 14:43:29,660 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Laptop Batteries X2 series
+2026-07-28 14:43:29,660 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,661 INFO AVS_ZohoIntegration.Program - Unit_Price: 15351.46
+2026-07-28 14:43:29,661 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,661 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,662 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 918
+2026-07-28 14:43:29,662 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,662 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 49 *
+2026-07-28 14:43:29,663 INFO AVS_ZohoIntegration.Program - Product_Code: I00007
+2026-07-28 14:43:29,663 INFO AVS_ZohoIntegration.Program - Product_Name: Rainbow Printer 9.5 Inkjet Cartridge
+2026-07-28 14:43:29,663 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,664 INFO AVS_ZohoIntegration.Program - Unit_Price: 5372.95
+2026-07-28 14:43:29,665 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,665 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,667 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 929
+2026-07-28 14:43:29,667 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,667 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 50 *
+2026-07-28 14:43:29,668 INFO AVS_ZohoIntegration.Program - Product_Code: I00008
+2026-07-28 14:43:29,668 INFO AVS_ZohoIntegration.Program - Product_Name: Rainbow Nuance Ink 6-Pack and Photo Paper Kit
+2026-07-28 14:43:29,668 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,669 INFO AVS_ZohoIntegration.Program - Unit_Price: 7483.85
+2026-07-28 14:43:29,669 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,670 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,670 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 936
+2026-07-28 14:43:29,671 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,671 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 51 *
+2026-07-28 14:43:29,672 INFO AVS_ZohoIntegration.Program - Product_Code: I00009
+2026-07-28 14:43:29,672 INFO AVS_ZohoIntegration.Program - Product_Name: SLR PreciseShot PX1500
+2026-07-28 14:43:29,673 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,673 INFO AVS_ZohoIntegration.Program - Unit_Price: 28783.98
+2026-07-28 14:43:29,673 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,673 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,674 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 951
+2026-07-28 14:43:29,674 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,674 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 52 *
+2026-07-28 14:43:29,675 INFO AVS_ZohoIntegration.Program - Product_Code: I00010
+2026-07-28 14:43:29,675 INFO AVS_ZohoIntegration.Program - Product_Name: SLR M-CAM 40C
+2026-07-28 14:43:29,678 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,678 INFO AVS_ZohoIntegration.Program - Unit_Price: 115135.76
+2026-07-28 14:43:29,679 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,679 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,680 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1048
+2026-07-28 14:43:29,681 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,681 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 53 *
+2026-07-28 14:43:29,682 INFO AVS_ZohoIntegration.Program - Product_Code: I00011
+2026-07-28 14:43:29,682 INFO AVS_ZohoIntegration.Program - Product_Name: KG USB Travel Hub
+2026-07-28 14:43:29,682 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,682 INFO AVS_ZohoIntegration.Program - Unit_Price: 2302.71
+2026-07-28 14:43:29,682 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1061
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 54 *
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Code: I00012
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Name: KG PC-to-Mac Transfer Kit
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Unit_Price: 8635.14
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1013
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 55 *
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Code: I00013
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Name: SDHC 64 GB Class 10
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Unit_Price: 30
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 501
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 56 *
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Code: ITEM0001
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 57 *
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Code: ITEM0002
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Name: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 58 *
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Code: L10001
+2026-07-28 14:43:29,685 INFO AVS_ZohoIntegration.Program - Product_Name: Labor Hours Production
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Unit_Price: 65
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 59 *
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Code: LB0001
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Name: Daily Service Labor Charge
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Unit_Price: 2400
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 60 *
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Code: LB0002
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Name: Hourly Service Labor Charge
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Unit_Price: 600
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 61 *
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Name: LeMon 4029 Printer
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Unit_Price: 46054.25
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 829.5
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 62 *
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029ACA
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Name: LeMon 4029 Printer AC Adapter
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Unit_Price: 1918.95
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 532
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,698 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 63 *
+2026-07-28 14:43:29,714 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029APCD
+2026-07-28 14:43:29,714 INFO AVS_ZohoIntegration.Program - Product_Name: LeMon 4029 Printer AC Power Cord
+2026-07-28 14:43:29,715 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,716 INFO AVS_ZohoIntegration.Program - Unit_Price: 959.48
+2026-07-28 14:43:29,716 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,716 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,717 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 557
+2026-07-28 14:43:29,717 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,718 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 64 *
+2026-07-28 14:43:29,718 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029D
+2026-07-28 14:43:29,718 INFO AVS_ZohoIntegration.Program - Product_Name: LeMon 4029 500 sheet paper drawer
+2026-07-28 14:43:29,719 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,719 INFO AVS_ZohoIntegration.Program - Unit_Price: 6716.19
+2026-07-28 14:43:29,720 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,720 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,720 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 693
+2026-07-28 14:43:29,721 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,721 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 65 *
+2026-07-28 14:43:29,721 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029MC
+2026-07-28 14:43:29,722 INFO AVS_ZohoIntegration.Program - Product_Name: Memory Chip
+2026-07-28 14:43:29,722 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,722 INFO AVS_ZohoIntegration.Program - Unit_Price: 9594.61
+2026-07-28 14:43:29,723 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,723 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,723 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 421
+2026-07-28 14:43:29,723 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,724 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 66 *
+2026-07-28 14:43:29,724 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029PH
+2026-07-28 14:43:29,724 INFO AVS_ZohoIntegration.Program - Product_Name: LeMon 4029 Printer Head
+2026-07-28 14:43:29,724 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,725 INFO AVS_ZohoIntegration.Program - Unit_Price: 3837.9
+2026-07-28 14:43:29,725 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,725 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,725 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 664
+2026-07-28 14:43:29,726 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,726 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 67 *
+2026-07-28 14:43:29,726 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029PS
+2026-07-28 14:43:29,726 INFO AVS_ZohoIntegration.Program - Product_Name: LeMon 4029 Printer Power Supply
+2026-07-28 14:43:29,727 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,727 INFO AVS_ZohoIntegration.Program - Unit_Price: 3837.9
+2026-07-28 14:43:29,727 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,727 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,728 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 523
+2026-07-28 14:43:29,728 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,728 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 68 *
+2026-07-28 14:43:29,728 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029-R
+2026-07-28 14:43:29,729 INFO AVS_ZohoIntegration.Program - Product_Name: Articulo de reproceso
+2026-07-28 14:43:29,729 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,729 INFO AVS_ZohoIntegration.Program - Unit_Price: 0
+2026-07-28 14:43:29,730 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,730 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,730 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 1000
+2026-07-28 14:43:29,731 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,731 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 69 *
+2026-07-28 14:43:29,731 INFO AVS_ZohoIntegration.Program - Product_Code: LM4029SB
+2026-07-28 14:43:29,732 INFO AVS_ZohoIntegration.Program - Product_Name: LeMon 4029 Printer System Board
+2026-07-28 14:43:29,732 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,732 INFO AVS_ZohoIntegration.Program - Unit_Price: 19189.23
+2026-07-28 14:43:29,732 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,732 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,732 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 606
+2026-07-28 14:43:29,733 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,733 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 70 *
+2026-07-28 14:43:29,733 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_BOM
+2026-07-28 14:43:29,733 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_BOM
+2026-07-28 14:43:29,733 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,734 INFO AVS_ZohoIntegration.Program - Unit_Price: 25
+2026-07-28 14:43:29,734 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,734 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,734 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 483
+2026-07-28 14:43:29,735 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,735 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 71 *
+2026-07-28 14:43:29,735 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_Child1
+2026-07-28 14:43:29,735 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Hijo1
+2026-07-28 14:43:29,736 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,736 INFO AVS_ZohoIntegration.Program - Unit_Price: 5
+2026-07-28 14:43:29,736 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,737 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,737 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 471
+2026-07-28 14:43:29,737 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,738 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 72 *
+2026-07-28 14:43:29,738 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_Child2
+2026-07-28 14:43:29,738 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Hijo2
+2026-07-28 14:43:29,739 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,739 INFO AVS_ZohoIntegration.Program - Unit_Price: 5
+2026-07-28 14:43:29,740 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,740 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,740 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 460
+2026-07-28 14:43:29,740 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,741 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 73 *
+2026-07-28 14:43:29,741 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_GranChild
+2026-07-28 14:43:29,741 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Nieto
+2026-07-28 14:43:29,741 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,742 INFO AVS_ZohoIntegration.Program - Unit_Price: 3
+2026-07-28 14:43:29,742 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,742 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,742 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 451
+2026-07-28 14:43:29,742 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,744 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 74 *
+2026-07-28 14:43:29,744 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_Item1
+2026-07-28 14:43:29,744 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Articulo1
+2026-07-28 14:43:29,745 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,745 INFO AVS_ZohoIntegration.Program - Unit_Price: 20
+2026-07-28 14:43:29,745 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,745 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,745 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 294
+2026-07-28 14:43:29,746 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,746 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 75 *
+2026-07-28 14:43:29,746 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_Item2
+2026-07-28 14:43:29,747 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Articulo2
+2026-07-28 14:43:29,747 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,747 INFO AVS_ZohoIntegration.Program - Unit_Price: 20
+2026-07-28 14:43:29,748 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,748 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,748 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 391
+2026-07-28 14:43:29,749 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,749 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 76 *
+2026-07-28 14:43:29,749 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_Item3
+2026-07-28 14:43:29,749 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Articulo3
+2026-07-28 14:43:29,750 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,750 INFO AVS_ZohoIntegration.Program - Unit_Price: 20
+2026-07-28 14:43:29,750 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,750 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,751 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 337
+2026-07-28 14:43:29,751 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,751 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 77 *
+2026-07-28 14:43:29,752 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_Item4
+2026-07-28 14:43:29,752 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Articulo4
+2026-07-28 14:43:29,752 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,753 INFO AVS_ZohoIntegration.Program - Unit_Price: 20
+2026-07-28 14:43:29,753 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,753 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,754 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 345
+2026-07-28 14:43:29,754 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,754 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 78 *
+2026-07-28 14:43:29,755 INFO AVS_ZohoIntegration.Program - Product_Code: MRP_Item5
+2026-07-28 14:43:29,755 INFO AVS_ZohoIntegration.Program - Product_Name: MRP_Articulo5
+2026-07-28 14:43:29,755 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,756 INFO AVS_ZohoIntegration.Program - Unit_Price: 20
+2026-07-28 14:43:29,756 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,757 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,757 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 441
+2026-07-28 14:43:29,757 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,758 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 79 *
+2026-07-28 14:43:29,758 INFO AVS_ZohoIntegration.Program - Product_Code: P10001
+2026-07-28 14:43:29,758 INFO AVS_ZohoIntegration.Program - Product_Name: PC - 8x core, DDR 32GB, 2TB HDD
+2026-07-28 14:43:29,758 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,758 INFO AVS_ZohoIntegration.Program - Unit_Price: 272747.89
+2026-07-28 14:43:29,759 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,759 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,759 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 501.1
+2026-07-28 14:43:29,760 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,760 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 80 *
+2026-07-28 14:43:29,760 INFO AVS_ZohoIntegration.Program - Product_Code: P10001_D
+2026-07-28 14:43:29,760 INFO AVS_ZohoIntegration.Program - Product_Name: PC - 8x core, DDR 32GB, 2TB HDD Reproceso
+2026-07-28 14:43:29,761 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,761 INFO AVS_ZohoIntegration.Program - Unit_Price: 272747.89
+2026-07-28 14:43:29,762 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,762 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,762 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: -44
+2026-07-28 14:43:29,762 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,763 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 81 *
+2026-07-28 14:43:29,763 INFO AVS_ZohoIntegration.Program - Product_Code: P10001_L
+2026-07-28 14:43:29,763 INFO AVS_ZohoIntegration.Program - Product_Name: PC - 8x core, DDR 32GB, 2TB HDD
+2026-07-28 14:43:29,763 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,764 INFO AVS_ZohoIntegration.Program - Unit_Price: 272747.89
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 163.5
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 82 *
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Code: P10001-R
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Name: Articulo de reproceso
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Unit_Price: 272747.89
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 2011
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 83 *
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Code: P10002
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Name: PC - 12x core, 64GB, 5 x 150GB SSD
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Unit_Price: 261234.18
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 457
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 84 *
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Code: P10003
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Name: PC Set 1
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Unit_Price: 57632.81
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 483
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 85 *
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Code: P10004
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Name: PC Set 2
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Unit_Price: 96011.4
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 364
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 86 *
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Code: P20001
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Name: 4GB Memory Server
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Unit_Price: 45632
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 455
+2026-07-28 14:43:29,765 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,781 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 87 *
+2026-07-28 14:43:29,781 INFO AVS_ZohoIntegration.Program - Product_Code: P20002
+2026-07-28 14:43:29,783 INFO AVS_ZohoIntegration.Program - Product_Name: 32GB Memory Server
+2026-07-28 14:43:29,783 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,783 INFO AVS_ZohoIntegration.Program - Unit_Price: 29453
+2026-07-28 14:43:29,784 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,784 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,785 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 491
+2026-07-28 14:43:29,785 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,785 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 88 *
+2026-07-28 14:43:29,786 INFO AVS_ZohoIntegration.Program - Product_Code: P20003
+2026-07-28 14:43:29,786 INFO AVS_ZohoIntegration.Program - Product_Name: External HD
+2026-07-28 14:43:29,786 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,786 INFO AVS_ZohoIntegration.Program - Unit_Price: 175699
+2026-07-28 14:43:29,787 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,787 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,787 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 500
+2026-07-28 14:43:29,788 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,788 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 89 *
+2026-07-28 14:43:29,788 INFO AVS_ZohoIntegration.Program - Product_Code: PR00001
+2026-07-28 14:43:29,789 INFO AVS_ZohoIntegration.Program - Product_Name: Articulo de prueba
+2026-07-28 14:43:29,789 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,789 INFO AVS_ZohoIntegration.Program - Unit_Price: 300
+2026-07-28 14:43:29,790 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,790 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,790 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,791 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,791 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 90 *
+2026-07-28 14:43:29,791 INFO AVS_ZohoIntegration.Program - Product_Code: R00001
+2026-07-28 14:43:29,791 INFO AVS_ZohoIntegration.Program - Product_Name: Papel Blanco para Impresora Tamaño A4
+2026-07-28 14:43:29,791 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,792 INFO AVS_ZohoIntegration.Program - Unit_Price: 5
+2026-07-28 14:43:29,792 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,792 INFO AVS_ZohoIntegration.Program - Usage_Unit: Paquete  de 6 pzas
+2026-07-28 14:43:29,793 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 500
+2026-07-28 14:43:29,793 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,793 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 91 *
+2026-07-28 14:43:29,794 INFO AVS_ZohoIntegration.Program - Product_Code: R00002
+2026-07-28 14:43:29,794 INFO AVS_ZohoIntegration.Program - Product_Name: Papel Reciclado para Impresora Tamaño A4
+2026-07-28 14:43:29,794 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,794 INFO AVS_ZohoIntegration.Program - Unit_Price: 3
+2026-07-28 14:43:29,795 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,795 INFO AVS_ZohoIntegration.Program - Usage_Unit: Paquete
+2026-07-28 14:43:29,795 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 500
+2026-07-28 14:43:29,795 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,796 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 92 *
+2026-07-28 14:43:29,796 INFO AVS_ZohoIntegration.Program - Product_Code: S10000
+2026-07-28 14:43:29,796 INFO AVS_ZohoIntegration.Program - Product_Name: Server Point 10000
+2026-07-28 14:43:29,797 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,797 INFO AVS_ZohoIntegration.Program - Unit_Price: 354042.43
+2026-07-28 14:43:29,799 INFO AVS_ZohoIntegration.Program - Tax: B00
+2026-07-28 14:43:29,799 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,799 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 500
+2026-07-28 14:43:29,799 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,799 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 93 *
+2026-07-28 14:43:29,800 INFO AVS_ZohoIntegration.Program - Product_Code: TR0001
+2026-07-28 14:43:29,800 INFO AVS_ZohoIntegration.Program - Product_Name: Travel Expense per 100 miles
+2026-07-28 14:43:29,800 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,800 INFO AVS_ZohoIntegration.Program - Unit_Price: 600
+2026-07-28 14:43:29,801 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,801 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,801 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 0
+2026-07-28 14:43:29,801 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,802 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 94 *
+2026-07-28 14:43:29,802 INFO AVS_ZohoIntegration.Program - Product_Code: Z00001
+2026-07-28 14:43:29,802 INFO AVS_ZohoIntegration.Program - Product_Name: Tablet PC 64GB Negra
+2026-07-28 14:43:29,802 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,802 INFO AVS_ZohoIntegration.Program - Unit_Price: 700
+2026-07-28 14:43:29,803 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,803 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,803 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 524
+2026-07-28 14:43:29,804 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-07-28 14:43:29,804 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 95 *
+2026-07-28 14:43:29,804 INFO AVS_ZohoIntegration.Program - Product_Code: Z00002
+2026-07-28 14:43:29,805 INFO AVS_ZohoIntegration.Program - Product_Name: Tablet PC 64GB Blanca
+2026-07-28 14:43:29,805 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-07-28 14:43:29,805 INFO AVS_ZohoIntegration.Program - Unit_Price: 700
+2026-07-28 14:43:29,806 INFO AVS_ZohoIntegration.Program - Tax: 
+2026-07-28 14:43:29,806 INFO AVS_ZohoIntegration.Program - Usage_Unit: 
+2026-07-28 14:43:29,806 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 523
+2026-07-28 14:43:29,806 INFO AVS_ZohoIntegration.Program - Taxable: true

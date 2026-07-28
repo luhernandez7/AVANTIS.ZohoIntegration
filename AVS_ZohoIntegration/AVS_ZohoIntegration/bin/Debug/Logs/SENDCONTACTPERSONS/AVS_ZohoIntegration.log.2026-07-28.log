@@ -1,0 +1,767 @@
+2026-07-28 15:13:52,314 INFO AVS_ZohoIntegration.Program - AVS SFTPSync Version [1.0.0.0]
+2026-07-28 15:13:52,325 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-07-28 15:13:52,374 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-07-28 15:13:52,374 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-07-28 15:13:52,374 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-07-28 15:13:55,170 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-07-28 15:13:55,170 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-07-28 15:13:55,170 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDCONTACTPERSONS
+2026-07-28 15:13:55,170 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de socios de negocio...
+2026-07-28 15:13:55,176 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Personas de contacto (OCPR) ***
+2026-07-28 15:13:55,384 INFO AVS_ZohoIntegration.Program - Se han obtenido 40 resultados pendientes de procesar.
+2026-07-28 15:13:55,384 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 1 *
+2026-07-28 15:13:55,385 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,386 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,386 INFO AVS_ZohoIntegration.Program - Account_Name: C20000
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Email: norm.thompson@norm.sap.com.mx
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5229-8176
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Full_Name: Humberto Thompson
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director General
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 2 *
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Account_Name: C20000
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Email: amanda.costner@norm.sap.com.mx
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5104-9190
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Full_Name: Amanda Costner
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 3 *
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Account_Name: C23900
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Email: daniel.brown@parameter.sap.com.mx
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Phone: +52 (444) 8917-3743
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Full_Name: Daniel Brown
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 4 *
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Account_Name: C23900
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Email: jodi.hummel@parameter.sap.com.mx
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5992-7402
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Full_Name: Marta Hummel
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 5 *
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Account_Name: C30000
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Email: judy.brown@microchips.sap.com.mx
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5089-1023
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Full_Name: Carolina Brown
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 6 *
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Account_Name: C30000
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Email: megan.jubinville@microchips.sap.com.mx
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 7882-4616
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 7882-4616
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Full_Name: Daniela Jubinville
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:13:55,387 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 7 *
+2026-07-28 15:13:55,402 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,402 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,402 INFO AVS_ZohoIntegration.Program - Account_Name: C40000
+2026-07-28 15:13:55,403 INFO AVS_ZohoIntegration.Program - Email: bob.makensly@earthshaker.sap.com.mx
+2026-07-28 15:13:55,403 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5028-7922
+2026-07-28 15:13:55,403 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5028-7922
+2026-07-28 15:13:55,404 INFO AVS_ZohoIntegration.Program - Full_Name: Gustavo  McKensly
+2026-07-28 15:13:55,404 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:13:55,404 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 8 *
+2026-07-28 15:13:55,405 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,405 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,405 INFO AVS_ZohoIntegration.Program - Account_Name: C40000
+2026-07-28 15:13:55,406 INFO AVS_ZohoIntegration.Program - Email: emily.powers@earthshaker.sap.com.mx
+2026-07-28 15:13:55,406 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5290-3655
+2026-07-28 15:13:55,407 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5290-3655
+2026-07-28 15:13:55,407 INFO AVS_ZohoIntegration.Program - Full_Name: Soledad Powers
+2026-07-28 15:13:55,407 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,407 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 9 *
+2026-07-28 15:13:55,408 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,408 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,408 INFO AVS_ZohoIntegration.Program - Account_Name: C42000
+2026-07-28 15:13:55,408 INFO AVS_ZohoIntegration.Program - Email: anthony.smith@mashina.sap.com.mx
+2026-07-28 15:13:55,409 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5405-2342
+2026-07-28 15:13:55,409 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5405-2342
+2026-07-28 15:13:55,409 INFO AVS_ZohoIntegration.Program - Full_Name: Julian Smith
+2026-07-28 15:13:55,409 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:13:55,410 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 10 *
+2026-07-28 15:13:55,410 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,410 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,410 INFO AVS_ZohoIntegration.Program - Account_Name: C42000
+2026-07-28 15:13:55,411 INFO AVS_ZohoIntegration.Program - Email: jennifer.herren@mashina.sap.com.mx
+2026-07-28 15:13:55,411 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5473-2234
+2026-07-28 15:13:55,411 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:13:55,411 INFO AVS_ZohoIntegration.Program - Full_Name: Natalia Herren
+2026-07-28 15:13:55,412 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:13:55,412 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 11 *
+2026-07-28 15:13:55,412 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,413 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,413 INFO AVS_ZohoIntegration.Program - Account_Name: C50000
+2026-07-28 15:13:55,413 INFO AVS_ZohoIntegration.Program - Email: mary.brown@ada-tech.sap.com.mx
+2026-07-28 15:13:55,413 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5229-8176
+2026-07-28 15:13:55,414 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:13:55,414 INFO AVS_ZohoIntegration.Program - Full_Name: Ana  Brown
+2026-07-28 15:13:55,414 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:13:55,414 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 12 *
+2026-07-28 15:13:55,415 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,415 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,415 INFO AVS_ZohoIntegration.Program - Account_Name: C60000
+2026-07-28 15:13:55,416 INFO AVS_ZohoIntegration.Program - Email: eric.alexander@sg.sap.com.mx
+2026-07-28 15:13:55,416 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5104-9190
+2026-07-28 15:13:55,416 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:13:55,416 INFO AVS_ZohoIntegration.Program - Full_Name: Carlos Alexander
+2026-07-28 15:13:55,417 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:13:55,417 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 13 *
+2026-07-28 15:13:55,418 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,419 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,419 INFO AVS_ZohoIntegration.Program - Account_Name: C70000
+2026-07-28 15:13:55,420 INFO AVS_ZohoIntegration.Program - Email: troy.brown@aquent-sys.sap.com.mx
+2026-07-28 15:13:55,420 INFO AVS_ZohoIntegration.Program - Phone: +52 (444) 8917-3743
+2026-07-28 15:13:55,420 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:13:55,421 INFO AVS_ZohoIntegration.Program - Full_Name: Guillermo Brown
+2026-07-28 15:13:55,421 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,421 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 14 *
+2026-07-28 15:13:55,421 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,422 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,422 INFO AVS_ZohoIntegration.Program - Account_Name: L10001
+2026-07-28 15:13:55,422 INFO AVS_ZohoIntegration.Program - Email: james.sanders@ackermann.sap.com.mx
+2026-07-28 15:13:55,422 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5992-7402
+2026-07-28 15:13:55,423 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:13:55,423 INFO AVS_ZohoIntegration.Program - Full_Name: Jorge Sanders
+2026-07-28 15:13:55,424 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director General
+2026-07-28 15:13:55,424 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 15 *
+2026-07-28 15:13:55,425 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,425 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,425 INFO AVS_ZohoIntegration.Program - Account_Name: L10001
+2026-07-28 15:13:55,426 INFO AVS_ZohoIntegration.Program - Email: lisa.breeveld@ackermann.sap.com.mx
+2026-07-28 15:13:55,426 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5089-1023
+2026-07-28 15:13:55,426 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 7882-4616
+2026-07-28 15:13:55,426 INFO AVS_ZohoIntegration.Program - Full_Name: Maria Laura Breeveld
+2026-07-28 15:13:55,427 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:13:55,427 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 16 *
+2026-07-28 15:13:55,427 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,428 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,428 INFO AVS_ZohoIntegration.Program - Account_Name: L10002
+2026-07-28 15:13:55,428 INFO AVS_ZohoIntegration.Program - Email: vince.wilfork@werner.sap.com.mx
+2026-07-28 15:13:55,428 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 7882-4616
+2026-07-28 15:13:55,429 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5028-7922
+2026-07-28 15:13:55,429 INFO AVS_ZohoIntegration.Program - Full_Name: Hugo Wilfork
+2026-07-28 15:13:55,429 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,430 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 17 *
+2026-07-28 15:13:55,430 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,431 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,431 INFO AVS_ZohoIntegration.Program - Account_Name: L10002
+2026-07-28 15:13:55,431 INFO AVS_ZohoIntegration.Program - Email: camilla.svensson@werner.sap.com.mx
+2026-07-28 15:13:55,431 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5028-7922
+2026-07-28 15:13:55,432 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5290-3655
+2026-07-28 15:13:55,432 INFO AVS_ZohoIntegration.Program - Full_Name: Camila Svensson
+2026-07-28 15:13:55,432 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:13:55,432 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 18 *
+2026-07-28 15:13:55,433 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,433 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,433 INFO AVS_ZohoIntegration.Program - Account_Name: V10000
+2026-07-28 15:13:55,433 INFO AVS_ZohoIntegration.Program - Email: sarah.kierl@acme.sap.com.mx
+2026-07-28 15:13:55,434 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5290-3655
+2026-07-28 15:13:55,434 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:13:55,434 INFO AVS_ZohoIntegration.Program - Full_Name: Luisa Kierl
+2026-07-28 15:13:55,435 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Ejecutivo de Cuenta
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 19 *
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Account_Name: V10000
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Email: rena.marrazzo@acme.sap.com.mx
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5405-2342
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Full_Name: Sebastian Marrazzo
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 20 *
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Account_Name: V1010
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Email: lawrence.miles@far-east.sap.com.mx
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5473-2234
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Full_Name: Martin Miles
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 21 *
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Account_Name: V1010
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Email: kere.sheppard@far-east.sap.com.mx
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5229-8176
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Full_Name: Juan Roman Sheppard
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 22 *
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Account_Name: V20000
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Email: jimmy.miller@lasersap.com.sap.com.mx
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5104-9190
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Full_Name: Juan Miller
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 23 *
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Account_Name: V20000
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Email: sydney.wilson@lasersap.com.sap.com.mx
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Phone: +52 (444) 8917-3743
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Full_Name: Alejandra Wilson
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 24 *
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Account_Name: V23000
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Email: matt.spanos@anthony.sap.com.mx
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5992-7402
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Full_Name: Matias Spanos
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 25 *
+2026-07-28 15:13:55,436 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,452 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Account_Name: V30000
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Email: michael.morgan@blockies.sap.com.mx
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5089-1023
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Full_Name: Miguel Morgan
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Ejecutivo de Cuenta
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 26 *
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Account_Name: V30000
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Email: sarina.hanschke@blockies.sap.com.mx
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 7882-4616
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Full_Name: Sabrina Hanschke
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 27 *
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Account_Name: V50000
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Email: kyle.williams@lumarx.sap.com.sap.com.mx
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5028-7922
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Full_Name: Roberto Williams
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 28 *
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Account_Name: V50000
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Email: lynn.klingenberg@lumarx.sap.com.mx
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5290-3655
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 7882-4616
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Full_Name: Susana Klingenberg
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Ejecutivo de Cuenta
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 29 *
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Account_Name: V60000
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Email: ryan.kalil@CTI.sap.com.mx
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5405-2342
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5028-7922
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Full_Name: Juan Kalil
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 30 *
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Account_Name: V70000
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Email: sarah.kierl@SMD-tech.sap.com.mx
+2026-07-28 15:13:55,453 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5473-2234
+2026-07-28 15:13:55,468 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5290-3655
+2026-07-28 15:13:55,469 INFO AVS_ZohoIntegration.Program - Full_Name: Sara Kierl
+2026-07-28 15:13:55,470 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:13:55,470 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 31 *
+2026-07-28 15:13:55,470 INFO AVS_ZohoIntegration.Program - First_Name: Martina
+2026-07-28 15:13:55,470 INFO AVS_ZohoIntegration.Program - Last_Name: Basalykova
+2026-07-28 15:13:55,471 INFO AVS_ZohoIntegration.Program - Account_Name: C25000
+2026-07-28 15:13:55,471 INFO AVS_ZohoIntegration.Program - Email: martina@starcompa.eu
+2026-07-28 15:13:55,471 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 582 56 33
+2026-07-28 15:13:55,471 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,472 INFO AVS_ZohoIntegration.Program - Full_Name: Martina  Basalykova
+2026-07-28 15:13:55,472 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Purchasing
+2026-07-28 15:13:55,472 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 32 *
+2026-07-28 15:13:55,472 INFO AVS_ZohoIntegration.Program - First_Name: Peter
+2026-07-28 15:13:55,473 INFO AVS_ZohoIntegration.Program - Last_Name: Nagy
+2026-07-28 15:13:55,473 INFO AVS_ZohoIntegration.Program - Account_Name: C25000
+2026-07-28 15:13:55,473 INFO AVS_ZohoIntegration.Program - Email: peter@starcompa.eu
+2026-07-28 15:13:55,474 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 582 56 33
+2026-07-28 15:13:55,474 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,474 INFO AVS_ZohoIntegration.Program - Full_Name: Peter Nagy
+2026-07-28 15:13:55,475 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: COO
+2026-07-28 15:13:55,475 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 33 *
+2026-07-28 15:13:55,475 INFO AVS_ZohoIntegration.Program - First_Name: Lewis
+2026-07-28 15:13:55,475 INFO AVS_ZohoIntegration.Program - Last_Name: Beerman
+2026-07-28 15:13:55,476 INFO AVS_ZohoIntegration.Program - Account_Name: C26000
+2026-07-28 15:13:55,476 INFO AVS_ZohoIntegration.Program - Email: lewis@riveri.co.uk
+2026-07-28 15:13:55,476 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 869 9000
+2026-07-28 15:13:55,477 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,477 INFO AVS_ZohoIntegration.Program - Full_Name: Lewis Beerman
+2026-07-28 15:13:55,478 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: MD
+2026-07-28 15:13:55,478 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 34 *
+2026-07-28 15:13:55,478 INFO AVS_ZohoIntegration.Program - First_Name: Luke
+2026-07-28 15:13:55,478 INFO AVS_ZohoIntegration.Program - Last_Name: Hardy
+2026-07-28 15:13:55,478 INFO AVS_ZohoIntegration.Program - Account_Name: C26000
+2026-07-28 15:13:55,479 INFO AVS_ZohoIntegration.Program - Email: luke@riveri.co.uk
+2026-07-28 15:13:55,479 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 869 9000
+2026-07-28 15:13:55,479 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,479 INFO AVS_ZohoIntegration.Program - Full_Name: Luke Hardy
+2026-07-28 15:13:55,480 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: CIO
+2026-07-28 15:13:55,480 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 35 *
+2026-07-28 15:13:55,480 INFO AVS_ZohoIntegration.Program - First_Name: Pavol
+2026-07-28 15:13:55,480 INFO AVS_ZohoIntegration.Program - Last_Name: Jankovic
+2026-07-28 15:13:55,480 INFO AVS_ZohoIntegration.Program - Account_Name: V21000
+2026-07-28 15:13:55,481 INFO AVS_ZohoIntegration.Program - Email: PJankovic@seacorp.eu
+2026-07-28 15:13:55,481 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 683 42 27
+2026-07-28 15:13:55,481 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,481 INFO AVS_ZohoIntegration.Program - Full_Name: Pavol Jankovic
+2026-07-28 15:13:55,482 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Sales
+2026-07-28 15:13:55,482 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 36 *
+2026-07-28 15:13:55,482 INFO AVS_ZohoIntegration.Program - First_Name: Dusan
+2026-07-28 15:13:55,483 INFO AVS_ZohoIntegration.Program - Last_Name: Palo
+2026-07-28 15:13:55,483 INFO AVS_ZohoIntegration.Program - Account_Name: V21000
+2026-07-28 15:13:55,483 INFO AVS_ZohoIntegration.Program - Email: DPalo@seacorp.eu
+2026-07-28 15:13:55,483 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 683 42 27
+2026-07-28 15:13:55,484 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,485 INFO AVS_ZohoIntegration.Program - Full_Name: Dusan Palo
+2026-07-28 15:13:55,485 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: CIO
+2026-07-28 15:13:55,486 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 37 *
+2026-07-28 15:13:55,486 INFO AVS_ZohoIntegration.Program - First_Name: Joe
+2026-07-28 15:13:55,487 INFO AVS_ZohoIntegration.Program - Last_Name: Wilson
+2026-07-28 15:13:55,487 INFO AVS_ZohoIntegration.Program - Account_Name: V22000
+2026-07-28 15:13:55,487 INFO AVS_ZohoIntegration.Program - Email: Joe@oceancomp.co.uk
+2026-07-28 15:13:55,488 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 445 1895
+2026-07-28 15:13:55,488 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,488 INFO AVS_ZohoIntegration.Program - Full_Name: Joe Wilson
+2026-07-28 15:13:55,489 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Sales
+2026-07-28 15:13:55,489 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 38 *
+2026-07-28 15:13:55,489 INFO AVS_ZohoIntegration.Program - First_Name: Andrew
+2026-07-28 15:13:55,490 INFO AVS_ZohoIntegration.Program - Last_Name: Francis
+2026-07-28 15:13:55,490 INFO AVS_ZohoIntegration.Program - Account_Name: V22000
+2026-07-28 15:13:55,491 INFO AVS_ZohoIntegration.Program - Email: Andrew@oceancomp.co.uk
+2026-07-28 15:13:55,491 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 445 1895
+2026-07-28 15:13:55,492 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:13:55,492 INFO AVS_ZohoIntegration.Program - Full_Name: Andrew Francis
+2026-07-28 15:13:55,493 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: CEO
+2026-07-28 15:13:55,493 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 39 *
+2026-07-28 15:13:55,494 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,494 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,494 INFO AVS_ZohoIntegration.Program - Account_Name: CMF0004
+2026-07-28 15:13:55,494 INFO AVS_ZohoIntegration.Program - Email: carlos.lopez@empresa.com
+2026-07-28 15:13:55,495 INFO AVS_ZohoIntegration.Program - Phone: 5559871234
+2026-07-28 15:13:55,495 INFO AVS_ZohoIntegration.Program - Mobile: 5559998887
+2026-07-28 15:13:55,495 INFO AVS_ZohoIntegration.Program - Full_Name: Carlos López
+2026-07-28 15:13:55,495 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente de Ventas
+2026-07-28 15:13:55,496 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 40 *
+2026-07-28 15:13:55,496 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:13:55,496 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:13:55,496 INFO AVS_ZohoIntegration.Program - Account_Name: CMF0004
+2026-07-28 15:13:55,497 INFO AVS_ZohoIntegration.Program - Email: ana.rodriguez@empresa.com
+2026-07-28 15:13:55,497 INFO AVS_ZohoIntegration.Program - Phone: 8187654321
+2026-07-28 15:13:55,497 INFO AVS_ZohoIntegration.Program - Mobile: 8189997776
+2026-07-28 15:13:55,498 INFO AVS_ZohoIntegration.Program - Full_Name: Ana Rodríguez
+2026-07-28 15:13:55,498 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Administración
+2026-07-28 15:13:55,502 INFO AVS_ZohoIntegration.Program - ** 40 registros listos. Enviando a Zoho...
+2026-07-28 15:13:55,503 INFO AVS_ZohoIntegration.Program - El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...
+2026-07-28 15:13:56,024 ERROR AVS_ZohoIntegration.Program - Error crítico al intentar renovar el token de Zoho:
+System.Net.Http.HttpRequestException: El código de estado de la respuesta no indica un resultado correcto: 404 (Not Found).
+   en System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   en AVS_ZohoIntegration.Manager.ZohoIntegrationManager.<GetValidAccessTokenAsync>d__8.MoveNext() en C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\ZohoIntegrationManager.cs:línea 117
+2026-07-28 15:13:56,086 ERROR AVS_ZohoIntegration.Program - Error de red al consumir API POST https://www.zohoapis.com/crm/v3/Contacts: El código de estado de la respuesta no indica un resultado correcto: 404 (Not Found).
+2026-07-28 15:13:56,136 ERROR AVS_ZohoIntegration.Program - **** Excepción crítica al enviar OCPR a Zoho ****
+System.Net.Http.HttpRequestException: El código de estado de la respuesta no indica un resultado correcto: 404 (Not Found).
+   en System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   en AVS_ZohoIntegration.Manager.ZohoIntegrationManager.<GetValidAccessTokenAsync>d__8.MoveNext() en C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\ZohoIntegrationManager.cs:línea 141
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   en AVS_ZohoIntegration.Manager.ZohoIntegrationManager.<PostTransactionAsync>d__15.MoveNext() en C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\ZohoIntegrationManager.cs:línea 509
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   en AVS_ZohoIntegration.Manager.ZohoIntegrationManager.<SendEntityToZohoAsync>d__9.MoveNext() en C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration.Manager\ZohoIntegrationManager.cs:línea 224
+2026-07-28 15:13:56,136 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-07-28 15:13:56,136 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-07-28 15:13:58,324 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-07-28 15:13:58,326 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-07-28 15:14:04,558 INFO AVS_ZohoIntegration.Program - AVS SFTPSync Version [1.0.0.0]
+2026-07-28 15:14:04,571 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-07-28 15:14:04,620 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-07-28 15:14:04,620 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-07-28 15:14:04,631 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-07-28 15:14:05,976 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-07-28 15:14:05,977 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-07-28 15:14:05,977 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDCONTACTPERSONS
+2026-07-28 15:14:05,977 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de socios de negocio...
+2026-07-28 15:14:05,981 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Personas de contacto (OCPR) ***
+2026-07-28 15:14:06,104 INFO AVS_ZohoIntegration.Program - Se han obtenido 40 resultados pendientes de procesar.
+2026-07-28 15:14:06,105 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 1 *
+2026-07-28 15:14:06,105 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,105 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,105 INFO AVS_ZohoIntegration.Program - Account_Name: C20000
+2026-07-28 15:14:06,106 INFO AVS_ZohoIntegration.Program - Email: norm.thompson@norm.sap.com.mx
+2026-07-28 15:14:06,106 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5229-8176
+2026-07-28 15:14:06,107 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:14:06,107 INFO AVS_ZohoIntegration.Program - Full_Name: Humberto Thompson
+2026-07-28 15:14:06,107 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director General
+2026-07-28 15:14:06,107 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 2 *
+2026-07-28 15:14:06,108 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,108 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,108 INFO AVS_ZohoIntegration.Program - Account_Name: C20000
+2026-07-28 15:14:06,108 INFO AVS_ZohoIntegration.Program - Email: amanda.costner@norm.sap.com.mx
+2026-07-28 15:14:06,109 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5104-9190
+2026-07-28 15:14:06,109 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:14:06,110 INFO AVS_ZohoIntegration.Program - Full_Name: Amanda Costner
+2026-07-28 15:14:06,110 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:14:06,110 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 3 *
+2026-07-28 15:14:06,111 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,111 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,111 INFO AVS_ZohoIntegration.Program - Account_Name: C23900
+2026-07-28 15:14:06,111 INFO AVS_ZohoIntegration.Program - Email: daniel.brown@parameter.sap.com.mx
+2026-07-28 15:14:06,111 INFO AVS_ZohoIntegration.Program - Phone: +52 (444) 8917-3743
+2026-07-28 15:14:06,112 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:14:06,112 INFO AVS_ZohoIntegration.Program - Full_Name: Daniel Brown
+2026-07-28 15:14:06,112 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:14:06,112 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 4 *
+2026-07-28 15:14:06,113 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,113 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,113 INFO AVS_ZohoIntegration.Program - Account_Name: C23900
+2026-07-28 15:14:06,113 INFO AVS_ZohoIntegration.Program - Email: jodi.hummel@parameter.sap.com.mx
+2026-07-28 15:14:06,114 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5992-7402
+2026-07-28 15:14:06,114 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:14:06,115 INFO AVS_ZohoIntegration.Program - Full_Name: Marta Hummel
+2026-07-28 15:14:06,115 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,115 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 5 *
+2026-07-28 15:14:06,116 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,116 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,116 INFO AVS_ZohoIntegration.Program - Account_Name: C30000
+2026-07-28 15:14:06,116 INFO AVS_ZohoIntegration.Program - Email: judy.brown@microchips.sap.com.mx
+2026-07-28 15:14:06,117 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5089-1023
+2026-07-28 15:14:06,117 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:14:06,117 INFO AVS_ZohoIntegration.Program - Full_Name: Carolina Brown
+2026-07-28 15:14:06,117 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,118 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 6 *
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Account_Name: C30000
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Email: megan.jubinville@microchips.sap.com.mx
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 7882-4616
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 7882-4616
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Full_Name: Daniela Jubinville
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 7 *
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Account_Name: C40000
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Email: bob.makensly@earthshaker.sap.com.mx
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5028-7922
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5028-7922
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Full_Name: Gustavo  McKensly
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 8 *
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Account_Name: C40000
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Email: emily.powers@earthshaker.sap.com.mx
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5290-3655
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5290-3655
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Full_Name: Soledad Powers
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 9 *
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,119 INFO AVS_ZohoIntegration.Program - Account_Name: C42000
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Email: anthony.smith@mashina.sap.com.mx
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5405-2342
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5405-2342
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Full_Name: Julian Smith
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 10 *
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Account_Name: C42000
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Email: jennifer.herren@mashina.sap.com.mx
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5473-2234
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Full_Name: Natalia Herren
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 11 *
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,129 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Account_Name: C50000
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Email: mary.brown@ada-tech.sap.com.mx
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5229-8176
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Full_Name: Ana  Brown
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 12 *
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,134 INFO AVS_ZohoIntegration.Program - Account_Name: C60000
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Email: eric.alexander@sg.sap.com.mx
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5104-9190
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Full_Name: Carlos Alexander
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 13 *
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Account_Name: C70000
+2026-07-28 15:14:06,138 INFO AVS_ZohoIntegration.Program - Email: troy.brown@aquent-sys.sap.com.mx
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Phone: +52 (444) 8917-3743
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Full_Name: Guillermo Brown
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 14 *
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Account_Name: L10001
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Email: james.sanders@ackermann.sap.com.mx
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5992-7402
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Full_Name: Jorge Sanders
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director General
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 15 *
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Account_Name: L10001
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Email: lisa.breeveld@ackermann.sap.com.mx
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5089-1023
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 7882-4616
+2026-07-28 15:14:06,143 INFO AVS_ZohoIntegration.Program - Full_Name: Maria Laura Breeveld
+2026-07-28 15:14:06,148 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:14:06,148 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 16 *
+2026-07-28 15:14:06,148 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,148 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,148 INFO AVS_ZohoIntegration.Program - Account_Name: L10002
+2026-07-28 15:14:06,150 INFO AVS_ZohoIntegration.Program - Email: vince.wilfork@werner.sap.com.mx
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 7882-4616
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5028-7922
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - Full_Name: Hugo Wilfork
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 17 *
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - Account_Name: L10002
+2026-07-28 15:14:06,151 INFO AVS_ZohoIntegration.Program - Email: camilla.svensson@werner.sap.com.mx
+2026-07-28 15:14:06,157 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5028-7922
+2026-07-28 15:14:06,157 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5290-3655
+2026-07-28 15:14:06,157 INFO AVS_ZohoIntegration.Program - Full_Name: Camila Svensson
+2026-07-28 15:14:06,157 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:14:06,157 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 18 *
+2026-07-28 15:14:06,159 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,159 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,159 INFO AVS_ZohoIntegration.Program - Account_Name: V10000
+2026-07-28 15:14:06,159 INFO AVS_ZohoIntegration.Program - Email: sarah.kierl@acme.sap.com.mx
+2026-07-28 15:14:06,159 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5290-3655
+2026-07-28 15:14:06,159 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:14:06,159 INFO AVS_ZohoIntegration.Program - Full_Name: Luisa Kierl
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Ejecutivo de Cuenta
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 19 *
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Account_Name: V10000
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Email: rena.marrazzo@acme.sap.com.mx
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5405-2342
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Full_Name: Sebastian Marrazzo
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 20 *
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Account_Name: V1010
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Email: lawrence.miles@far-east.sap.com.mx
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5473-2234
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Full_Name: Martin Miles
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 21 *
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,161 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,166 INFO AVS_ZohoIntegration.Program - Account_Name: V1010
+2026-07-28 15:14:06,166 INFO AVS_ZohoIntegration.Program - Email: kere.sheppard@far-east.sap.com.mx
+2026-07-28 15:14:06,166 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5229-8176
+2026-07-28 15:14:06,167 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:14:06,167 INFO AVS_ZohoIntegration.Program - Full_Name: Juan Roman Sheppard
+2026-07-28 15:14:06,167 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:14:06,168 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 22 *
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - Account_Name: V20000
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - Email: jimmy.miller@lasersap.com.sap.com.mx
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5104-9190
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - Full_Name: Juan Miller
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,169 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 23 *
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Account_Name: V20000
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Email: sydney.wilson@lasersap.com.sap.com.mx
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Phone: +52 (444) 8917-3743
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Mobile: +52 (33) 5229-8176
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Full_Name: Alejandra Wilson
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 24 *
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Account_Name: V23000
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Email: matt.spanos@anthony.sap.com.mx
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5992-7402
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5104-9190
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Full_Name: Matias Spanos
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Consultor
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 25 *
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Account_Name: V30000
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Email: michael.morgan@blockies.sap.com.mx
+2026-07-28 15:14:06,173 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5089-1023
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - Mobile: +52 (444) 8917-3743
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - Full_Name: Miguel Morgan
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Ejecutivo de Cuenta
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 26 *
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - Account_Name: V30000
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - Email: sarina.hanschke@blockies.sap.com.mx
+2026-07-28 15:14:06,181 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 7882-4616
+2026-07-28 15:14:06,183 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5992-7402
+2026-07-28 15:14:06,183 INFO AVS_ZohoIntegration.Program - Full_Name: Sabrina Hanschke
+2026-07-28 15:14:06,183 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,183 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 27 *
+2026-07-28 15:14:06,183 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,183 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,185 INFO AVS_ZohoIntegration.Program - Account_Name: V50000
+2026-07-28 15:14:06,185 INFO AVS_ZohoIntegration.Program - Email: kyle.williams@lumarx.sap.com.sap.com.mx
+2026-07-28 15:14:06,185 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5028-7922
+2026-07-28 15:14:06,185 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5089-1023
+2026-07-28 15:14:06,187 INFO AVS_ZohoIntegration.Program - Full_Name: Roberto Williams
+2026-07-28 15:14:06,187 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente Comercial
+2026-07-28 15:14:06,188 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 28 *
+2026-07-28 15:14:06,188 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,188 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,189 INFO AVS_ZohoIntegration.Program - Account_Name: V50000
+2026-07-28 15:14:06,189 INFO AVS_ZohoIntegration.Program - Email: lynn.klingenberg@lumarx.sap.com.mx
+2026-07-28 15:14:06,190 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5290-3655
+2026-07-28 15:14:06,190 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 7882-4616
+2026-07-28 15:14:06,190 INFO AVS_ZohoIntegration.Program - Full_Name: Susana Klingenberg
+2026-07-28 15:14:06,191 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Ejecutivo de Cuenta
+2026-07-28 15:14:06,191 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 29 *
+2026-07-28 15:14:06,191 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,192 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,192 INFO AVS_ZohoIntegration.Program - Account_Name: V60000
+2026-07-28 15:14:06,192 INFO AVS_ZohoIntegration.Program - Email: ryan.kalil@CTI.sap.com.mx
+2026-07-28 15:14:06,192 INFO AVS_ZohoIntegration.Program - Phone: +52 (55) 5405-2342
+2026-07-28 15:14:06,193 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5028-7922
+2026-07-28 15:14:06,193 INFO AVS_ZohoIntegration.Program - Full_Name: Juan Kalil
+2026-07-28 15:14:06,193 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente General
+2026-07-28 15:14:06,194 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 30 *
+2026-07-28 15:14:06,194 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,194 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,194 INFO AVS_ZohoIntegration.Program - Account_Name: V70000
+2026-07-28 15:14:06,195 INFO AVS_ZohoIntegration.Program - Email: sarah.kierl@SMD-tech.sap.com.mx
+2026-07-28 15:14:06,195 INFO AVS_ZohoIntegration.Program - Phone: +52 (33) 5473-2234
+2026-07-28 15:14:06,195 INFO AVS_ZohoIntegration.Program - Mobile: +52 (55) 5290-3655
+2026-07-28 15:14:06,195 INFO AVS_ZohoIntegration.Program - Full_Name: Sara Kierl
+2026-07-28 15:14:06,195 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Director
+2026-07-28 15:14:06,196 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 31 *
+2026-07-28 15:14:06,196 INFO AVS_ZohoIntegration.Program - First_Name: Martina
+2026-07-28 15:14:06,196 INFO AVS_ZohoIntegration.Program - Last_Name: Basalykova
+2026-07-28 15:14:06,196 INFO AVS_ZohoIntegration.Program - Account_Name: C25000
+2026-07-28 15:14:06,197 INFO AVS_ZohoIntegration.Program - Email: martina@starcompa.eu
+2026-07-28 15:14:06,197 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 582 56 33
+2026-07-28 15:14:06,197 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,198 INFO AVS_ZohoIntegration.Program - Full_Name: Martina  Basalykova
+2026-07-28 15:14:06,198 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Purchasing
+2026-07-28 15:14:06,198 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 32 *
+2026-07-28 15:14:06,199 INFO AVS_ZohoIntegration.Program - First_Name: Peter
+2026-07-28 15:14:06,199 INFO AVS_ZohoIntegration.Program - Last_Name: Nagy
+2026-07-28 15:14:06,199 INFO AVS_ZohoIntegration.Program - Account_Name: C25000
+2026-07-28 15:14:06,200 INFO AVS_ZohoIntegration.Program - Email: peter@starcompa.eu
+2026-07-28 15:14:06,200 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 582 56 33
+2026-07-28 15:14:06,200 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,200 INFO AVS_ZohoIntegration.Program - Full_Name: Peter Nagy
+2026-07-28 15:14:06,201 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: COO
+2026-07-28 15:14:06,201 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 33 *
+2026-07-28 15:14:06,202 INFO AVS_ZohoIntegration.Program - First_Name: Lewis
+2026-07-28 15:14:06,202 INFO AVS_ZohoIntegration.Program - Last_Name: Beerman
+2026-07-28 15:14:06,202 INFO AVS_ZohoIntegration.Program - Account_Name: C26000
+2026-07-28 15:14:06,204 INFO AVS_ZohoIntegration.Program - Email: lewis@riveri.co.uk
+2026-07-28 15:14:06,205 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 869 9000
+2026-07-28 15:14:06,205 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,206 INFO AVS_ZohoIntegration.Program - Full_Name: Lewis Beerman
+2026-07-28 15:14:06,206 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: MD
+2026-07-28 15:14:06,206 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 34 *
+2026-07-28 15:14:06,207 INFO AVS_ZohoIntegration.Program - First_Name: Luke
+2026-07-28 15:14:06,208 INFO AVS_ZohoIntegration.Program - Last_Name: Hardy
+2026-07-28 15:14:06,208 INFO AVS_ZohoIntegration.Program - Account_Name: C26000
+2026-07-28 15:14:06,209 INFO AVS_ZohoIntegration.Program - Email: luke@riveri.co.uk
+2026-07-28 15:14:06,209 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 869 9000
+2026-07-28 15:14:06,209 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,209 INFO AVS_ZohoIntegration.Program - Full_Name: Luke Hardy
+2026-07-28 15:14:06,210 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: CIO
+2026-07-28 15:14:06,210 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 35 *
+2026-07-28 15:14:06,211 INFO AVS_ZohoIntegration.Program - First_Name: Pavol
+2026-07-28 15:14:06,211 INFO AVS_ZohoIntegration.Program - Last_Name: Jankovic
+2026-07-28 15:14:06,211 INFO AVS_ZohoIntegration.Program - Account_Name: V21000
+2026-07-28 15:14:06,211 INFO AVS_ZohoIntegration.Program - Email: PJankovic@seacorp.eu
+2026-07-28 15:14:06,211 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 683 42 27
+2026-07-28 15:14:06,212 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,212 INFO AVS_ZohoIntegration.Program - Full_Name: Pavol Jankovic
+2026-07-28 15:14:06,213 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Sales
+2026-07-28 15:14:06,213 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 36 *
+2026-07-28 15:14:06,213 INFO AVS_ZohoIntegration.Program - First_Name: Dusan
+2026-07-28 15:14:06,213 INFO AVS_ZohoIntegration.Program - Last_Name: Palo
+2026-07-28 15:14:06,214 INFO AVS_ZohoIntegration.Program - Account_Name: V21000
+2026-07-28 15:14:06,214 INFO AVS_ZohoIntegration.Program - Email: DPalo@seacorp.eu
+2026-07-28 15:14:06,214 INFO AVS_ZohoIntegration.Program - Phone: 00421 2 683 42 27
+2026-07-28 15:14:06,214 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,215 INFO AVS_ZohoIntegration.Program - Full_Name: Dusan Palo
+2026-07-28 15:14:06,215 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: CIO
+2026-07-28 15:14:06,215 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 37 *
+2026-07-28 15:14:06,216 INFO AVS_ZohoIntegration.Program - First_Name: Joe
+2026-07-28 15:14:06,216 INFO AVS_ZohoIntegration.Program - Last_Name: Wilson
+2026-07-28 15:14:06,216 INFO AVS_ZohoIntegration.Program - Account_Name: V22000
+2026-07-28 15:14:06,216 INFO AVS_ZohoIntegration.Program - Email: Joe@oceancomp.co.uk
+2026-07-28 15:14:06,217 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 445 1895
+2026-07-28 15:14:06,217 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,217 INFO AVS_ZohoIntegration.Program - Full_Name: Joe Wilson
+2026-07-28 15:14:06,217 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Sales
+2026-07-28 15:14:06,218 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 38 *
+2026-07-28 15:14:06,219 INFO AVS_ZohoIntegration.Program - First_Name: Andrew
+2026-07-28 15:14:06,219 INFO AVS_ZohoIntegration.Program - Last_Name: Francis
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Account_Name: V22000
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Email: Andrew@oceancomp.co.uk
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Phone: 0044 161 445 1895
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Mobile: 
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Full_Name: Andrew Francis
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: CEO
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 39 *
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Account_Name: CMF0004
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Email: carlos.lopez@empresa.com
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Phone: 5559871234
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Mobile: 5559998887
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Full_Name: Carlos López
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Gerente de Ventas
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 40 *
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - First_Name: 
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Last_Name: 
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Account_Name: CMF0004
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Email: ana.rodriguez@empresa.com
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Phone: 8187654321
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Mobile: 8189997776
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Full_Name: Ana Rodríguez
+2026-07-28 15:14:06,220 INFO AVS_ZohoIntegration.Program - Puesto_o_Cargo: Administración
