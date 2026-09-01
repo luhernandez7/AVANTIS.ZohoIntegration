@@ -64,6 +64,11 @@ namespace AVS_ZohoIntegration.Manager
                         SendEntityToZohoAsync("OITM", "Artículos").GetAwaiter().GetResult();
                         break;
 
+                    case "RECEIVEPURCHASE":
+                        log.Info("Iniciando proceso de envío de artículos...");
+                        RecieveEntityFromZohoAsync("ORDR", "Pedidos").GetAwaiter().GetResult();
+                        break;
+
                     default:
                         log.Error($"El comando '{comando}' no está configurado en el desarrollo.");
                         break;
@@ -290,6 +295,7 @@ namespace AVS_ZohoIntegration.Manager
 
             var apiPayload = new { data = normalizedRecords };
             string jsonPayload = JsonConvert.SerializeObject(apiPayload);
+            log.Debug(jsonPayload);
             log.Info($"** {records.Count} registros listos para Upsert. Enviando a Zoho...");
 
             try
@@ -314,7 +320,9 @@ namespace AVS_ZohoIntegration.Manager
             try
             {
                 string query = $@"SELECT ""U_LastSync"", ""U_LastTime"" FROM ""@AVS_ZOHO_LOG"" WHERE ""Code"" = '{configKey}'";
+                log.Debug(query);
                 var recordSet = company.ExecuteQuery(query);
+
                 if (recordSet != null && recordSet.Count > 0)
                 {
                     var fechaStr = recordSet[0]["U_LastSync"]?.ToString();
@@ -322,12 +330,38 @@ namespace AVS_ZohoIntegration.Manager
 
                     if (!string.IsNullOrEmpty(fechaStr))
                     {
-                        if (string.IsNullOrEmpty(horaStr))
-                            horaStr = "00:00:00";
-
                         DateTime parsedDate = Convert.ToDateTime(fechaStr);
                         string fechaLimpia = parsedDate.ToString("yyyy-MM-dd");
-                        return $"{fechaLimpia} {horaStr}";
+
+                        // Normalización segura de la hora para evitar formatos inválidos como "1650"
+                        string horaLimpia = "00:00:00";
+
+                        if (!string.IsNullOrEmpty(horaStr))
+                        {
+                            horaStr = horaStr.Trim();
+
+                            // Si SAP devuelve la hora en formato corto sin dos puntos (ej. "1650")
+                            if (horaStr.Length == 4 && !horaStr.Contains(":"))
+                            {
+                                horaLimpia = $"{horaStr.Substring(0, 2)}:{horaStr.Substring(2, 2)}:00";
+                            }
+                            // Si viene completa sin dos puntos (ej. "165030")
+                            else if (horaStr.Length == 6 && !horaStr.Contains(":"))
+                            {
+                                horaLimpia = $"{horaStr.Substring(0, 2)}:{horaStr.Substring(2, 2)}:{horaStr.Substring(4, 2)}";
+                            }
+                            // Si ya viene con formato de hora estándar, intentamos parsearla
+                            else if (TimeSpan.TryParse(horaStr, out var parsedTime))
+                            {
+                                horaLimpia = parsedTime.ToString(@"hh\:mm\:ss");
+                            }
+                            else
+                            {
+                                horaLimpia = horaStr; // Fallback si ya viene correcta
+                            }
+                        }
+
+                        return $"{fechaLimpia} {horaLimpia}";
                     }
                 }
             }
@@ -396,7 +430,7 @@ namespace AVS_ZohoIntegration.Manager
                 throw new ArgumentException($"No se han configurado campos para la consulta.");
 
             var itemsGroups = new List<Dictionary<string, object>>();
-            log.Info(query);
+            log.Debug(query);
             var recordSet = company.ExecuteQuery(query, log);
             log.Debug("Validar si hay registros (Cláusula de guarda)");
             if (recordSet == null || recordSet.Count == 0)
@@ -495,6 +529,60 @@ namespace AVS_ZohoIntegration.Manager
         #endregion
 
         #region Recieve
+        private async Task RecieveEntityFromZohoAsync(string configKey, string entityDescription)
+        {
+            if (!company.Zoho_EntityConfig.TryGetValue(configKey, out ZohoEntityConfig entityConfig))
+            {
+                log.Error($"La configuración para '{configKey}' no existe en el JSON.");
+                return;
+            }
+
+            log.Info($"*** Obteniendo información de cabecera: {entityDescription} ({configKey}) ***");
+            string apiEndpoint = entityConfig.API;
+
+            try
+            {
+                JObject response = await GetTransactionAsync(apiEndpoint);
+                //ProcesarRespuestaZoho_Send(response, configKey, records, entityConfig.SapKeyField);
+
+                //string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                //log.Info("Actualizando tabla de sincronización.");
+                //company.ActualizarUltimaFechaSincronizacionEnSAP(configKey, fechaHoraActual, log);
+                log.Info("Tabla de sincronización actualizada con exito.");
+            }
+            catch (Exception ex)
+            {
+                log.Error($"**** Excepción crítica al enviar {configKey} a Zoho ****", ex);
+            }
+        }
+
+        private async Task<JObject> GetTransactionAsync(string requestUri)
+        {
+            try
+            {
+                log.Debug("Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)");
+                string accessToken = await GetValidAccessTokenAsync();
+
+                log.Debug("Inyectar el token en el HttpClient");
+                _httpClient.DefaultRequestHeaders.Clear();
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Zoho-oauthtoken {accessToken}");
+
+                log.Info($"Enviando solicitud POST a {requestUri}...");
+                using (HttpResponseMessage response = await _httpClient.GetAsync(requestUri))
+                {
+                    string responseString = await response.Content.ReadAsStringAsync();
+                    if (!response.IsSuccessStatusCode)
+                        log.Warn($"Respuesta fallida de Zoho ({response.StatusCode}): {responseString}");
+
+                    return JObject.Parse(responseString);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Error de red al consumir API POST {requestUri}: {ex.Message}");
+                throw;
+            }
+        }
 
         #endregion
     }

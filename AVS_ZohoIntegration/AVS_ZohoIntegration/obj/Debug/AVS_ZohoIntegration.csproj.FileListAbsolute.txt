@@ -24,6 +24,7 @@ C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegrat
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.exe
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.pdb
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVSSAPConector.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_AppConfig.exe
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_Common_Encriptacion.dll
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.Manager.dll
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\log4net.dll
@@ -32,6 +33,8 @@ C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegrat
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_Security.dll
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_Common_Encriptacion.pdb
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVSSAPConector.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_AppConfig.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_AppConfig.exe.config
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.Manager.pdb
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\log4net.pdb
 C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\log4net.xml

@@ -34,15 +34,40 @@ namespace AVS_ZohoIntegration
                     {
                         log.Debug($"**************************************************************************");
                         log.Debug($"Ejecutando sincronizacion para: {Company.dbName}");
+
+                        #region Validaciones de desencriptación
+                        if (string.IsNullOrEmpty(Company.dbUserPassword))
+                            throw new Exception("La contraseña de BD no puede ser nula o vacia");
+
                         Company.dbUserPassword = Encriptacion.Desencriptar(Company.dbUserPassword);
+
+                        if (string.IsNullOrEmpty(Company.sapUserPassword))
+                            throw new Exception("La contraseña de SAP no puede ser nula o vacia");
+
                         Company.sapUserPassword = Encriptacion.Desencriptar(Company.sapUserPassword);
+
+                        if (string.IsNullOrEmpty(Company.Zoho_ClientId))
+                            throw new Exception("El ClientId de Zoho no puede ser nulo o vacio");
+
+                        Company.Zoho_ClientId = Encriptacion.Desencriptar(Company.Zoho_ClientId);
+
+                        if (string.IsNullOrEmpty(Company.Zoho_ClientSecret))
+                            throw new Exception("El ClientSecret de Zoho no puede ser nulo o vacio");
+
+                        Company.Zoho_ClientSecret = Encriptacion.Desencriptar(Company.Zoho_ClientSecret);
+
+                        if (string.IsNullOrEmpty(Company.Zoho_RefreshToken))
+                            throw new Exception("El RefreshToken de Zoho no puede ser nulo o vacio");
+
+                        Company.Zoho_RefreshToken = Encriptacion.Desencriptar(Company.Zoho_RefreshToken);
+                        #endregion
 
                         ZohoIntegrationManager manager = new ZohoIntegrationManager(log, Company);
                         manager.IniciarProcesamientoDocumento(argumento);
                     }
                     catch (Exception Ex)
                     {
-                        log.Error($"Se ha detectado un error, durante la sincronizacion. Error: {Ex.Message}");
+                        log.Error($"Se ha detectado un error, durante la sincronizacion. Detalle: {Ex.Message}");
                     }
                     finally
                     {

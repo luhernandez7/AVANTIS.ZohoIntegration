@@ -1,0 +1,344 @@
+2026-09-01 11:09:32,039 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 11:09:32,049 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 11:09:32,123 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 11:09:32,124 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 11:09:32,124 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 11:10:09,958 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 11:10:09,971 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 11:10:10,044 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 11:10:10,045 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 11:10:10,046 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 11:10:39,595 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 11:10:39,605 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 11:10:39,668 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 11:10:39,668 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 11:10:39,669 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 11:11:18,325 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 11:11:18,334 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 11:11:18,390 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 11:11:18,390 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 11:11:18,391 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 11:11:57,258 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 11:11:57,268 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 11:11:57,332 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 11:11:57,333 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 11:11:57,334 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 11:17:37,856 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 11:17:37,870 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 11:17:37,938 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 11:17:37,939 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 11:17:37,940 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 11:17:43,043 ERROR AVS_ZohoIntegration.Program - Se ha detectado un error, durante la sincronizacion. Error: El ClientId de Zoho no puede ser nulo o vacio
+2026-09-01 11:17:46,187 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 11:17:47,518 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:43:55,716 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:43:55,734 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:43:55,853 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:43:55,854 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:43:55,856 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:44:00,931 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:44:00,933 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:44:00,934 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:44:00,935 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:44:00,943 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:44:01,108 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-08-31 1650
+2026-09-01 15:44:01,110 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:44:01,112 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:44:01,112 INFO AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (T0.UpdateDate >= '2026-08-31 1650' OR T2.UpdateDate >= '2026-08-31 1650')
+2026-09-01 15:44:01,332 ERROR AVS_ZohoIntegration.Program - Error al ejecutar consulta: 1). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+
+2026-09-01 15:44:01,333 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:44:01,334 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 15:44:01,335 INFO AVS_ZohoIntegration.Program - ** No hay registros pendientes de OITM para procesar.
+2026-09-01 15:44:01,335 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:44:01,336 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:44:02,888 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:44:02,889 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:44:58,144 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:44:58,153 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:44:58,219 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:44:58,220 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:44:58,221 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:45:05,928 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:45:05,928 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:45:05,930 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:45:05,930 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:45:05,934 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:45:06,044 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-08-31 1650
+2026-09-01 15:45:06,044 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:45:06,045 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:45:06,046 INFO AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (T0.UpdateDate >= '2026-08-31 1650' OR T2.UpdateDate >= '2026-08-31 1650')
+2026-09-01 15:45:06,226 ERROR AVS_ZohoIntegration.Program - Error al ejecutar consulta: 1). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+
+2026-09-01 15:45:06,227 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:45:06,228 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 15:45:06,228 INFO AVS_ZohoIntegration.Program - ** No hay registros pendientes de OITM para procesar.
+2026-09-01 15:45:06,229 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:45:06,229 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:45:08,303 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:45:08,304 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:45:32,913 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:45:32,930 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:45:32,992 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:45:32,993 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:45:32,994 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:45:41,208 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:45:41,209 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:45:41,209 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:45:41,210 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:45:41,213 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:45:41,331 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-08-31 1650
+2026-09-01 15:47:46,449 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:47:46,462 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:47:46,559 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:47:46,560 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:47:46,561 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:47:51,768 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:47:51,768 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:47:51,769 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:47:51,770 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:47:51,773 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:47:51,880 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-08-31 16:50:00
+2026-09-01 15:49:20,211 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:49:20,220 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:49:20,308 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:49:20,309 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:49:20,309 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:49:24,330 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:49:24,331 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:49:24,332 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:49:24,332 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:49:24,336 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:49:24,338 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 15:49:24,447 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-08-31 16:50:00
+2026-09-01 15:49:27,237 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:49:27,238 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:49:27,239 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (T0.UpdateDate >= '2026-08-31 16:50:00' OR T2.UpdateDate >= '2026-08-31 16:50:00')
+2026-09-01 15:49:27,527 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:49:27,527 INFO AVS_ZohoIntegration.Program - Se han obtenido 1 resultados pendientes de procesar.
+2026-09-01 15:49:27,528 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 1 *
+2026-09-01 15:49:27,528 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Officeprint 1420
+2026-09-01 15:49:27,529 INFO AVS_ZohoIntegration.Program - Product_Code: A00001
+2026-09-01 15:49:27,529 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-09-01 15:49:27,530 INFO AVS_ZohoIntegration.Program - Unit_Price: 76757.3
+2026-09-01 15:49:27,530 INFO AVS_ZohoIntegration.Program - Usage_Unit: Piezas
+2026-09-01 15:49:27,530 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 100
+2026-09-01 15:49:27,530 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-09-01 15:49:27,531 INFO AVS_ZohoIntegration.Program - * Consultando sub-entidad [Tax] para OITM...
+2026-09-01 15:49:27,533 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:49:27,534 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemCode AS 'Product_Code', '7343678000000608530' AS 'id', 'IVA - 16.0 %' AS 'value' FROM OITM T0 WHERE T0.ItemCode IN ('A00001')
+2026-09-01 15:49:27,696 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:49:27,697 INFO AVS_ZohoIntegration.Program - Se han obtenido 1 resultados pendientes de procesar.
+2026-09-01 15:49:27,698 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 1 *
+2026-09-01 15:49:27,699 INFO AVS_ZohoIntegration.Program - Product_Code: A00001
+2026-09-01 15:49:27,700 INFO AVS_ZohoIntegration.Program - id: 7343678000000608530
+2026-09-01 15:49:27,700 INFO AVS_ZohoIntegration.Program - value: IVA - 16.0 %
+2026-09-01 15:49:27,707 INFO AVS_ZohoIntegration.Program - ** 1 registros listos para Upsert. Enviando a Zoho...
+2026-09-01 15:49:27,709 DEBUG AVS_ZohoIntegration.Program - Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)
+2026-09-01 15:49:27,711 INFO AVS_ZohoIntegration.Program - El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...
+2026-09-01 15:49:28,290 INFO AVS_ZohoIntegration.Program - Nuevo Access Token de Zoho obtenido correctamente.
+2026-09-01 15:49:28,291 DEBUG AVS_ZohoIntegration.Program - Inyectar el token en el HttpClient
+2026-09-01 15:49:28,291 INFO AVS_ZohoIntegration.Program - Enviando solicitud POST a https://www.zohoapis.com/crm/v8/Products/upsert...
+2026-09-01 15:49:29,262 INFO AVS_ZohoIntegration.Program - Éxito [UPDATE] para el registro A00001. Zoho ID: 7343678000004945001
+2026-09-01 15:49:30,204 INFO AVS_ZohoIntegration.Program - Actualizando tabla de sincronización.
+2026-09-01 15:49:30,269 INFO AVS_ZohoIntegration.Program - Tabla de sincronización actualizada con exito.
+2026-09-01 15:49:30,270 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:49:30,271 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:49:38,294 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:49:38,295 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:50:45,036 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:50:45,047 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:50:45,124 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:50:45,125 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:50:45,126 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:50:50,411 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:50:50,412 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:50:50,413 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:50:50,413 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:50:50,417 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:50:50,418 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 15:50:50,535 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-09-01 15:49:00
+2026-09-01 15:50:50,536 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:50:50,537 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:50:50,537 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (T0.UpdateDate >= '2026-09-01 15:49:00' OR T2.UpdateDate >= '2026-09-01 15:49:00')
+2026-09-01 15:50:50,657 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:50:50,658 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 15:50:50,658 INFO AVS_ZohoIntegration.Program - ** No hay registros pendientes de OITM para procesar.
+2026-09-01 15:50:50,659 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:50:50,660 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:50:52,915 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:50:52,916 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:52:25,569 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:52:25,578 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:52:25,641 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:52:25,642 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:52:25,643 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:55:26,282 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:55:26,282 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:55:26,283 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:55:26,283 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:55:26,286 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:55:26,288 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 15:55:26,404 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-09-01 15:49:00
+2026-09-01 15:55:26,404 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:55:26,406 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:55:26,406 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (T0.UpdateDate >= '2026-09-01 15:49:00' OR T2.UpdateDate >= '2026-09-01 15:49:00')
+2026-09-01 15:55:26,528 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:55:26,529 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 15:55:26,530 INFO AVS_ZohoIntegration.Program - ** No hay registros pendientes de OITM para procesar.
+2026-09-01 15:55:26,530 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:55:26,531 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:55:28,272 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:55:28,273 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:55:35,380 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:55:35,391 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:55:35,469 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:55:35,470 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:55:35,471 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:55:41,781 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:55:41,781 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:55:41,782 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:55:41,783 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:55:41,786 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:55:41,787 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 15:55:41,896 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-09-01 15:49:00
+2026-09-01 15:55:41,897 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:55:41,898 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:55:41,898 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (T0.UpdateDate >= '2026-09-01 15:49:00' OR T2.UpdateDate >= '2026-09-01 15:49:00')
+2026-09-01 15:55:42,020 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:55:42,021 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 15:55:42,021 INFO AVS_ZohoIntegration.Program - ** No hay registros pendientes de OITM para procesar.
+2026-09-01 15:55:42,022 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:55:42,022 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:55:43,677 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:55:43,678 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:58:03,209 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:58:03,223 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:58:03,286 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:58:03,286 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:58:03,287 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:58:10,599 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:58:10,600 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:58:10,601 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:58:10,601 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:58:10,605 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:58:10,606 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 15:58:10,706 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-09-01 15:49:00
+2026-09-01 15:58:10,707 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:58:10,708 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:58:10,708 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (DATEADD(SECOND, (T0.UpdateTime / 100) * 3600 + (T0.UpdateTime % 100) * 60, CAST(CAST(T0.UpdateDate AS DATE) AS DATETIME)) >= '2026-09-01 15:49:00' OR DATEADD(SECOND, (T2.UpdateTime / 100) * 3600 + (T2.UpdateTime % 100) * 60, CAST(CAST(T2.UpdateDate AS DATE) AS DATETIME)) >= '2026-09-01 15:49:00')
+2026-09-01 15:58:10,856 ERROR AVS_ZohoIntegration.Program - Error al ejecutar consulta: 1). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+2). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+3). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+4). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+5). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Statement(s) could not be prepared.
+
+2026-09-01 15:58:10,856 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:58:10,856 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 15:58:10,857 INFO AVS_ZohoIntegration.Program - ** No hay registros pendientes de OITM para procesar.
+2026-09-01 15:58:10,859 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:58:10,859 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:58:12,308 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:58:12,309 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:58:30,491 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 15:58:30,505 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 15:58:30,571 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 15:58:30,572 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 15:58:30,573 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 15:58:35,105 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 15:58:35,106 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 15:58:35,107 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 15:58:35,107 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 15:58:35,110 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 15:58:35,111 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 15:58:35,220 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-09-01 15:49:00
+2026-09-01 15:58:35,221 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 15:58:35,222 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 15:58:35,223 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (DATEADD(SECOND, (T0.UpdateTime / 100) * 3600 + (T0.UpdateTime % 100) * 60, CAST(CAST(T0.UpdateDate AS DATE) AS DATETIME)) >= '2026-09-01 15:49:00' OR DATEADD(SECOND, (T2.UpdateTime / 100) * 3600 + (T2.UpdateTime % 100) * 60, CAST(CAST(T2.UpdateDate AS DATE) AS DATETIME)) >= '2026-09-01 15:49:00')
+2026-09-01 15:58:35,338 ERROR AVS_ZohoIntegration.Program - Error al ejecutar consulta: 1). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+2). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+3). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+4). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTime'.
+5). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Statement(s) could not be prepared.
+
+2026-09-01 15:58:35,339 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 15:58:35,340 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 15:58:35,342 INFO AVS_ZohoIntegration.Program - ** No hay registros pendientes de OITM para procesar.
+2026-09-01 15:58:35,342 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 15:58:35,342 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 15:58:38,173 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 15:58:38,173 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:13:10,780 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 16:13:10,795 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 16:13:10,857 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 16:13:10,858 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:13:10,859 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 16:13:41,200 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 16:13:41,201 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 16:13:41,202 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 16:13:41,202 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 16:13:41,205 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 16:13:41,206 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 16:13:41,323 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-09-01 15:49:00
+2026-09-01 16:15:28,611 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 16:15:29,038 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 16:15:29,039 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (DATEADD(SECOND, (T0.UpdateTS / 100) * 3600 + (T0.UpdateTS % 100) * 60, CAST(CAST(T0.UpdateDate AS DATE) AS DATETIME)) >= '2026-09-01 15:49:00' OR DATEADD(SECOND, (T2.UpdateTS / 100) * 3600 + (T2.UpdateTS % 100) * 60, CAST(CAST(T2.UpdateDate AS DATE) AS DATETIME)) >= '2026-09-01 15:49:00')
+2026-09-01 16:15:30,025 ERROR AVS_ZohoIntegration.Program - Error al ejecutar consulta: 1). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTS'.
+2). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Invalid column name 'UpdateTS'.
+3). [Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Statement(s) could not be prepared.
+
+2026-09-01 16:15:30,026 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 16:15:30,027 INFO AVS_ZohoIntegration.Program - No se encontraron resultados pendientes de procesar (OITM).
+2026-09-01 16:30:08,335 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 16:30:08,346 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 16:30:08,412 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 16:30:08,413 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:30:08,414 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 16:30:12,715 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 16:30:12,715 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 16:30:12,715 INFO AVS_ZohoIntegration.Program - Comando recibido: SENDITEMS
+2026-09-01 16:30:12,716 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 16:30:12,720 INFO AVS_ZohoIntegration.Program - Obteniendo ultima fecha de sincronización
+2026-09-01 16:30:12,720 DEBUG AVS_ZohoIntegration.Program - SELECT "U_LastSync", "U_LastTime" FROM "@AVS_ZOHO_LOG" WHERE "Code" = 'OITM'
+2026-09-01 16:30:12,838 INFO AVS_ZohoIntegration.Program - Última sincronización exitosa registrada para OITM: 2026-09-01 15:49:00
+2026-09-01 16:30:43,718 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Artículos (OITM) ***
+2026-09-01 16:30:43,720 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 16:30:43,721 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemName AS 'Product_Name', T0.ItemCode AS 'Product_Code', CASE WHEN T0.validFor = 'Y' THEN 'true' ELSE 'false' END AS 'Product_Active', COALESCE(T1.Price, 0) AS 'Unit_Price', T0.SalUnitMsr AS 'Usage_Unit', T2.OnHand - T2.IsCommited + T2.OnOrder AS 'Qty_in_Stock', CASE WHEN T0.TaxType = 'Y' THEN 'true' ELSE 'false' END AS 'Taxable' FROM OITM T0 INNER JOIN ITM1 T1 ON T0.ItemCode = T1.ItemCode AND T1.PriceList = 1 INNER JOIN OITW T2 ON T0.ItemCode = T2.ItemCode AND T2.WhsCode = '05' LEFT JOIN OCRD T3 ON T0.CardCode = T3.CardCode WHERE T0.SellItem = 'Y' AND T0.validFor = 'Y' AND T0.U_AVS_Zoho_Sync = '0' AND (DATEADD(SECOND, (T0.UpdateTS / 100) * 3600 + (T0.UpdateTS % 100) * 60, CAST(CAST(T0.UpdateDate AS DATE) AS DATETIME)) >= '2026-09-01 15:49:00' OR T2.UpdateDate >= '2026-09-01')
+2026-09-01 16:30:44,948 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 16:30:44,948 INFO AVS_ZohoIntegration.Program - Se han obtenido 1 resultados pendientes de procesar.
+2026-09-01 16:30:44,949 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 1 *
+2026-09-01 16:30:44,949 INFO AVS_ZohoIntegration.Program - Product_Name: J.B. Officeprint 1420
+2026-09-01 16:30:44,949 INFO AVS_ZohoIntegration.Program - Product_Code: A00001
+2026-09-01 16:30:44,949 INFO AVS_ZohoIntegration.Program - Product_Active: true
+2026-09-01 16:30:44,950 INFO AVS_ZohoIntegration.Program - Unit_Price: 76757.3
+2026-09-01 16:30:44,950 INFO AVS_ZohoIntegration.Program - Usage_Unit: Piezas
+2026-09-01 16:30:44,950 INFO AVS_ZohoIntegration.Program - Qty_in_Stock: 100
+2026-09-01 16:30:44,951 INFO AVS_ZohoIntegration.Program - Taxable: true
+2026-09-01 16:30:44,952 INFO AVS_ZohoIntegration.Program - * Consultando sub-entidad [Tax] para OITM...
+2026-09-01 16:30:44,952 DEBUG AVS_ZohoIntegration.Program - Validar configuración antes de consultar la base de datos
+2026-09-01 16:30:44,952 DEBUG AVS_ZohoIntegration.Program - SELECT T0.ItemCode AS 'Product_Code', '7343678000000608530' AS 'id', 'IVA - 16.0 %' AS 'value' FROM OITM T0 WHERE T0.ItemCode IN ('A00001')
+2026-09-01 16:30:48,037 DEBUG AVS_ZohoIntegration.Program - Validar si hay registros (Cláusula de guarda)
+2026-09-01 16:30:48,037 INFO AVS_ZohoIntegration.Program - Se han obtenido 1 resultados pendientes de procesar.
+2026-09-01 16:30:48,038 INFO AVS_ZohoIntegration.Program - * Procesando resultado: 1 *
+2026-09-01 16:30:48,038 INFO AVS_ZohoIntegration.Program - Product_Code: A00001
+2026-09-01 16:30:48,038 INFO AVS_ZohoIntegration.Program - id: 7343678000000608530
+2026-09-01 16:30:48,039 INFO AVS_ZohoIntegration.Program - value: IVA - 16.0 %
+2026-09-01 16:30:48,043 DEBUG AVS_ZohoIntegration.Program - {"data":[{"Product_Name":"J.B. Officeprint 1420","Product_Code":"A00001","Product_Active":true,"Unit_Price":76757.3,"Usage_Unit":"Piezas","Qty_in_Stock":100.0,"Taxable":true,"Tax":[{"id":"7343678000000608530","value":"IVA - 16.0 %"}]}]}
+2026-09-01 16:30:48,044 INFO AVS_ZohoIntegration.Program - ** 1 registros listos para Upsert. Enviando a Zoho...
+2026-09-01 16:30:48,046 DEBUG AVS_ZohoIntegration.Program - Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)
+2026-09-01 16:30:48,048 INFO AVS_ZohoIntegration.Program - El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...
+2026-09-01 16:31:07,893 INFO AVS_ZohoIntegration.Program - Nuevo Access Token de Zoho obtenido correctamente.
+2026-09-01 16:31:07,894 DEBUG AVS_ZohoIntegration.Program - Inyectar el token en el HttpClient
+2026-09-01 16:31:07,895 INFO AVS_ZohoIntegration.Program - Enviando solicitud POST a https://www.zohoapis.com/crm/v8/Products/upsert...
+2026-09-01 16:31:08,805 INFO AVS_ZohoIntegration.Program - Éxito [UPDATE] para el registro A00001. Zoho ID: 7343678000004945001
+2026-09-01 16:31:09,959 INFO AVS_ZohoIntegration.Program - Actualizando tabla de sincronización.
+2026-09-01 16:31:10,015 INFO AVS_ZohoIntegration.Program - Tabla de sincronización actualizada con exito.
+2026-09-01 16:31:10,016 INFO AVS_ZohoIntegration.Program - Proceso finalizado.
+2026-09-01 16:31:10,017 INFO AVS_ZohoIntegration.Program - Cerrando conexión con SAP
+2026-09-01 16:31:15,779 INFO AVS_ZohoIntegration.Program - Conexión SAP cerrada correctamente.
+2026-09-01 16:31:15,780 INFO AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:43:44,918 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 16:43:44,928 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 16:43:44,989 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 16:43:44,990 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:43:44,991 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX

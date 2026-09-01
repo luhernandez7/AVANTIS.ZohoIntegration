@@ -1,0 +1,10 @@
+2026-09-01 16:55:23,551 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 16:55:23,561 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 16:55:23,621 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 16:55:23,622 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:55:23,623 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 16:55:28,058 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 16:55:28,059 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 16:55:28,060 INFO AVS_ZohoIntegration.Program - Comando recibido: RECEIVEQUOTES
+2026-09-01 16:55:28,060 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 16:55:32,101 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Pedidos (ORDR) ***

@@ -7,11 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVS_ZohoIntegration", "AVS_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVS_ZohoIntegration.Manager", "AVS_ZohoIntegration.Manager\AVS_ZohoIntegration.Manager.csproj", "{7E5348CE-F457-4387-8574-376F43B3E08A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVSSAPConector", "..\..\..\..\..\ProyectosAvantis\AVSSAPConector\AVSSAPConector.csproj", "{FC92B2B8-6D55-45C0-8599-AEE00EC6E2E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVSSAPConector", "..\..\AVSSAPConector\AVSSAPConector.csproj", "{FC92B2B8-6D55-45C0-8599-AEE00EC6E2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVS_LicValidator", "..\..\..\..\..\ProyectosAvantis\AVANTIS.LicValidator\AVS_LicValidator\AVS_LicValidator\AVS_LicValidator.csproj", "{7D311073-E43C-43D7-BC88-C80949251ED9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVS_LicValidator", "..\..\AVANTIS.LicValidator\AVS_LicValidator\AVS_LicValidator\AVS_LicValidator.csproj", "{7D311073-E43C-43D7-BC88-C80949251ED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVS_Common_Encriptacion", "..\..\..\..\..\ProyectosAvantis\AVANTIS.Encriptador\AVS_Common_Encriptacion\AVS_Common_Encriptacion.csproj", "{B001F595-3826-452E-8783-E5A92DF17BFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVS_Common_Encriptacion", "..\..\AVANTIS.Encriptador\AVS_Common_Encriptacion\AVS_Common_Encriptacion.csproj", "{B001F595-3826-452E-8783-E5A92DF17BFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVS_AppConfig", "..\..\AVANTIS.AppConfig\AVS_AppConfig\AVS_AppConfig.csproj", "{D49E09B2-F60C-466A-86F9-9198EFF85FA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,18 @@ Global
 		{B001F595-3826-452E-8783-E5A92DF17BFA}.Release|x64.Build.0 = Release|Any CPU
 		{B001F595-3826-452E-8783-E5A92DF17BFA}.Release|x86.ActiveCfg = Release|x86
 		{B001F595-3826-452E-8783-E5A92DF17BFA}.Release|x86.Build.0 = Release|x86
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Debug|x64.Build.0 = Debug|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Debug|x86.Build.0 = Debug|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Release|x64.ActiveCfg = Release|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Release|x64.Build.0 = Release|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Release|x86.ActiveCfg = Release|Any CPU
+		{D49E09B2-F60C-466A-86F9-9198EFF85FA7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

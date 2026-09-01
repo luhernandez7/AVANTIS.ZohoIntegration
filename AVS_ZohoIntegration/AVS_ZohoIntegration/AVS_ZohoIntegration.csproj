@@ -68,6 +68,10 @@
       <Project>{fc92b2b8-6d55-45c0-8599-aee00ec6e2e1}</Project>
       <Name>AVSSAPConector</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\AVANTIS.AppConfig\AVS_AppConfig\AVS_AppConfig.csproj">
+      <Project>{d49e09b2-f60c-466a-86f9-9198eff85fa7}</Project>
+      <Name>AVS_AppConfig</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AVS_ZohoIntegration.Manager\AVS_ZohoIntegration.Manager.csproj">
       <Project>{7e5348ce-f457-4387-8574-376f43b3e08a}</Project>
       <Name>AVS_ZohoIntegration.Manager</Name>

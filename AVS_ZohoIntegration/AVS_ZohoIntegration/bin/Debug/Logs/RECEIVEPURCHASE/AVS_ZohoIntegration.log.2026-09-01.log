@@ -1,0 +1,45 @@
+2026-09-01 16:56:13,951 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 16:56:13,965 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 16:56:14,038 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 16:56:14,039 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:56:14,039 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 16:56:18,334 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 16:56:18,335 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 16:56:18,336 INFO AVS_ZohoIntegration.Program - Comando recibido: RECEIVEPURCHASE
+2026-09-01 16:56:18,336 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 16:56:20,571 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Pedidos (ORDR) ***
+2026-09-01 16:56:24,952 DEBUG AVS_ZohoIntegration.Program - Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)
+2026-09-01 16:56:25,539 INFO AVS_ZohoIntegration.Program - El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...
+2026-09-01 16:56:26,082 INFO AVS_ZohoIntegration.Program - Nuevo Access Token de Zoho obtenido correctamente.
+2026-09-01 16:56:26,694 DEBUG AVS_ZohoIntegration.Program - Inyectar el token en el HttpClient
+2026-09-01 16:56:33,320 INFO AVS_ZohoIntegration.Program - Enviando solicitud POST a https://www.zohoapis.com/crm/v8/Quotes?fields=Subject,Quote_Number,Stage,Modified_Time,Grand_Total&criteria=(Stage:equals:Approved)...
+2026-09-01 16:56:58,115 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 16:56:58,128 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 16:56:58,193 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 16:56:58,193 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 16:56:58,194 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 16:57:00,611 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 16:57:00,612 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 16:57:00,612 INFO AVS_ZohoIntegration.Program - Comando recibido: RECEIVEPURCHASE
+2026-09-01 16:57:00,613 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 16:57:04,169 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Pedidos (ORDR) ***
+2026-09-01 16:57:06,022 DEBUG AVS_ZohoIntegration.Program - Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)
+2026-09-01 16:57:06,025 INFO AVS_ZohoIntegration.Program - El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...
+2026-09-01 16:57:06,637 INFO AVS_ZohoIntegration.Program - Nuevo Access Token de Zoho obtenido correctamente.
+2026-09-01 16:57:06,638 DEBUG AVS_ZohoIntegration.Program - Inyectar el token en el HttpClient
+2026-09-01 16:57:06,639 INFO AVS_ZohoIntegration.Program - Enviando solicitud POST a https://www.zohoapis.com/crm/v8/Quotes?fields=Subject,Quote_Number,Stage,Modified_Time,Grand_Total&criteria=(Stage:equals:Approved)...
+2026-09-01 17:35:50,496 INFO AVS_ZohoIntegration.Program - AVS ZohoIntegration Version [1.0.0.0]
+2026-09-01 17:35:50,518 INFO AVS_ZohoIntegration.Program - Leyendo archivo de configuracion.
+2026-09-01 17:35:50,671 INFO AVS_ZohoIntegration.Program - Archivo de configuracion leido correctamente.
+2026-09-01 17:35:50,672 DEBUG AVS_ZohoIntegration.Program - **************************************************************************
+2026-09-01 17:35:50,674 DEBUG AVS_ZohoIntegration.Program - Ejecutando sincronizacion para: SBODemoMX
+2026-09-01 17:35:57,790 DEBUG AVS_ZohoIntegration.Program - Validando licencia...
+2026-09-01 17:35:57,791 INFO AVS_ZohoIntegration.Program - Licencia valida.
+2026-09-01 17:35:57,792 INFO AVS_ZohoIntegration.Program - Comando recibido: RECEIVEPURCHASE
+2026-09-01 17:35:57,793 INFO AVS_ZohoIntegration.Program - Iniciando proceso de envío de artículos...
+2026-09-01 17:35:57,796 INFO AVS_ZohoIntegration.Program - *** Obteniendo información de cabecera: Pedidos (ORDR) ***
+2026-09-01 17:35:59,877 DEBUG AVS_ZohoIntegration.Program - Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)
+2026-09-01 17:35:59,880 INFO AVS_ZohoIntegration.Program - El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...
+2026-09-01 17:36:00,424 INFO AVS_ZohoIntegration.Program - Nuevo Access Token de Zoho obtenido correctamente.
+2026-09-01 17:36:00,425 DEBUG AVS_ZohoIntegration.Program - Inyectar el token en el HttpClient
+2026-09-01 17:36:00,426 INFO AVS_ZohoIntegration.Program - Enviando solicitud POST a https://www.zohoapis.com/crm/v8/Quotes?fields=Quoted_Items&criteria=(Stage:equals:Approved)...
