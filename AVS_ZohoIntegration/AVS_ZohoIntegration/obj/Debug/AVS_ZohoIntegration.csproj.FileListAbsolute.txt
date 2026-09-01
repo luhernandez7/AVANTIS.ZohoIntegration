@@ -20,3 +20,25 @@ C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration\bin
 C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.csproj.CopyComplete
 C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.exe
 C:\Users\Luis Hernandez\source\repos\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.exe.config
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.exe
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVSSAPConector.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_Common_Encriptacion.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.Manager.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\log4net.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\Newtonsoft.Json.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_LicValidator.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_Security.dll
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_Common_Encriptacion.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVSSAPConector.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_ZohoIntegration.Manager.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\log4net.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\log4net.xml
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\Newtonsoft.Json.xml
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\bin\Debug\AVS_LicValidator.pdb
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.csproj.AssemblyReference.cache
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.csproj.CoreCompileInputs.cache
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.csproj.CopyComplete
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.exe
+C:\ProyectosAvantis\AVANTIS.ZohoIntegration\AVS_ZohoIntegration\AVS_ZohoIntegration\obj\Debug\AVS_ZohoIntegration.pdb

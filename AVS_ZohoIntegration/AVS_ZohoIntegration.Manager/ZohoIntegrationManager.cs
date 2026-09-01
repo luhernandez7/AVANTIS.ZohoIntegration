@@ -44,6 +44,7 @@ namespace AVS_ZohoIntegration.Manager
             #endregion
         }
 
+        #region Common
         public void IniciarProcesamientoDocumento(string comando)
         {
             log.Info($"Comando recibido: {comando}");
@@ -52,24 +53,15 @@ namespace AVS_ZohoIntegration.Manager
             {
                 switch (comando.ToUpperInvariant())
                 {
-                    //case "SENDACCOUNTS":
-                    //    log.Info("Iniciando proceso de envío de información de cuentas de mayor...");
-                    //    SendEntityToZohoAsync("OACT", "Cuentas de Mayor").GetAwaiter().GetResult();
-                    //    break;
+
+                    case "DBCHECK":
+                        log.Debug("Iniciando preparación de estructuras de base de datos...");
+                        DbCheck();
+                        break;
 
                     case "SENDITEMS":
                         log.Info("Iniciando proceso de envío de artículos...");
                         SendEntityToZohoAsync("OITM", "Artículos").GetAwaiter().GetResult();
-                        break;
-
-                    case "SENDBUSINESSPARTNERS":
-                        log.Info("Iniciando proceso de envío de socios de negocio...");
-                        SendEntityToZohoAsync("OCRD", "Socios de Negocio").GetAwaiter().GetResult();
-                        break;
-
-                    case "SENDCONTACTPERSONS":
-                        log.Info("Iniciando proceso de envío de socios de negocio...");
-                        SendEntityToZohoAsync("OCPR", "Personas de contacto").GetAwaiter().GetResult();
                         break;
 
                     default:
@@ -87,21 +79,70 @@ namespace AVS_ZohoIntegration.Manager
             }
         }
 
+        private void DbCheck()
+        {
+            List<UDTDef> tablas = new List<UDTDef>
+            {
+                new UDTDef
+                {
+                     TableName = "@AVS_ZOHO_LOG",
+                    Description = "Zoho Sync Log",
+                    TableType = (BoUTBTableType)0
+                }
+            };
+
+            List<UDFDef> campos = new List<UDFDef>
+            {
+                new UDFDef
+                {
+                    TableName = "OITM",
+                    FieldName = "AVS_Zoho_Sync",
+                    Description = "Estatus Sincronización Zoho",
+                    Size = 2,
+                    ValidValues = new List<(string Value, string Description)> { ("0", "Pendiente"), ("1", "Error"), ("2", "No sincronizar"), ("3", "Sincronizado") },
+                    DefaultValue = "0"
+                },
+                new UDFDef
+                {
+                    TableName = "OITM",
+                    FieldName = "AVS_Zoho_ProcResult",
+                    Description = "Resultado o Error de Sincronización",
+                    Size = 254
+                },
+                new UDFDef
+                {
+                    TableName = "@AVS_ZOHO_LOG",
+                    FieldName = "LastSync",
+                    Description = "Ultima Fecha Sincronizacion",
+                    FieldType = BoFieldTypes.db_Date
+                },
+                new UDFDef
+                {
+                    TableName = "@AVS_ZOHO_LOG",
+                    FieldName = "LastTime",
+                    Description = "Ultima Hora Sincronizacion",
+                    FieldType = BoFieldTypes.db_Date,
+                    SubType = BoFldSubTypes.st_Time
+                }
+            };
+
+            log.Debug("Enviando listas a CrearEstructuras...");
+            company.CrearEstructuras(tablas, campos, null, log);
+        }
+
         public async Task<string> GetValidAccessTokenAsync()
         {
-            // Si el token actual todavía es válido (con un margen de 5 minutos de seguridad), lo reutilizamos
             if (!string.IsNullOrEmpty(_currentAccessToken) && DateTime.Now < _tokenExpiration.AddMinutes(-5))
             {
                 return _currentAccessToken;
             }
 
-            // Si expiró o es la primera vez, solicitamos uno nuevo
             log.Info("El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...");
 
-            string clientId = ConfigurationManager.AppSettings["ZOHO:ClientId"];
-            string clientSecret = ConfigurationManager.AppSettings["ZOHO:ClientSecret"];
-            string refreshToken = ConfigurationManager.AppSettings["ZOHO:RefreshToken"];
-            string accountsUrl = ConfigurationManager.AppSettings["ZOHO:AccountsUrl"];
+            string accountsUrl = company.Zoho_AccountsUrl;
+            string clientId = company.Zoho_ClientId;
+            string clientSecret = company.Zoho_ClientSecret;
+            string refreshToken = company.Zoho_RefreshToken;
 
             var requestBody = new FormUrlEncodedContent(new[]
             {
@@ -122,8 +163,6 @@ namespace AVS_ZohoIntegration.Manager
                 if (tokenData["access_token"] != null)
                 {
                     _currentAccessToken = tokenData["access_token"].ToString();
-
-                    // Zoho normalmente devuelve expires_in = 3600 (1 hora en segundos)
                     int expiresInSeconds = tokenData["expires_in"] != null ? (int)tokenData["expires_in"] : 3600;
                     _tokenExpiration = DateTime.Now.AddSeconds(expiresInSeconds);
 
@@ -131,9 +170,7 @@ namespace AVS_ZohoIntegration.Manager
                     return _currentAccessToken;
                 }
                 else
-                {
                     throw new Exception("La respuesta de Zoho no incluyó un Access Token.");
-                }
             }
             catch (Exception ex)
             {
@@ -142,116 +179,226 @@ namespace AVS_ZohoIntegration.Manager
             }
         }
 
-        private async Task SendEntityToZohoAsync(string tableName, string entityDescription)
+        #endregion
+
+        #region Send
+        private async Task SendEntityToZohoAsync(string configKey, string entityDescription)
         {
-            string query = ConfigurationManager.AppSettings[$"SAP:ZOHO:{tableName}:Query"];
-            string[] fields = ConfigurationManager.AppSettings[$"SAP:ZOHO:{tableName}:Fields"].Split(',');
-            string apiEndpoint = ConfigurationManager.AppSettings[$"SAP:ZOHO:{tableName}:API"];
-
-            string detailNodesConfig = ConfigurationManager.AppSettings[$"SAP:ZOHO:{tableName}:DetailNodes"];
-            string[] detailNodes = !string.IsNullOrEmpty(detailNodesConfig) ? detailNodesConfig.Split(',') : new string[0];
-
-            log.Info($"*** Obteniendo información de cabecera: {entityDescription} ({tableName}) ***");
-
-            var records = GetValuesByDocuments(tableName, query, fields);
-            if (records == null || !records.Any())
+            if (!company.Zoho_EntityConfig.TryGetValue(configKey, out ZohoEntityConfig entityConfig))
             {
-                log.Info($"** No hay registros pendientes de {tableName} para procesar.");
+                log.Error($"La configuración para '{configKey}' no existe en el JSON.");
                 return;
             }
 
-            foreach (var nodeName in detailNodes)
+            log.Info("Obteniendo ultima fecha de sincronización");
+            string lastSyncDate = ObtenerUltimaFechaSincronizacionDesdeSAP(configKey);
+            if (string.IsNullOrEmpty(lastSyncDate))
             {
-                string cleanNodeName = nodeName.Trim();
-                log.Info($"* Consultando sub-entidad [{cleanNodeName}] para {tableName}...");
+                lastSyncDate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                log.Warn($"No se encontró fecha de última sincronización para {configKey}. Aplicando fallback de seguridad: {lastSyncDate}");
+            }
+            else
+                log.Info($"Última sincronización exitosa registrada para {configKey}: {lastSyncDate}");
 
-                string nodePrefix = $"SAP:ZOHO:{tableName}:{cleanNodeName}";
-                string detailQueryTemplate = ConfigurationManager.AppSettings[$"{nodePrefix}:Query"];
-                string[] detailFields = ConfigurationManager.AppSettings[$"{nodePrefix}:Fields"].Split(',');
-                string detailKey = ConfigurationManager.AppSettings[$"{nodePrefix}:DetailKey"];
-                string arrayName = ConfigurationManager.AppSettings[$"{nodePrefix}:DetailArrayName"];
-                string isSingleObjectConfig = ConfigurationManager.AppSettings[$"{nodePrefix}:IsSingleObject"];
-                bool isSingleObject = !string.IsNullOrEmpty(isSingleObjectConfig) && isSingleObjectConfig.Equals("true", StringComparison.OrdinalIgnoreCase);
+            string query = entityConfig.Query.Replace("@LastSyncDate", $"'{lastSyncDate}'");
+            string[] fields = entityConfig.Fields.Split(',');
+            string apiEndpoint = entityConfig.API;
 
-                // ---------------------------------------------------------
-                // LA MAGIA DEL FILTRO MASIVO (Evitando el problema N+1)
-                // ---------------------------------------------------------
+            log.Info($"*** Obteniendo información de cabecera: {entityDescription} ({configKey}) ***");
 
-                var keysToSearch = records
-                    .Where(r => r.ContainsKey(detailKey) && r[detailKey] != null)
-                    .Select(r => $"'{r[detailKey]}'")
-                    .Distinct()
-                    .ToList();
+            var records = GetValuesByDocuments(configKey, query, fields);
+            if (records == null || !records.Any())
+            {
+                log.Info($"** No hay registros pendientes de {configKey} para procesar.");
+                return;
+            }
 
-                if (!keysToSearch.Any()) 
-                    continue; // Si no hay llaves, saltamos al siguiente detalle
-
-                string inClauseValues = string.Join(",", keysToSearch);
-                string finalDetailQuery = detailQueryTemplate.Replace("@InClause", inClauseValues);
-                var detailRecords = GetValuesByDocuments($"{tableName}_{cleanNodeName}", finalDetailQuery, detailFields);
-
-                // ---------------------------------------------------------
-
-                if (detailRecords != null && detailRecords.Any())
+            if (entityConfig.DetailNodes != null && entityConfig.DetailNodes.Any())
+            {
+                foreach (var node in entityConfig.DetailNodes)
                 {
-                    foreach (var header in records)
-                    {
-                        string keyValue = header[detailKey]?.ToString();
-                        var matchingDetails = detailRecords
-                            .Where(d => d.ContainsKey(detailKey) && d[detailKey]?.ToString() == keyValue)
-                            .Select(d =>
-                            {
-                                var cleanDetail = new Dictionary<string, object>(d);
-                                cleanDetail.Remove(detailKey);
-                                return cleanDetail;
-                            })
-                            .ToList();
+                    string cleanNodeName = node.Key.Trim();
+                    ZohoDetailNodeConfig detailConfig = node.Value;
+                    log.Info($"* Consultando sub-entidad [{cleanNodeName}] para {configKey}...");
 
-                        if (isSingleObject)
-                            header.Add(arrayName, matchingDetails.FirstOrDefault());
-                        else
-                            header.Add(arrayName, matchingDetails);
+                    string detailQueryTemplate = detailConfig.Query;
+                    string[] detailFields = detailConfig.Fields.Split(',');
+                    string detailKey = detailConfig.DetailKey;
+                    string arrayName = detailConfig.DetailArrayName;
+                    bool isSingleObject = detailConfig.IsSingleObject;
+
+                    var keysToSearch = records
+                        .Where(r => r.ContainsKey(detailKey) && r[detailKey] != null)
+                        .Select(r => $"'{r[detailKey]}'")
+                        .Distinct()
+                        .ToList();
+
+                    if (!keysToSearch.Any())
+                        continue;
+
+                    string inClauseValues = string.Join(",", keysToSearch);
+                    string finalDetailQuery = detailQueryTemplate.Replace("@InClause", inClauseValues);
+                    var detailRecords = GetValuesByDocuments($"{configKey}_{cleanNodeName}", finalDetailQuery, detailFields);
+
+                    if (detailRecords != null && detailRecords.Any())
+                    {
+                        foreach (var header in records)
+                        {
+                            string keyValue = header[detailKey]?.ToString();
+                            var matchingDetails = detailRecords
+                                .Where(d => d.ContainsKey(detailKey) && d[detailKey]?.ToString() == keyValue)
+                                .Select(d =>
+                                {
+                                    var cleanDetail = new Dictionary<string, object>(d);
+                                    cleanDetail.Remove(detailKey);
+                                    return cleanDetail;
+                                }).ToList();
+
+                            if (isSingleObject)
+                                header.Add(arrayName, matchingDetails.FirstOrDefault());
+                            else
+                                header.Add(arrayName, matchingDetails);
+                        }
                     }
                 }
             }
 
-            var zohoPayload = new { data = records };
-            string jsonPayload = JsonConvert.SerializeObject(zohoPayload);
-            log.Info($"** {records.Count} registros listos. Enviando a Zoho...");
+            var normalizedRecords = records.Select(record =>
+                record.ToDictionary(
+                    kvp => kvp.Key,
+                    kvp =>
+                    {
+                        var val = kvp.Value;
+                        if (val == null)
+                            return null;
+
+                        string strVal = val.ToString().Trim();
+
+                        if (strVal.Equals("true", StringComparison.OrdinalIgnoreCase) || strVal.Equals("false", StringComparison.OrdinalIgnoreCase))
+                            return bool.Parse(strVal);
+
+                        if (strVal.Equals("Y", StringComparison.OrdinalIgnoreCase) || strVal.Equals("N", StringComparison.OrdinalIgnoreCase))
+                            return strVal.Equals("Y", StringComparison.OrdinalIgnoreCase);
+
+                        if (decimal.TryParse(strVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal decVal))
+                            return decVal;
+
+                        return val;
+                    }
+                )
+            ).ToList();
+
+            var apiPayload = new { data = normalizedRecords };
+            string jsonPayload = JsonConvert.SerializeObject(apiPayload);
+            log.Info($"** {records.Count} registros listos para Upsert. Enviando a Zoho...");
 
             try
             {
-                JObject response = await PostTransactionAsync(apiEndpoint, jsonPayload);
+                string upsertEndpoint = apiEndpoint.EndsWith("/upsert", StringComparison.OrdinalIgnoreCase) ? apiEndpoint : apiEndpoint.TrimEnd('/') + "/upsert";
+                JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
+                ProcesarRespuestaZoho_Send(response, configKey, records, entityConfig.SapKeyField);
 
-                if (HasErrors(response))
+                string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                log.Info("Actualizando tabla de sincronización.");
+                company.ActualizarUltimaFechaSincronizacionEnSAP(configKey, fechaHoraActual, log);
+                log.Info("Tabla de sincronización actualizada con exito.");
+            }
+            catch (Exception ex)
+            {
+                log.Error($"**** Excepción crítica al enviar {configKey} a Zoho ****", ex);
+            }
+        }
+
+        private string ObtenerUltimaFechaSincronizacionDesdeSAP(string configKey)
+        {
+            try
+            {
+                string query = $@"SELECT ""U_LastSync"", ""U_LastTime"" FROM ""@AVS_ZOHO_LOG"" WHERE ""Code"" = '{configKey}'";
+                var recordSet = company.ExecuteQuery(query);
+                if (recordSet != null && recordSet.Count > 0)
                 {
-                    log.Warn($"**** Error al procesar información de {tableName} ****");
-                    UpdateTableWithError(response, tableName);
-                }
-                else
-                {
-                    log.Info($"**** Entidad {tableName} procesada con éxito ****");
-                    UpdateTableWithoutError(tableName);
+                    var fechaStr = recordSet[0]["U_LastSync"]?.ToString();
+                    var horaStr = recordSet[0]["U_LastTime"]?.ToString();
+
+                    if (!string.IsNullOrEmpty(fechaStr))
+                    {
+                        if (string.IsNullOrEmpty(horaStr))
+                            horaStr = "00:00:00";
+
+                        DateTime parsedDate = Convert.ToDateTime(fechaStr);
+                        string fechaLimpia = parsedDate.ToString("yyyy-MM-dd");
+                        return $"{fechaLimpia} {horaStr}";
+                    }
                 }
             }
             catch (Exception ex)
             {
-                log.Error($"**** Excepción crítica al enviar {tableName} a Zoho ****", ex);
+                log.Error($"Error al consultar la última fecha y hora de sincronización para {configKey} en SAP: {ex.Message}");
+            }
+
+            return string.Empty; // Retorna vacío para activar el fallback de seguridad
+        }
+
+        private void ProcesarRespuestaZoho_Send(JObject response, string table, List<Dictionary<string, object>> recordsEnviados, string sapKeyField)
+        {
+            var dataArray = response["data"] as JArray;
+            if (dataArray == null)
+            {
+                log.Warn($"Respuesta inesperada de Zoho: {response}");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(sapKeyField))
+            {
+                log.Warn($"No se definió 'SapKeyField' en la configuración de {table}. No se puede actualizar SAP.");
+                return;
+            }
+
+            for (int i = 0; i < dataArray.Count; i++)
+            {
+                var itemResponse = dataArray[i];
+                string status = itemResponse["status"]?.ToString();
+                string message = itemResponse["message"]?.ToString();
+
+                var detailsToken = itemResponse["details"];
+                string detailsString = string.Empty;
+
+                if (detailsToken != null)
+                {
+                    detailsString = detailsToken.Type == Newtonsoft.Json.Linq.JTokenType.Object || detailsToken.Type == Newtonsoft.Json.Linq.JTokenType.Array
+                                    ? detailsToken.ToString(Newtonsoft.Json.Formatting.None) : detailsToken.ToString();
+                }
+
+                string errorCompleto = !string.IsNullOrEmpty(detailsString) ? $"{message} | Details: {detailsString}" : message;
+
+                string sapKey = recordsEnviados[i].ContainsKey(sapKeyField) ? recordsEnviados[i][sapKeyField]?.ToString() : string.Empty;
+                if (string.IsNullOrEmpty(sapKey))
+                    continue;
+
+                if (status == "success")
+                {
+                    string action = itemResponse["action"]?.ToString();
+                    log.Info($"Éxito [{action.ToUpper()}] para el registro {sapKey}. Zoho ID: {itemResponse["details"]?["id"]}");
+                    UpdateUserFieldsSAP(table, sapKey, "3");
+                }
+                else
+                {
+                    log.Error($"Error en Zoho para el registro {sapKey}: {message}");
+                    UpdateUserFieldsSAP(table, sapKey, "-1", errorCompleto);
+                }
             }
         }
 
         private List<Dictionary<string, object>> GetValuesByDocuments(string tableName, string query, string[] fields)
         {
-            // 1. Validar configuración antes de consultar la base de datos
+            log.Debug("Validar configuración antes de consultar la base de datos");
             if (fields == null || fields.Length == 0)
-            {
-                throw new ArgumentException($"No se han configurado campos en [\"SAP:ZOHO:{tableName}:Fields\"].");
-            }
+                throw new ArgumentException($"No se han configurado campos para la consulta.");
 
             var itemsGroups = new List<Dictionary<string, object>>();
+            log.Info(query);
             var recordSet = company.ExecuteQuery(query, log);
-
-            // 2. Validar si hay registros (Cláusula de guarda)
+            log.Debug("Validar si hay registros (Cláusula de guarda)");
             if (recordSet == null || recordSet.Count == 0)
             {
                 log.Info($"No se encontraron resultados pendientes de procesar ({tableName}).");
@@ -271,8 +418,6 @@ namespace AVS_ZohoIntegration.Manager
                     foreach (var field in fields)
                     {
                         string cleanField = field.Trim();
-
-                        // Asegurar que el valor no sea nulo antes de invocar ToString()
                         object value = item[cleanField];
                         string stringValue = value?.ToString() ?? string.Empty;
 
@@ -283,7 +428,6 @@ namespace AVS_ZohoIntegration.Manager
                 }
                 catch (Exception ex)
                 {
-                    // Nunca dejar un catch vacío. Registrar el error del registro específico.
                     log.Error($"Error al construir el diccionario para el registro {index} de {tableName}: {ex.Message}");
                 }
                 index++;
@@ -292,186 +436,29 @@ namespace AVS_ZohoIntegration.Manager
             return itemsGroups;
         }
 
-        private bool HasErrors(JObject response)
+        private void UpdateUserFieldsSAP(string table, string sapKey, string status, string message = "")
         {
-            // Aquí implementas la lógica según cómo responda la API de Zoho.
-            // Ejemplo: return response["code"]?.ToString() != "0";
-            return false;
-        }
+            Dictionary<string, object> userFields = new Dictionary<string, object>
+            {
+                { "U_AVS_Zoho_Sync", status },
+                { "U_AVS_Zoho_ProcResult", message }
+            };
 
-        private void UpdateTableWithError(JObject JsonBeluga, string Tabla)
-        {
             try
             {
-                if (!string.IsNullOrEmpty(Tabla))
-                    return;
-
-                if (JsonBeluga.Count > 0)
+                switch (table)
                 {
-                    log.Info("Leyendo información del Json de Beluga");
-                    foreach (JToken child in JsonBeluga.Children())
-                    {
-                        if (child is JProperty property)
-                        {
-                            if (Tabla != property.Name)
-                                continue;
+                    case "OITM":
+                        company.UPDATE_OITM(sapKey, userFields);
+                        break;
 
-                            log.Info($"Tabla por procesar: {property.Name}");
-
-                            try
-                            {
-                                if (property.Value is JObject nestedObject)
-                                {
-                                    if (nestedObject["ERR"].First != null)
-                                    {
-                                        foreach (var childERR in nestedObject["ERR"].First.Children())
-                                        {
-                                            var itemCode = new Dictionary<string, object>();
-                                            switch (property.Name)
-                                            {
-                                                case "OCRG":
-                                                    itemCode.Add("GroupCode", childERR["Code"].ToString());
-                                                    break;
-                                                case "OCRN":
-                                                    itemCode.Add("CurrCode", childERR["Code"].ToString());
-                                                    break;
-                                                case "OSLP":
-                                                    itemCode.Add("SlpCode", childERR["Code"].ToString());
-                                                    break;
-                                                case "OCTG":
-                                                    itemCode.Add("GroupNum", childERR["Code"].ToString());
-                                                    break;
-                                                case "OPYM":
-                                                    itemCode.Add("PayMethCod", childERR["Code"].ToString());
-                                                    break;
-                                                case "OACT":
-                                                    itemCode.Add("AcctCode", childERR["Code"].ToString());
-                                                    break;
-                                                case "OSTA":
-                                                    itemCode.Add("Code", childERR["Code"].ToString());
-                                                    itemCode.Add("Type", childERR["Type"].ToString());
-                                                    break;
-                                                case "OWHT":
-                                                    itemCode.Add("WTCode", childERR["Code"].ToString());
-                                                    break;
-                                                default:
-                                                    throw new Exception($"Tabla {property.Name} no incluida para sincronización. Tablas permitidas [OCRG,OCRN,OSLP,OCTG,OPYM,OACT,OSTA,OWHT]");
-                                            }
-
-                                            UpdateUserFieldsSAPToBLS(property.Name, itemCode, "-1", childERR["Message"].ToString());
-                                        }
-                                    }
-                                    else
-                                        log.Info($"No se han encontrado registros con error. Registros con exito {nestedObject["SUCCESS"]}");
-                                }
-                                else
-                                    throw new Exception($"La tabla {property.Name} dentro del Json no cumple con las caracteristicas necesarias. - {property.Value}");
-                            }
-                            catch (Exception Ex)
-                            {
-                                log.Error(Ex.Message);
-                            }
-                        }
-                        else
-                            throw new Exception($"El Json devuelto por BL System no cuenta con las características necesarias. - {JsonBeluga}");
-                    }
-                }
-                else
-                    throw new Exception($"El Json devuelto por BL System no cuenta con las características necesarias. - {JsonBeluga}");
-            }
-            catch (Exception Ex)
-            {
-                log.Error(Ex.Message);
-            }
-        }
-
-        private void UpdateTableWithoutError(string Table)
-        {
-            try
-            {
-                var Query_Pendingtables = "SELECT * FROM @Table WHERE \"U_AVS_BLS_Sync\" = 2";
-                log.Info($"Procesando información de la tabla {Table}");
-                var queryPendingtables = Query_Pendingtables.Replace("@Table", Table);
-                var keysPendingtables = string.Empty;
-
-                switch (Table)
-                {
-                    case "OCRG":
-                        keysPendingtables = "GroupCode";
-                        break;
-                    case "OCRN":
-                        keysPendingtables = "CurrCode";
-                        break;
-                    case "OSLP":
-                        keysPendingtables = "SlpCode";
-                        break;
-                    case "OCTG":
-                        keysPendingtables = "GroupNum";
-                        break;
-                    case "OPYM":
-                        keysPendingtables = "PayMethCod";
-                        break;
-                    case "OACT":
-                        keysPendingtables = "AcctCode";
-                        break;
-                    case "OSTA":
-                        keysPendingtables = "Code,Type";
-                        break;
-                    case "OWHT":
-                        keysPendingtables = "WTCode";
-                        break;
                     default:
-                        throw new Exception($"Tabla {Table} no incluida para sincronización. Tablas permitidas [OCRG,OCRN,OSLP,OCTG,OPYM,OACT,OSTA,OWHT]");
+                        throw new Exception($"Tabla {table} no incluida para actualización de estatus.");
                 }
-
-                var RecorsetPendingtables = company.ExecuteQuery(queryPendingtables, keysPendingtables, log);
-                if (RecorsetPendingtables.Count > 0)
-                {
-                    log.Info($"Se han encontrado {RecorsetPendingtables.Count} registros pendientes por actualizar");
-                    foreach (var item in RecorsetPendingtables)
-                    {
-                        try
-                        {
-                            UpdateUserFieldsSAPToBLS(Table, item, "3");
-                        }
-                        catch (Exception Ex)
-                        {
-                            log.Error(Ex.Message);
-                        }
-                    }
-                }
-                else
-                    log.Info($"No se encontraron registros pendientes por actualizar en la tabla {Table}");
-
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                log.Error($"No se pudieron actualizar los registros de la tabla {Table}. {Ex.Message}");
-            }
-
-        }
-
-        private void UpdateUserFieldsSAPToBLS(string Table, Dictionary<string, object> item, string status, string message = "")
-        {
-            Dictionary<string, object> userFields = new Dictionary<string, object>();
-            userFields.Add("U_AVS_BLS_Sync", status);
-            if (status == "-1")
-            {
-                userFields.Add("U_AVS_BLS_ProcResult", message);
-                log.Error(message);
-            }
-            else
-                userFields.Add("U_AVS_BLS_ProcResult", "");
-
-            switch (Table)
-            {
-                case "OACT":
-                    log.Info("-- Actualizando cuentas de mayor --");
-                    company.UPDATE_OACT(Convert.ToString(item["AcctCode"]), userFields);
-                    log.Info("- Cuentas de mayor actualizado con exito--");
-                    break;
-                default:
-                    throw new Exception($"Tabla {Table} no incluida para sincronización. Tablas permitidas [OCRG,OCRN,OSLP,OCTG,OPYM,OACT,OSTA,OWHT,OPRC]");
+                log.Error($"No se pudo actualizar el estatus en SAP para {sapKey}: {ex.Message}");
             }
         }
 
@@ -479,25 +466,21 @@ namespace AVS_ZohoIntegration.Manager
         {
             try
             {
-                // 1. Obtener el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)
+                log.Debug("Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)");
                 string accessToken = await GetValidAccessTokenAsync();
 
-                // 2. Inyectar el token en el HttpClient
+                log.Debug("Inyectar el token en el HttpClient");
                 _httpClient.DefaultRequestHeaders.Clear();
                 _httpClient.DefaultRequestHeaders.Add("Authorization", $"Zoho-oauthtoken {accessToken}");
 
                 log.Info($"Enviando solicitud POST a {requestUri}...");
-
                 using (var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json"))
                 {
                     using (HttpResponseMessage response = await _httpClient.PostAsync(requestUri, content))
                     {
-                        // Si Zoho nos rechaza por permisos o datos incorrectos, capturamos el JSON de error
                         string responseString = await response.Content.ReadAsStringAsync();
                         if (!response.IsSuccessStatusCode)
-                        {
                             log.Warn($"Respuesta fallida de Zoho ({response.StatusCode}): {responseString}");
-                        }
 
                         return JObject.Parse(responseString);
                     }
@@ -509,7 +492,11 @@ namespace AVS_ZohoIntegration.Manager
                 throw;
             }
         }
+        #endregion
 
+        #region Recieve
+
+        #endregion
     }
 
 }

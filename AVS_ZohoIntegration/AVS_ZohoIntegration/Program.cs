@@ -23,7 +23,7 @@ namespace AVS_ZohoIntegration
                 string argumento = args[0].Trim();
                 ChangeLogFileName(argumento, "AVS_ZohoIntegration.log");
 
-                log.Info($"AVS SFTPSync Version [{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}]");
+                log.Info($"AVS ZohoIntegration Version [{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}]");
                 log.Info("Leyendo archivo de configuracion.");
 
                 var companiesConfig = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Company>>(System.Configuration.ConfigurationManager.AppSettings["companies:Config"]);
@@ -36,6 +36,7 @@ namespace AVS_ZohoIntegration
                         log.Debug($"Ejecutando sincronizacion para: {Company.dbName}");
                         Company.dbUserPassword = Encriptacion.Desencriptar(Company.dbUserPassword);
                         Company.sapUserPassword = Encriptacion.Desencriptar(Company.sapUserPassword);
+
                         ZohoIntegrationManager manager = new ZohoIntegrationManager(log, Company);
                         manager.IniciarProcesamientoDocumento(argumento);
                     }
@@ -54,10 +55,7 @@ namespace AVS_ZohoIntegration
             }
             catch (Exception ex)
             {
-                if (log != null)
-                    log.Error(ex.Message);
-                else
-                    Console.WriteLine(ex.Message);
+                log.Error(ex.Message);
             }
         }
 
