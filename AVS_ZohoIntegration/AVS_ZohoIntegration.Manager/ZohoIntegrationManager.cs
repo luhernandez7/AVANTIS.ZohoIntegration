@@ -126,6 +126,13 @@ namespace AVS_ZohoIntegration.Manager
             {
                 new UDFDef
                 {
+                    TableName = "OCRD",
+                    FieldName = "AVS_ZohoAccId",
+                    Description = "Id Cuenta Zoho CRM",
+                    Size = 100
+                },
+                new UDFDef
+                {
                     TableName = "OITM",
                     FieldName = "AVS_Zoho_Sync",
                     Description = "Estatus Sincronización Zoho",
@@ -148,6 +155,13 @@ namespace AVS_ZohoIntegration.Manager
                     Size = 2,
                     ValidValues = new List<(string Value, string Description)> { ("0", "Pendiente"), ("1", "Error"), ("2", "No sincronizar"), ("3", "Sincronizado") },
                     DefaultValue = "0"
+                },
+                new UDFDef
+                {
+                    TableName = "OINV",
+                    FieldName = "ZohoDealId",
+                    Description = "Id Trato Zoho CRM",
+                    Size = 100
                 },
                 new UDFDef
                 {
@@ -617,7 +631,6 @@ namespace AVS_ZohoIntegration.Manager
         #endregion
 
         #region Send_DocumentosSAP
-
         private async Task SendEntityToZohoAsync_DocumentosSAP(string configKey, string entityDescription)
         {
             if (!company.Zoho_EntityConfig.TryGetValue(configKey, out ZohoDocumentConfig docConfig) || docConfig.SapToZoho == null)
@@ -634,18 +647,23 @@ namespace AVS_ZohoIntegration.Manager
             string apiEndpoint = entityConfig.API;
 
             log.Info($"*** Obteniendo información de cabecera: {entityDescription} ({configKey}) ***");
+            log.Info($"Ejecutando consulta principal en SAP para '{configKey}' con {fields.Length} campos mapeados.");
 
             var records = GetValuesByDocuments(configKey, query, fields);
             if (records == null || !records.Any())
             {
-                log.Info($"** No hay registros pendientes de {configKey} para procesar.");
+                log.Info($"** No hay registros pendientes de {configKey} para procesar en SAP.");
                 return;
             }
+
+            log.Info($"Se obtuvieron exitosamente {records.Count} registros de cabecera para '{configKey}'.");
             #endregion
 
             #region Validación de subnodos y archivos PDF
             if (entityConfig.DetailNodes != null && entityConfig.DetailNodes.Any())
             {
+                log.Info($"Iniciando procesamiento de {entityConfig.DetailNodes.Count} subnodo(s) configurado(s) para '{configKey}'.");
+
                 foreach (var node in entityConfig.DetailNodes)
                 {
                     string cleanNodeName = node.Key.Trim();
@@ -665,7 +683,12 @@ namespace AVS_ZohoIntegration.Manager
                         .ToList();
 
                     if (!keysToSearch.Any())
+                    {
+                        log.Info($"No se encontraron llaves de enlace '{detailKey}' para el subnodo [{cleanNodeName}]. Se omite esta sub-entidad.");
                         continue;
+                    }
+
+                    log.Info($"Se recolectaron {keysToSearch.Count} llaves únicas para consultar el detalle de [{cleanNodeName}].");
 
                     string inClauseValues = string.Join(",", keysToSearch);
                     string finalDetailQuery = detailQueryTemplate.Replace("@InClause", inClauseValues);
@@ -673,6 +696,8 @@ namespace AVS_ZohoIntegration.Manager
                     var detailRecords = GetValuesByDocuments($"{configKey}_{cleanNodeName}", finalDetailQuery, detailFields);
                     if (detailRecords != null && detailRecords.Any())
                     {
+                        log.Info($"Se obtuvieron {detailRecords.Count} registros crudos para el subnodo [{cleanNodeName}]. Iniciando validaciones y adjuntos...");
+
                         var validDetailRecords = new List<Dictionary<string, object>>();
 
                         foreach (var detail in detailRecords)
@@ -685,10 +710,13 @@ namespace AVS_ZohoIntegration.Manager
                                 string filePath = detail["Adjunto"].ToString().Trim();
                                 if (!string.IsNullOrEmpty(filePath) && !System.IO.File.Exists(filePath))
                                 {
-                                    log.Warn($"El archivo adjunto del subnodo no existe: '{filePath}'. Registro SAP: {subnodeSapKey}");
+                                    log.Warn($"El archivo adjunto del subnodo no existe en disco: '{filePath}'. Registro SAP Key: {subnodeSapKey}");
 
                                     if (!string.IsNullOrEmpty(subnodeSapKey))
+                                    {
+                                        log.Info($"Actualizando campos de usuario en SAP (ORDR) con estatus de Error por archivo ausente para DocEntry: {subnodeSapKey}");
                                         UpdateUserFieldsSAP("ORDR", subnodeSapKey, "Error", $"El archivo adjunto no existe en la ruta: {filePath}");
+                                    }
 
                                     isValid = false;
                                 }
@@ -699,6 +727,7 @@ namespace AVS_ZohoIntegration.Manager
                         }
 
                         detailRecords = validDetailRecords;
+                        log.Info($"Quedaron {detailRecords.Count} registros válidos para el subnodo [{cleanNodeName}] tras validar archivos adjuntos.");
 
                         foreach (var header in records)
                         {
@@ -720,18 +749,26 @@ namespace AVS_ZohoIntegration.Manager
 
                                     if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(filePath))
                                     {
-                                        log.Info($"Subiendo PDF temporalmente a Zoho Files: {filePath}");
+                                        log.Info($"Subiendo PDF temporalmente a Zoho Files desde la ruta: {filePath}");
                                         string fileId = await SubirArchivoObtenerIdAsync(filePath);
 
                                         if (!string.IsNullOrEmpty(fileId))
                                         {
+                                            log.Info($"Archivo subido con éxito a Zoho. File ID obtenido: {fileId}");
                                             cleanDetail["Adjunt1"] = new[]
                                             {
                                                 new { file_id = fileId }
                                             };
                                         }
                                         else
+                                        {
+                                            log.Warn($"El método SubirArchivoObtenerIdAsync no devolvió un File ID válido para el archivo: {filePath}");
                                             cleanDetail["Adjunt1"] = null;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        cleanDetail["Adjunt1"] = null;
                                     }
 
                                     cleanDetail.Remove("Adjunto");
@@ -783,11 +820,16 @@ namespace AVS_ZohoIntegration.Manager
                                 header.Add(arrayName, matchingDetails);
                         }
                     }
+                    else
+                    {
+                        log.Info($"No se encontraron registros de detalle para el subnodo [{cleanNodeName}].");
+                    }
                 }
             }
             #endregion
 
             #region Formato a Json del nodo principal
+            log.Info($"Normalizando registros de cabecera y removiendo 'DocEntry' interno para la serialización final.");
             var normalizedRecords = records.Select(record =>
             {
                 var cleanRecord = new Dictionary<string, object>(record);
@@ -797,15 +839,21 @@ namespace AVS_ZohoIntegration.Manager
 
             var apiPayload = new { data = normalizedRecords };
             string jsonPayload = JsonConvert.SerializeObject(apiPayload);
-            log.Debug(jsonPayload);
-            log.Info($"** {records.Count} registros listos para Upsert. Enviando a Zoho...");
+
+            log.Debug($"Payload JSON generado para Zoho: {jsonPayload}");
+            log.Info($"** {records.Count} registros listos para Upsert. Preparando envío HTTP hacia Zoho...");
             #endregion
 
             try
             {
                 string upsertEndpoint = apiEndpoint.EndsWith("/upsert", StringComparison.OrdinalIgnoreCase) ? apiEndpoint : apiEndpoint.TrimEnd('/') + "/upsert";
+                log.Info($"Endpoint final construido para Upsert en Zoho: {upsertEndpoint}");
+
                 JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
+                log.Info($"Petición PostTransactionAsync completada para '{configKey}'. Procesando respuesta de Zoho...");
+
                 ProcesarRespuestaZoho_Send(response, configKey, records, entityConfig.SapKeyField);
+                log.Info($"*** Proceso de envío para '{configKey}' finalizado correctamente. ***");
             }
             catch (Exception ex)
             {
@@ -875,10 +923,9 @@ namespace AVS_ZohoIntegration.Manager
             }
 
             ZohoEntityConfig entityConfig = docConfig.ZohoToSap;
+            log.Info($"*** Procesando integración dinámica: {entityDescription} ({configKey}) ***");
 
-            log.Info($"*** Obteniendo información de cabecera: {entityDescription} ({configKey}) ***");
             string apiEndpoint = entityConfig.API;
-
             if (string.IsNullOrWhiteSpace(apiEndpoint))
             {
                 log.Error($"La ruta de la API para la recepción de '{configKey}' está vacía.");
@@ -887,11 +934,121 @@ namespace AVS_ZohoIntegration.Manager
 
             try
             {
+                log.Info($"Iniciando petición HTTP hacia Zoho en el endpoint: {apiEndpoint}");
                 JObject response = await GetTransactionAsync(apiEndpoint);
+                if (response == null || !response.ContainsKey("data"))
+                {
+                    log.Info("No se encontraron datos para procesar en la respuesta de Zoho (la clave 'data' está ausente o es nula).");
+                    return;
+                }
 
-                // Procesar la respuesta de Zoho hacia SAP aquí según lo requiera tu lógica:
-                // ProcesarRespuestaZoho_Receive(response, configKey);
+                JArray quotes = (JArray)response["data"];
+                log.Info($"Se han recuperado {quotes.Count} cotizaciones para evaluar desde Zoho.");
 
+                int procesadasExito = 0;
+                int procesadasError = 0;
+
+                foreach (JObject quote in quotes)
+                {
+                    string quoteId = quote["id"]?.ToString();
+                    string sapCardCode = string.Empty;
+
+                    log.Info($"--------------------------------------------------war");
+                    log.Info($"Iniciando procesamiento de la cotización con ID de Zoho: {quoteId}");
+
+                    try
+                    {
+                        if (string.IsNullOrEmpty(quoteId))
+                            throw new Exception("La cotización no contiene un ID válido.");
+
+                        #region Recuperar datos de SN
+                        JToken accountToken = quote["Account_Name"];
+                        if (accountToken == null || accountToken.Type == JTokenType.Null)
+                            throw new Exception("La cotización no tiene una cuenta asociada.");
+
+                        string zohoAccountId = accountToken["id"]?.ToString();
+                        log.Info($"Cotización {quoteId} vinculada a la cuenta de Zoho ID: {zohoAccountId}");
+
+                        string accountEndpoint = $"https://www.zohoapis.com/crm/v8/Accounts/{zohoAccountId}";
+                        log.Info($"Consultando detalles de la cuenta en Zoho: {accountEndpoint}");
+
+                        JObject accountResponse = await GetTransactionAsync(accountEndpoint);
+                        if (accountResponse == null || !accountResponse.ContainsKey("data"))
+                            throw new Exception($"No se pudo recuperar la cuenta {zohoAccountId} desde Zoho.");
+
+                        JObject fullAccountData = (JObject)accountResponse["data"][0];
+                        var rfc = fullAccountData["RFC"]?.ToString();
+
+                        if (string.IsNullOrWhiteSpace(rfc))
+                            throw new Exception($"La cuenta {zohoAccountId} no tiene configurado un RFC válido.");
+
+                        log.Info($"Cuenta {zohoAccountId} obtenida correctamente. RFC identificado: {rfc}");
+
+                        string requestedFields = "Owner,Lead_Source,First_Name,Last_Name,Account_Name,Vendor_Name,Email,Department,Phone,Mobile,Created_By,Modified_By,Created_Time,Modified_Time,Full_Name,Mailing_Street,Mailing_City,Mailing_Zip,Mailing_Country,Description,Email_Opt_Out,Salutation,Last_Activity_Time,Tag,Record_Image,Reporting_To,Unsubscribed_Mode,Unsubscribed_Time,Change_Log_Time__s,Locked__s,Last_Enriched_Time__s,Enrich_Status__s,Last_Visited_Time,First_Visited_URL,Average_Time_Spent_Minutes,Number_Of_Chats,Referrer,Visitor_Score,First_Visited_Time,Days_Visited,Estado_MX,Puesto_o_Cargo";
+                        string contactsEndpoint = $"https://www.zohoapis.com/crm/v8/Contacts/search?criteria=(Account_Name.id:equals:{zohoAccountId})&fields={requestedFields}";
+
+                        log.Info($"Buscando contactos asociados a la cuenta {zohoAccountId} en Zoho...");
+                        JObject contactsResponse = await GetTransactionAsync(contactsEndpoint);
+                        JArray zohoContacts = contactsResponse != null && contactsResponse.ContainsKey("data") ? (JArray)contactsResponse["data"] : new JArray();
+
+                        log.Info($"Se encontraron {zohoContacts.Count} contactos asociados en Zoho para la cuenta {zohoAccountId}.");
+                        #endregion
+
+                        #region Crear/actualizar SN
+                        log.Info($"Verificando existencia del Socio de Negocios en SAP mediante RFC: {rfc}");
+                        sapCardCode = ObtenerCardCodePorRfc(rfc);
+                        bool existeEnSap = !string.IsNullOrEmpty(sapCardCode);
+                        if (existeEnSap)
+                            log.Info($"El Socio de Negocios ya existe en SAP. CardCode asociado: {sapCardCode}. Procediendo a actualizar...");
+                        else
+                            log.Info($"El Socio de Negocios NO existe en SAP para el RFC {rfc}. Procediendo a crear uno nuevo...");
+
+                        company.ProcesarSocioNegocioDIAPI(fullAccountData, zohoContacts, sapCardCode, rfc, existeEnSap, log);
+
+                        if (string.IsNullOrEmpty(sapCardCode))
+                        {
+                            sapCardCode = company.Get_NewObjectKey();
+                            log.Info($"Socio de Negocios creado exitosamente. Nuevo CardCode asignado por SAP: {sapCardCode}");
+                        }
+                        else
+                            log.Info($"Socio de Negocios {sapCardCode} actualizado exitosamente en SAP.");
+                        #endregion
+
+                        #region Recuperar datos completos de la cotización
+
+                        string fullQuoteEndpoint = $"/crm/v8/Quotes/{quoteId}";
+                        log.Info($"Obteniendo detalle completo (líneas/partidas) de la cotización {quoteId} desde Zoho...");
+
+                        JObject fullQuoteResponse = await GetTransactionAsync(fullQuoteEndpoint);
+                        if (fullQuoteResponse == null || !fullQuoteResponse.ContainsKey("data"))
+                            throw new Exception("No se pudo obtener el detalle (líneas) de la cotización desde Zoho.");
+
+                        JObject fullQuoteData = (JObject)fullQuoteResponse["data"][0];
+                        log.Info($"Detalle de cotización {quoteId} obtenido. Procediendo a crear la Orden de Venta en SAP para el cliente {sapCardCode}...");
+                        #endregion
+
+                        #region Crear orden de venta
+                        company.ProcesarOrdenVentaDIAPI(fullQuoteData, sapCardCode, log);
+                        #endregion
+
+                        await GuardarEstatusSincronizacionAsync(quoteId, 3, "Sincronización exitosa", sapCardCode);
+                        log.Info($"¡Cotización {quoteId} procesada y sincronizada correctamente como Orden de Venta en SAP!");
+                        procesadasExito++;
+                    }
+                    catch (Exception ex)
+                    {
+                        procesadasError++;
+                        log.Error($"[ERROR DE PROCESAMIENTO] Falló la cotización {quoteId}: {ex.Message}");
+
+                        if (!string.IsNullOrEmpty(quoteId))
+                        {
+                            log.Info($"Actualizando estatus de error (1) en Zoho para la cotización {quoteId}...");
+                            await GuardarEstatusSincronizacionAsync(quoteId, 1, ex.Message, sapCardCode);
+                        }
+                    }
+                }
+
+                log.Info($"*** Fin del ciclo de sincronización. Resumen - Éxitos: {procesadasExito} | Errores: {procesadasError} ***");
                 log.Info("Información de Zoho recibida y procesada con éxito.");
             }
             catch (Exception ex)
@@ -928,6 +1085,54 @@ namespace AVS_ZohoIntegration.Manager
             }
         }
 
+        private string ObtenerCardCodePorRfc(string rfc)
+        {
+            try
+            {
+                string query = $"SELECT \"CardCode\" FROM OCRD WHERE \"LicTradNum\" = '{rfc}' AND \"CardType\" = 'C'";
+                var recordSet = company.ExecuteQuery(query);
+                var primerRegistro = recordSet?.FirstOrDefault();
+                return primerRegistro != null && primerRegistro.ContainsKey("CardCode") ? primerRegistro["CardCode"]?.ToString() : string.Empty;
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Error consultando RFC {rfc} mediante DI API", ex);
+                return string.Empty;
+            }
+        }
+
+        private async Task GuardarEstatusSincronizacionAsync(string idCotizacion, int estatus, string detalle, string sapCardCode)
+        {
+            log.Info($"[ESTATUS CONTROL] Quote ID: {idCotizacion} | Estatus: {estatus} | Detalle: {detalle} | CardCode {sapCardCode}");
+
+            try
+            {
+                var payloadObj = new
+                {
+                    data = new[]
+                    {
+                        new
+                        {
+                            id = idCotizacion,
+                            ID_SAP = sapCardCode,
+                            Estatus_Sincronizaci_n = estatus,
+                            Detalle_Error = detalle.Length > 255 ? detalle.Substring(0, 255) : detalle
+                        }
+                    }
+                };
+
+                string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(payloadObj);
+                var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
+
+                string upsertEndpoint = "https://www.zohoapis.com/crm/v8/Quotes/upsert";
+                JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Excepción al intentar actualizar el estatus en Zoho de la cotización {idCotizacion}.", ex);
+            }
+        }
         #endregion
     }
 
