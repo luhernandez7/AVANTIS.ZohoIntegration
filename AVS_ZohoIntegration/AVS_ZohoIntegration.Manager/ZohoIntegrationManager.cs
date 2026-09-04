@@ -994,42 +994,54 @@ namespace AVS_ZohoIntegration.Manager
                         log.Info($"Se encontraron {zohoContacts.Count} contactos asociados en Zoho para la cuenta {zohoAccountId}.");
                         #endregion
 
-                        #region Crear/actualizar SN
-                        log.Info($"Verificando existencia del Socio de Negocios en SAP mediante RFC: {rfc}");
-                        sapCardCode = ObtenerCardCodePorRfc(rfc);
-                        bool existeEnSap = !string.IsNullOrEmpty(sapCardCode);
-                        if (existeEnSap)
-                            log.Info($"El Socio de Negocios ya existe en SAP. CardCode asociado: {sapCardCode}. Procediendo a actualizar...");
-                        else
-                            log.Info($"El Socio de Negocios NO existe en SAP para el RFC {rfc}. Procediendo a crear uno nuevo...");
+                        company.StartTransaction();
 
-                        company.ProcesarSocioNegocioDIAPI(fullAccountData, zohoContacts, sapCardCode, rfc, existeEnSap, log);
-
-                        if (string.IsNullOrEmpty(sapCardCode))
+                        try
                         {
-                            sapCardCode = company.Get_NewObjectKey();
-                            log.Info($"Socio de Negocios creado exitosamente. Nuevo CardCode asignado por SAP: {sapCardCode}");
+                            #region Crear/actualizar SN
+                            log.Info($"Verificando existencia del Socio de Negocios en SAP mediante RFC: {rfc}");
+                            sapCardCode = ObtenerCardCodePorRfc(rfc);
+                            bool existeEnSap = !string.IsNullOrEmpty(sapCardCode);
+                            if (existeEnSap)
+                                log.Info($"El Socio de Negocios ya existe en SAP. CardCode asociado: {sapCardCode}. Procediendo a actualizar...");
+                            else
+                                log.Info($"El Socio de Negocios NO existe en SAP para el RFC {rfc}. Procediendo a crear uno nuevo...");
+
+                            company.ProcesarSocioNegocioDIAPI(fullAccountData, zohoContacts, sapCardCode, rfc, existeEnSap, log);
+
+                            if (string.IsNullOrEmpty(sapCardCode))
+                            {
+                                sapCardCode = company.Get_NewObjectKey();
+                                log.Info($"Socio de Negocios creado exitosamente. Nuevo CardCode asignado por SAP: {sapCardCode}");
+                            }
+                            else
+                                log.Info($"Socio de Negocios {sapCardCode} actualizado exitosamente en SAP.");
+                            #endregion
+
+                            #region Recuperar datos completos de la cotización
+
+                            string fullQuoteEndpoint = $"/crm/v8/Quotes/{quoteId}";
+                            log.Info($"Obteniendo detalle completo (líneas/partidas) de la cotización {quoteId} desde Zoho...");
+
+                            JObject fullQuoteResponse = await GetTransactionAsync(fullQuoteEndpoint);
+                            if (fullQuoteResponse == null || !fullQuoteResponse.ContainsKey("data"))
+                                throw new Exception("No se pudo obtener el detalle (líneas) de la cotización desde Zoho.");
+
+                            JObject fullQuoteData = (JObject)fullQuoteResponse["data"][0];
+                            log.Info($"Detalle de cotización {quoteId} obtenido. Procediendo a crear la Orden de Venta en SAP para el cliente {sapCardCode}...");
+                            #endregion
+
+                            #region Crear orden de venta
+                            company.ProcesarOrdenVentaDIAPI(fullQuoteData, sapCardCode, log);
+                            #endregion
+
+                            company.TransactionCommit();
                         }
-                        else
-                            log.Info($"Socio de Negocios {sapCardCode} actualizado exitosamente en SAP.");
-                        #endregion
-
-                        #region Recuperar datos completos de la cotización
-
-                        string fullQuoteEndpoint = $"/crm/v8/Quotes/{quoteId}";
-                        log.Info($"Obteniendo detalle completo (líneas/partidas) de la cotización {quoteId} desde Zoho...");
-
-                        JObject fullQuoteResponse = await GetTransactionAsync(fullQuoteEndpoint);
-                        if (fullQuoteResponse == null || !fullQuoteResponse.ContainsKey("data"))
-                            throw new Exception("No se pudo obtener el detalle (líneas) de la cotización desde Zoho.");
-
-                        JObject fullQuoteData = (JObject)fullQuoteResponse["data"][0];
-                        log.Info($"Detalle de cotización {quoteId} obtenido. Procediendo a crear la Orden de Venta en SAP para el cliente {sapCardCode}...");
-                        #endregion
-
-                        #region Crear orden de venta
-                        company.ProcesarOrdenVentaDIAPI(fullQuoteData, sapCardCode, log);
-                        #endregion
+                        catch (Exception exSap)
+                        {
+                            company.TransactionRollBack();
+                            throw new Exception($"Error en transacción de SAP: {exSap.Message}", exSap);
+                        }
 
                         await GuardarEstatusSincronizacionAsync(quoteId, 3, "Sincronización exitosa", sapCardCode);
                         log.Info($"¡Cotización {quoteId} procesada y sincronizada correctamente como Orden de Venta en SAP!");
