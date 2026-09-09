@@ -124,6 +124,7 @@ namespace AVS_ZohoIntegration.Manager
 
             List<UDFDef> campos = new List<UDFDef>
             {
+                #region OCRD
                 new UDFDef
                 {
                     TableName = "OCRD",
@@ -131,6 +132,29 @@ namespace AVS_ZohoIntegration.Manager
                     Description = "Id Cuenta Zoho CRM",
                     Size = 100
                 },
+                #endregion
+
+                #region OCPR
+                new UDFDef
+                {
+                    TableName = "OCPR",
+                    FieldName = "AVS_ZohoCntId",
+                    Description = "Id Contacto Zoho CRM",
+                    Size = 100
+                },
+                #endregion
+                
+                #region OHEM
+                new UDFDef
+                {
+                    TableName = "OHEM",
+                    FieldName = "AVS_ID_Zoho",
+                    Description = "ID Zoho",
+                    Size = 19
+                },
+                #endregion
+                
+                #region OITM
                 new UDFDef
                 {
                     TableName = "OITM",
@@ -149,6 +173,16 @@ namespace AVS_ZohoIntegration.Manager
                 },
                 new UDFDef
                 {
+                    TableName = "OITM",
+                    FieldName = "AVS_IVA",
+                    Description = "IVA Zoho",
+                    Size = 50
+                },
+                #endregion
+                
+                #region OINV
+                new UDFDef
+                {
                     TableName = "OINV",
                     FieldName = "AVS_Zoho_Sync",
                     Description = "Estatus Sincronización Zoho",
@@ -159,17 +193,35 @@ namespace AVS_ZohoIntegration.Manager
                 new UDFDef
                 {
                     TableName = "OINV",
-                    FieldName = "ZohoDealId",
+                    FieldName = "AVS_Zoho_ProcResult",
+                    Description = "Resultado o Error de Sincronización",
+                    Size = 254
+                },
+                new UDFDef
+                {
+                    TableName = "OINV",
+                    FieldName = "AVS_ZohoDealId",
                     Description = "Id Trato Zoho CRM",
                     Size = 100
                 },
                 new UDFDef
                 {
                     TableName = "OINV",
-                    FieldName = "AVS_Zoho_ProcResult",
-                    Description = "Resultado o Error de Sincronización",
+                    FieldName = "AVS_Cotizacion_Zoho",
+                    Description = "Número de cotización en Zoho",
                     Size = 254
                 },
+                new UDFDef
+                {
+                    TableName = "OINV",
+                    FieldName = "AVS_FormaPago_Zoho",
+                    Description = "Forma de pago Zoho",
+                    Size = 254
+                },
+
+                #endregion
+                
+                #region ORCT
                 new UDFDef
                 {
                     TableName = "ORCT",
@@ -186,6 +238,9 @@ namespace AVS_ZohoIntegration.Manager
                     Description = "Resultado o Error de Sincronización",
                     Size = 254
                 },
+                #endregion
+                
+                #region @AVS_ZOHO_LOG
                 new UDFDef
                 {
                     TableName = "@AVS_ZOHO_LOG",
@@ -201,6 +256,7 @@ namespace AVS_ZohoIntegration.Manager
                     FieldType = BoFieldTypes.db_Date,
                     SubType = BoFldSubTypes.st_Time
                 }
+                #endregion
             };
 
             log.Debug("Enviando listas a CrearEstructuras...");
@@ -751,24 +807,18 @@ namespace AVS_ZohoIntegration.Manager
                                     {
                                         log.Info($"Subiendo PDF temporalmente a Zoho Files desde la ruta: {filePath}");
                                         string fileId = await SubirArchivoObtenerIdAsync(filePath);
-
                                         if (!string.IsNullOrEmpty(fileId))
                                         {
                                             log.Info($"Archivo subido con éxito a Zoho. File ID obtenido: {fileId}");
-                                            cleanDetail["Adjunt1"] = new[]
+                                            var fileAttachment = new List<Dictionary<string, string>>
                                             {
-                                                new { file_id = fileId }
+                                                new Dictionary<string, string> { { "file_id", fileId } }
                                             };
+
+                                            cleanDetail.Add("Adjunt1", fileAttachment);
                                         }
                                         else
-                                        {
                                             log.Warn($"El método SubirArchivoObtenerIdAsync no devolvió un File ID válido para el archivo: {filePath}");
-                                            cleanDetail["Adjunt1"] = null;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        cleanDetail["Adjunt1"] = null;
                                     }
 
                                     cleanDetail.Remove("Adjunto");
@@ -848,6 +898,8 @@ namespace AVS_ZohoIntegration.Manager
             {
                 string upsertEndpoint = apiEndpoint.EndsWith("/upsert", StringComparison.OrdinalIgnoreCase) ? apiEndpoint : apiEndpoint.TrimEnd('/') + "/upsert";
                 log.Info($"Endpoint final construido para Upsert en Zoho: {upsertEndpoint}");
+
+                jsonPayload = jsonPayload.Replace("Documentos_SAP", "Informaci_n_de_Doc_SAP");
 
                 JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
                 log.Info($"Petición PostTransactionAsync completada para '{configKey}'. Procesando respuesta de Zoho...");
@@ -977,14 +1029,18 @@ namespace AVS_ZohoIntegration.Manager
                             throw new Exception($"No se pudo recuperar la cuenta {zohoAccountId} desde Zoho.");
 
                         JObject fullAccountData = (JObject)accountResponse["data"][0];
-                        var rfc = fullAccountData["RFC"]?.ToString();
+                        var rfc = string.Empty;
+                        if (fullAccountData.ContainsKey("RFC"))
+                            rfc = fullAccountData["RFC"]?.ToString();
+                        else if (fullAccountData.ContainsKey("MIT"))
+                            rfc = fullAccountData["MIT"]?.ToString();
 
                         if (string.IsNullOrWhiteSpace(rfc))
                             throw new Exception($"La cuenta {zohoAccountId} no tiene configurado un RFC válido.");
 
                         log.Info($"Cuenta {zohoAccountId} obtenida correctamente. RFC identificado: {rfc}");
 
-                        string requestedFields = "Owner,Lead_Source,First_Name,Last_Name,Account_Name,Vendor_Name,Email,Department,Phone,Mobile,Created_By,Modified_By,Created_Time,Modified_Time,Full_Name,Mailing_Street,Mailing_City,Mailing_Zip,Mailing_Country,Description,Email_Opt_Out,Salutation,Last_Activity_Time,Tag,Record_Image,Reporting_To,Unsubscribed_Mode,Unsubscribed_Time,Change_Log_Time__s,Locked__s,Last_Enriched_Time__s,Enrich_Status__s,Last_Visited_Time,First_Visited_URL,Average_Time_Spent_Minutes,Number_Of_Chats,Referrer,Visitor_Score,First_Visited_Time,Days_Visited,Estado_MX,Puesto_o_Cargo";
+                        string requestedFields = "id,Owner,Lead_Source,First_Name,Last_Name,Account_Name,Vendor_Name,Email,Department,Phone,Mobile,Created_By,Modified_By,Created_Time,Modified_Time,Full_Name,Mailing_Street,Mailing_City,Mailing_Zip,Mailing_Country,Description,Email_Opt_Out,Salutation,Last_Activity_Time,Tag,Record_Image,Reporting_To,Unsubscribed_Mode,Unsubscribed_Time,Change_Log_Time__s,Locked__s,Last_Enriched_Time__s,Enrich_Status__s,Last_Visited_Time,First_Visited_URL,Average_Time_Spent_Minutes,Number_Of_Chats,Referrer,Visitor_Score,First_Visited_Time,Days_Visited,Estado_MX,Puesto_o_Cargo";
                         string contactsEndpoint = $"https://www.zohoapis.com/crm/v8/Contacts/search?criteria=(Account_Name.id:equals:{zohoAccountId})&fields={requestedFields}";
 
                         log.Info($"Buscando contactos asociados a la cuenta {zohoAccountId} en Zoho...");
