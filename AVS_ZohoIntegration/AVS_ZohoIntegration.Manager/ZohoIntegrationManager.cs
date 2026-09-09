@@ -144,10 +144,10 @@ namespace AVS_ZohoIntegration.Manager
                 },
                 #endregion
                 
-                #region OHEM
+                #region OSLP
                 new UDFDef
                 {
-                    TableName = "OHEM",
+                    TableName = "OSLP",
                     FieldName = "AVS_ID_Zoho",
                     Description = "ID Zoho",
                     Size = 19
