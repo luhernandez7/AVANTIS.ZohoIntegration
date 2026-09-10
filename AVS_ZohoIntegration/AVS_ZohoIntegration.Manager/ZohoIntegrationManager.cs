@@ -51,9 +51,7 @@ namespace AVS_ZohoIntegration.Manager
 
             try
             {
-                var comandoUpper = comando.ToUpperInvariant();
-                var isDocumentosSAP = comandoUpper.EndsWith("DOCUMENTOSSAP");
-                switch (comandoUpper)
+                switch (comando.ToUpperInvariant())
                 {
                     case "DBCHECK":
                         log.Debug("Iniciando preparación de estructuras de base de datos...");
@@ -178,6 +176,13 @@ namespace AVS_ZohoIntegration.Manager
                     Description = "IVA Zoho",
                     Size = 50
                 },
+                new UDFDef
+                {
+                    TableName = "OITM",
+                    FieldName = "AVS_ZohoID",
+                    Description = "Zoho ID Product",
+                    Size = 30
+                },
                 #endregion
                 
                 #region OINV
@@ -218,7 +223,13 @@ namespace AVS_ZohoIntegration.Manager
                     Description = "Forma de pago Zoho",
                     Size = 254
                 },
-
+                new UDFDef
+                {
+                    TableName = "OINV",
+                    FieldName = "AVS_ZohoID_DocSAP",
+                    Description = "Zoho Id DocSAP",
+                    Size = 100
+                },
                 #endregion
                 
                 #region ORCT
@@ -237,6 +248,13 @@ namespace AVS_ZohoIntegration.Manager
                     FieldName = "AVS_Zoho_ProcResult",
                     Description = "Resultado o Error de Sincronización",
                     Size = 254
+                },
+                new UDFDef
+                {
+                    TableName = "ORCT",
+                    FieldName = "AVS_ZohoID_DocSAP",
+                    Description = "Zoho Id DocSAP",
+                    Size = 100
                 },
                 #endregion
                 
@@ -312,13 +330,21 @@ namespace AVS_ZohoIntegration.Manager
             }
         }
 
-        private void UpdateUserFieldsSAP(string table, string sapKey, string status, string message = "")
+        private void UpdateUserFieldsSAP(string table, string sapKey, string status, string message, string id = "")
         {
             Dictionary<string, object> userFields = new Dictionary<string, object>
             {
                 { "U_AVS_Zoho_Sync", status },
                 { "U_AVS_Zoho_ProcResult", message }
             };
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                if (table.Equals("OITM"))
+                    userFields.Add("U_AVS_ZohoID", id);
+                else
+                    userFields.Add("U_AVS_ZohoID_DocSAP", id);
+            }
 
             try
             {
@@ -411,6 +437,37 @@ namespace AVS_ZohoIntegration.Manager
 
                         return JObject.Parse(responseString);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Error de red al consumir API POST {requestUri}: {ex.Message}");
+                throw;
+            }
+        }
+
+        private async Task<JObject> GetTransactionAsync(string requestUri)
+        {
+            try
+            {
+                log.Debug("Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)");
+                string accessToken = await GetValidAccessTokenAsync();
+
+                log.Debug("Inyectar el token en el HttpClient");
+                _httpClient.DefaultRequestHeaders.Clear();
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Zoho-oauthtoken {accessToken}");
+
+                log.Info($"Enviando solicitud POST a {requestUri}...");
+                using (HttpResponseMessage response = await _httpClient.GetAsync(requestUri))
+                {
+                    string responseString = await response.Content.ReadAsStringAsync();
+                    if (!response.IsSuccessStatusCode)
+                        log.Warn($"Respuesta fallida de Zoho ({response.StatusCode}): {responseString}");
+
+                    if (string.IsNullOrEmpty(responseString))
+                        return null;
+
+                    return JObject.Parse(responseString);
                 }
             }
             catch (Exception ex)
@@ -704,8 +761,9 @@ namespace AVS_ZohoIntegration.Manager
                 if (status == "success")
                 {
                     string action = itemResponse["action"]?.ToString();
-                    log.Info($"Éxito [{action.ToUpper()}] para el registro {sapKey}. Zoho ID: {itemResponse["details"]?["id"]}");
-                    UpdateUserFieldsSAP(table, sapKey, "3");
+                    string id = itemResponse["details"]?["id"]?.ToString();
+                    log.Info($"Éxito [{action.ToUpper()}] para el registro {sapKey}. Zoho ID: {id}");
+                    UpdateUserFieldsSAP(table, sapKey, "3", message, id);
                 }
                 else
                 {
@@ -789,32 +847,61 @@ namespace AVS_ZohoIntegration.Manager
 
                         var validDetailRecords = new List<Dictionary<string, object>>();
 
+                        //foreach (var detail in detailRecords)
+                        //{
+                        //    string subnodeSapKey = detail.ContainsKey("DocEntry") ? detail["DocEntry"]?.ToString() : string.Empty;
+                        //    bool isValid = true;
+
+                        //    if (detail.ContainsKey("id") && detail["id"]?.ToString() == "")
+                        //        detail.Remove("id");
+
+                        //    string llaveAdjuntoActual = posiblesNombresAdjunto.FirstOrDefault(k => detail.ContainsKey(k) && detail[k] != null);
+
+                        //    if (llaveAdjuntoActual != null)
+                        //    {
+                        //        string filePath = detail[llaveAdjuntoActual].ToString().Trim();
+                        //        if (!string.IsNullOrEmpty(filePath) && !System.IO.File.Exists(filePath))
+                        //        {
+                        //            log.Warn($"El archivo adjunto del subnodo no existe en disco: '{filePath}'. Registro SAP Key: {subnodeSapKey}");
+
+                        //            if (!string.IsNullOrEmpty(subnodeSapKey))
+                        //            {
+                        //                log.Info($"Actualizando campos de usuario en SAP (ORDR) con estatus de Error por archivo ausente para DocEntry: {subnodeSapKey}");
+                        //                UpdateUserFieldsSAP("ORDR", subnodeSapKey, "Error", $"El archivo adjunto no existe en la ruta: {filePath}");
+                        //            }
+
+                        //            isValid = false;
+                        //        }
+                        //    }
+
+                        //    if (isValid)
+                        //        validDetailRecords.Add(detail);
+                        //}
+
                         foreach (var detail in detailRecords)
                         {
-                            string subnodeSapKey = detail.ContainsKey("DocEntry") ? detail["DocEntry"]?.ToString() : string.Empty;
-                            bool isValid = true;
+                            string subnodeSapKey = detail.TryGetValue("DocEntry", out var docObj) ? docObj?.ToString() : string.Empty;
+
+                            if (detail.TryGetValue("id", out var idObj) && string.IsNullOrEmpty(idObj?.ToString()))
+                                detail.Remove("id");
 
                             string llaveAdjuntoActual = posiblesNombresAdjunto.FirstOrDefault(k => detail.ContainsKey(k) && detail[k] != null);
-
                             if (llaveAdjuntoActual != null)
                             {
-                                string filePath = detail[llaveAdjuntoActual].ToString().Trim();
+                                string filePath = detail[llaveAdjuntoActual]?.ToString().Trim();
                                 if (!string.IsNullOrEmpty(filePath) && !System.IO.File.Exists(filePath))
                                 {
                                     log.Warn($"El archivo adjunto del subnodo no existe en disco: '{filePath}'. Registro SAP Key: {subnodeSapKey}");
-
                                     if (!string.IsNullOrEmpty(subnodeSapKey))
                                     {
-                                        log.Info($"Actualizando campos de usuario en SAP (ORDR) con estatus de Error por archivo ausente para DocEntry: {subnodeSapKey}");
-                                        UpdateUserFieldsSAP("ORDR", subnodeSapKey, "Error", $"El archivo adjunto no existe en la ruta: {filePath}");
+                                        log.Info($"Actualizando SAP a Error por archivo ausente para DocEntry: {subnodeSapKey}");
+                                        UpdateUserFieldsSAP("ORDR", subnodeSapKey, "1", $"El archivo adjunto no existe en: {filePath}");
                                     }
-
-                                    isValid = false;
+                                    continue;
                                 }
                             }
 
-                            if (isValid)
-                                validDetailRecords.Add(detail);
+                            validDetailRecords.Add(detail);
                         }
 
                         detailRecords = validDetailRecords;
@@ -940,7 +1027,13 @@ namespace AVS_ZohoIntegration.Manager
                 JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
                 log.Info($"Petición PostTransactionAsync completada para '{configKey}'. Procesando respuesta de Zoho...");
 
-                ProcesarRespuestaZoho_Send(response, configKey, records, entityConfig.SapKeyField);
+                var detailConfig = entityConfig.DetailNodes?.Values.FirstOrDefault();
+                if (detailConfig != null)
+                {
+                    string subForma = detailConfig.DetailArrayName;
+                    await ProcesarRespuestaZoho_DocumentosSAP(response, configKey, records, entityConfig.SapKeyField, subForma);
+                }
+
                 log.Info($"*** Proceso de envío para '{configKey}' finalizado correctamente. ***");
             }
             catch (Exception ex)
@@ -996,6 +1089,170 @@ namespace AVS_ZohoIntegration.Manager
                 log.Error($"Excepción al intentar subir archivo a Zoho: {ex.Message}");
             }
             return null;
+        }
+
+        private async Task ProcesarRespuestaZoho_DocumentosSAP(JObject response, string table, List<Dictionary<string, object>> recordsEnviados, string sapKeyField, string subForma)
+        {
+            var dataArray = response["data"] as JArray;
+            if (dataArray == null)
+            {
+                log.Warn($"Respuesta inesperada de Zoho: {response}");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(sapKeyField))
+            {
+                log.Warn($"No se definió 'SapKeyField' en la configuración de {table}. No se puede actualizar SAP.");
+                return;
+            }
+
+            HashSet<string> dealsProcesados = new HashSet<string>();
+
+            for (int i = 0; i < dataArray.Count; i++)
+            {
+                var itemResponse = dataArray[i];
+
+                string status = itemResponse["status"]?.ToString();
+                string message = itemResponse["message"]?.ToString();
+
+                var detailsToken = itemResponse["details"];
+                string detailsString = string.Empty;
+
+                if (detailsToken != null)
+                    detailsString = detailsToken.Type == JTokenType.Object || detailsToken.Type == JTokenType.Array ? detailsToken.ToString(Formatting.None) : detailsToken.ToString();
+
+                string errorCompleto = !string.IsNullOrEmpty(detailsString) ? $"{message} | Details: {detailsString}" : message;
+
+                if (i >= recordsEnviados.Count)
+                {
+                    log.Warn($"La respuesta de Zoho contiene más registros ({dataArray.Count}) que recordsEnviados ({recordsEnviados.Count}).");
+                    break;
+                }
+
+                string sapKey = recordsEnviados[i].ContainsKey(sapKeyField) ? recordsEnviados[i][sapKeyField]?.ToString() : string.Empty;
+                if (string.IsNullOrEmpty(sapKey))
+                {
+                    log.Warn($"No se encontró SAP Key para el índice {i}.");
+                    continue;
+                }
+
+                if (status == "success")
+                {
+                    string action = itemResponse["action"]?.ToString();
+                    string id = itemResponse["details"]?["id"]?.ToString();
+
+                    log.Info($"Éxito [{action?.ToUpper()}] para el registro {sapKey}. Zoho ID: {id}");
+
+                    if (string.IsNullOrEmpty(id))
+                    {
+                        log.Warn($"Zoho no devolvió un ID para el registro SAP {sapKey}." );
+                        continue;
+                    }
+
+                    if (dealsProcesados.Contains(id))
+                    {
+                        log.Info($"El Deal de Zoho {id} ya fue procesado anteriormente. Se omite el GET y procesamiento de subforma para SAP {sapKey}.");
+                        continue;
+                    }
+
+                    dealsProcesados.Add(id);
+
+                    try
+                    {
+                        string apiEndpoint = $"https://www.zohoapis.com/crm/v8/Deals/{id}";
+                        log.Info($"Iniciando petición HTTP hacia Zoho: {apiEndpoint}");
+                        JObject dealCompleto = await GetTransactionAsync(apiEndpoint);
+                        if (dealCompleto == null || !dealCompleto.ContainsKey("data"))
+                        {
+                            log.Warn($"No se encontraron datos para procesar en la respuesta de Zoho para el Deal {id}.");
+                            continue;
+                        }
+
+                        ProcesarSubformDeal(dealCompleto, table, subForma, sapKey);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error($"Error obteniendo/procesando la subforma del Deal {id} para SAP {sapKey}: {ex}");
+                        UpdateUserFieldsSAP(table, sapKey, "1", $"Deal enviado correctamente a Zoho, pero ocurrió un error recuperando la subforma: {ex.Message}", id);
+                    }
+                }
+                else
+                {
+                    log.Error($"Error en Zoho para el registro {sapKey}: {message}");
+                    UpdateUserFieldsSAP(table, sapKey, "1", errorCompleto);
+                }
+            }
+        }
+
+        private void ProcesarSubformDeal(JObject dealResponse, string table, string subForma, string sapKey)
+        {
+            JArray data = dealResponse["data"] as JArray;
+            if (data == null || data.Count == 0)
+            {
+                log.Warn($"El Deal no contiene información en 'data'.");
+                return;
+            }
+
+            JObject deal = data[0] as JObject;
+            if (deal == null)
+            {
+                log.Warn($"No se pudo interpretar el Deal.");
+                return;
+            }
+
+            string dealId = deal["id"]?.ToString();
+            log.Info($"Deal obtenido correctamente. Zoho ID: {dealId}" );
+
+            JArray subform = deal[subForma] as JArray;
+            if (subform == null)
+            {
+                log.Warn($"La subforma '{subForma}' no existe en la respuesta del Deal {dealId}.");
+                return;
+            }
+
+            log.Info($"Subforma '{subForma}' encontrada. Registros: {subform.Count}");
+
+            foreach (JToken linea in subform)
+            {
+                try
+                {
+                    string zohoSubformId = linea["id"]?.ToString();
+                    string noDoc = linea["No_Doc"]?.ToString() ?? linea["No_Documento"]?.ToString();
+
+                    if (string.IsNullOrWhiteSpace(noDoc))
+                    {
+                        log.Warn($"La línea de subforma no contiene No_Doc. Deal: {dealId}. Línea: {linea}");
+                        continue;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(zohoSubformId))
+                    {
+                        log.Warn($"La línea de subforma no contiene ID. No_Doc: {noDoc}. Deal: {dealId}");
+                        continue;
+                    }
+
+                    log.Info($"Procesando subforma. Deal: {dealId}, No_Doc: {noDoc}, SubformID: {zohoSubformId}");
+
+                    string docNumEscaped = noDoc.Replace("'", "''");
+                    string query = $"SELECT T0.\"DocEntry\" FROM {table} T0 WHERE T0.\"DocNum\" = '{docNumEscaped}'";
+                    log.Info($"Buscando documento SAP. Query: {query}");
+                    var recordSet = company.ExecuteQuery(query);
+                    if (recordSet == null || recordSet.Count == 0)
+                    {
+                        log.Warn($"No se encontró documento SAP para No_Doc: {noDoc}. Deal: {dealId}");
+                        continue;
+                    }
+
+                    string docEntry = Convert.ToString(recordSet[0]["DocEntry"]);
+                    log.Info($"Documento SAP encontrado. No_Doc: {noDoc}, DocEntry: {docEntry}, Zoho Subform ID: {zohoSubformId}");
+                    UpdateUserFieldsSAP(table, docEntry, "3", "", zohoSubformId.Trim());
+                    log.Info($"Documento SAP actualizado correctamente. DocEntry: {docEntry}, No_Doc: {noDoc}");
+                }
+                catch (Exception ex)
+                {
+                    log.Error($"Error procesando línea de subforma del Deal {dealId}: {ex}");
+                }
+            }
         }
         #endregion
 
@@ -1155,37 +1412,6 @@ namespace AVS_ZohoIntegration.Manager
             catch (Exception ex)
             {
                 log.Error($"**** Excepción crítica al recibir {configKey} desde Zoho ****", ex);
-            }
-        }
-
-        private async Task<JObject> GetTransactionAsync(string requestUri)
-        {
-            try
-            {
-                log.Debug("Se obtiene el token (Si ya es válido, te lo da instantáneo; si no, va a Zoho por uno nuevo)");
-                string accessToken = await GetValidAccessTokenAsync();
-
-                log.Debug("Inyectar el token en el HttpClient");
-                _httpClient.DefaultRequestHeaders.Clear();
-                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Zoho-oauthtoken {accessToken}");
-
-                log.Info($"Enviando solicitud POST a {requestUri}...");
-                using (HttpResponseMessage response = await _httpClient.GetAsync(requestUri))
-                {
-                    string responseString = await response.Content.ReadAsStringAsync();
-                    if (!response.IsSuccessStatusCode)
-                        log.Warn($"Respuesta fallida de Zoho ({response.StatusCode}): {responseString}");
-
-                    if (string.IsNullOrEmpty(responseString))
-                        return null;
-
-                    return JObject.Parse(responseString);
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error($"Error de red al consumir API POST {requestUri}: {ex.Message}");
-                throw;
             }
         }
 
