@@ -39,7 +39,7 @@ namespace AVS_ZohoIntegration.Manager
             LicManager lm = new LicManager();
             log.Debug("Validando licencia...");
             var licFilePath = ConfigurationManager.AppSettings["licFilePath"];
-            //lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
+            lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
             log.Info("Licencia valida.");
             #endregion
         }
@@ -88,6 +88,11 @@ namespace AVS_ZohoIntegration.Manager
                         SendEntityToZohoAsync_DocumentosSAP("ORCT", "Pagos").GetAwaiter().GetResult();
                         break;
 
+                    case "SENDDOWNPAYMENTS_DOCUMENTOSSAP":
+                        log.Info("Iniciando proceso de envío de facturas de anticipo a Documentos SAP...");
+                        SendEntityToZohoAsync_DocumentosSAP("ODPI", "Facturas de anticipo").GetAwaiter().GetResult();
+                        break;
+
                     case "RECEIVEPURCHASES":
                         log.Info("Iniciando proceso de recepción de pedidos...");
                         RecieveEntityFromZohoAsync("ORDR", "Pedidos").GetAwaiter().GetResult();
@@ -116,8 +121,20 @@ namespace AVS_ZohoIntegration.Manager
                 {
                      TableName = "@AVS_ZOHO_LOG",
                     Description = "Zoho Sync Log",
-                    TableType = (BoUTBTableType)0
+                    TableType = BoUTBTableType.bott_NoObject
                 }
+                //new UDTDef
+                //{
+                //    TableName = "@AVS_TAXPROF",
+                //    Description = "ZHO Perfil Impuestos",
+                //    TableType = BoUTBTableType.bott_MasterData // 1 = Datos Maestros
+                //},
+                //new UDTDef
+                //{
+                //    TableName = "@AVS_TAXPROF_DET",
+                //    Description = "ZHO Perfil Imp. Detalle",
+                //    TableType = BoUTBTableType.bott_MasterDataLines // 2 = Líneas de Datos Maestros
+                //}
             };
 
             List<UDFDef> campos = new List<UDFDef>
@@ -169,13 +186,17 @@ namespace AVS_ZohoIntegration.Manager
                     Description = "Resultado o Error de Sincronización",
                     Size = 254
                 },
-                new UDFDef
-                {
-                    TableName = "OITM",
-                    FieldName = "AVS_IVA",
-                    Description = "IVA Zoho",
-                    Size = 50
-                },
+                //new UDFDef
+                //{
+                //    TableName = "OITM",
+                //    FieldName = "AVS_TaxProfile",
+                //    Description = "Perfil Impuestos Zoho",
+                //    Size = 50, // Debe coincidir con el tamaño máximo del UDO Code
+                //    FieldType = BoFieldTypes.db_Alpha,
+                //    SubType = BoFldSubTypes.st_None,
+                //    //LinkedUDO = "AVS_TAXPROF"
+                //    LinkedTable = "AVS_TAXPROF"
+                //},
                 new UDFDef
                 {
                     TableName = "OITM",
@@ -257,6 +278,17 @@ namespace AVS_ZohoIntegration.Manager
                     Size = 100
                 },
                 #endregion
+
+                #region OSTC
+                new UDFDef
+                {
+                    TableName = "OSTC",
+                    FieldName = "AVS_IVA_Zoho",
+                    Description = "ID Zoho",
+                    Size = 15,
+                    ValidValues = new List<(string Value, string Description)> { ("EXE", "Excento"), ("IVA", "IVA") }
+                },
+                #endregion
                 
                 #region @AVS_ZOHO_LOG
                 new UDFDef
@@ -275,10 +307,52 @@ namespace AVS_ZohoIntegration.Manager
                     SubType = BoFldSubTypes.st_Time
                 }
                 #endregion
+
+                #region @AVS_TAXPROF
+                //new UDFDef
+                //{
+                //    TableName = "@AVS_TAXPROF",
+                //    FieldName = "SAP_TaxCode",
+                //    Description = "Cód. Impuesto SAP",
+                //    Size = 8, // OVTG.Code es de 8 caracteres
+                //    FieldType = BoFieldTypes.db_Alpha
+                //},
+                //new UDFDef
+                //{
+                //    TableName = "@AVS_TAXPROF_DET",
+                //    FieldName = "Zoho_TaxCode",
+                //    Description = "Código Impuesto Zoho",
+                //    Size = 50,
+                //    FieldType = BoFieldTypes.db_Alpha
+                //}
+                #endregion
+            };
+
+            List<UDODef> udos = new List<UDODef>
+            {
+                //new UDODef
+                //{
+                //    Code = "AVS_TAXPROF",
+                //    Name = "ZHO Perfil de Impuestos",
+                //    Type = BoUDOObjType.boud_MasterData,
+                //    MainTable = "@AVS_TAXPROF",
+                //    ChildTables = new List<string> { "@AVS_TAXPROF_DET" },
+                //    CanFind = BoYesNoEnum.tYES,
+                //    CanDelete = BoYesNoEnum.tYES,
+                //    CreateDefaultForm = BoYesNoEnum.tYES, // Crea la ventana automáticamente
+                //    FindColumns = new List<string> { "Code", "Name", "U_SAP_TaxCode" },
+                //    FormColumns = new List<FormColumnDef>
+                //    {
+                //        new FormColumnDef { Alias = "Code", Description = "Código", ChildNumber = 0 },
+                //        new FormColumnDef { Alias = "Name", Description = "Nombre", ChildNumber = 0 },
+                //        new FormColumnDef { Alias = "U_SAP_TaxCode", Description = "Cód. Impuesto SAP", ChildNumber = 0 },
+                //        new FormColumnDef { Alias = "U_Zoho_TaxCode", Description = "Código Impuesto Zoho", ChildNumber = 1 }
+                //    }
+                //}
             };
 
             log.Debug("Enviando listas a CrearEstructuras...");
-            company.CrearEstructuras(tablas, campos, null, log);
+            company.CrearEstructuras(tablas, campos, udos, log);
         }
 
         public async Task<string> GetValidAccessTokenAsync()
@@ -372,6 +446,10 @@ namespace AVS_ZohoIntegration.Manager
 
                     case "ORCT":
                         company.UPDATE_ORCT(Convert.ToInt32(sapKey), userFields);
+                        break;
+
+                    case "ODPI":
+                        company.UPDATE_ODPI(Convert.ToInt32(sapKey), userFields);
                         break;
 
                     default:
@@ -1145,7 +1223,7 @@ namespace AVS_ZohoIntegration.Manager
 
                     if (string.IsNullOrEmpty(id))
                     {
-                        log.Warn($"Zoho no devolvió un ID para el registro SAP {sapKey}." );
+                        log.Warn($"Zoho no devolvió un ID para el registro SAP {sapKey}.");
                         continue;
                     }
 
@@ -1201,7 +1279,7 @@ namespace AVS_ZohoIntegration.Manager
             }
 
             string dealId = deal["id"]?.ToString();
-            log.Info($"Deal obtenido correctamente. Zoho ID: {dealId}" );
+            log.Info($"Deal obtenido correctamente. Zoho ID: {dealId}");
 
             JArray subform = deal[subForma] as JArray;
             if (subform == null)
