@@ -39,7 +39,7 @@ namespace AVS_ZohoIntegration.Manager
             LicManager lm = new LicManager();
             log.Debug("Validando licencia...");
             var licFilePath = ConfigurationManager.AppSettings["licFilePath"];
-            lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
+            //lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
             log.Info("Licencia valida.");
             #endregion
         }
@@ -692,53 +692,140 @@ namespace AVS_ZohoIntegration.Manager
             }
             #endregion
 
+            #region OLD
             #region Formato a Json
-            var normalizedRecords = records.Select(record =>
-                record.ToDictionary(
-                    kvp => kvp.Key,
-                    kvp =>
-                    {
-                        var val = kvp.Value;
-                        if (val == null)
-                            return null;
 
-                        string strVal = val.ToString().Trim();
+            //string[] camposComoTexto = { "Product_Code" };
 
-                        if (strVal.Equals("true", StringComparison.OrdinalIgnoreCase) || strVal.Equals("false", StringComparison.OrdinalIgnoreCase))
-                            return bool.Parse(strVal);
+            //var normalizedRecords = records.Select(record =>
+            //    record.ToDictionary(
+            //        kvp => kvp.Key,
+            //        kvp =>
+            //        {
+            //            var val = kvp.Value;
+            //            if (val == null)
+            //                return null;
 
-                        if (strVal.Equals("Y", StringComparison.OrdinalIgnoreCase) || strVal.Equals("N", StringComparison.OrdinalIgnoreCase))
-                            return strVal.Equals("Y", StringComparison.OrdinalIgnoreCase);
+            //            string strVal = val.ToString().Trim();
 
-                        if (decimal.TryParse(strVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal decVal))
-                            return decVal;
+            //            if (camposComoTexto.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase))
+            //                return strVal;
 
-                        return val;
-                    }
-                )
-            ).ToList();
+            //            if (strVal.Equals("true", StringComparison.OrdinalIgnoreCase) || strVal.Equals("false", StringComparison.OrdinalIgnoreCase))
+            //                return bool.Parse(strVal);
 
-            var apiPayload = new { data = normalizedRecords };
-            string jsonPayload = JsonConvert.SerializeObject(apiPayload);
-            log.Debug(jsonPayload);
-            log.Info($"** {records.Count} registros listos para Upsert. Enviando a Zoho...");
+            //            if (strVal.Equals("Y", StringComparison.OrdinalIgnoreCase) || strVal.Equals("N", StringComparison.OrdinalIgnoreCase))
+            //                return strVal.Equals("Y", StringComparison.OrdinalIgnoreCase);
+
+            //            if (decimal.TryParse(strVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal decVal))
+            //                return decVal;
+
+            //            return val;
+            //        }
+            //    )
+            //).ToList();
+
+            //var apiPayload = new { data = normalizedRecords };
+            //string jsonPayload = JsonConvert.SerializeObject(apiPayload);
+            //log.Debug(jsonPayload);
+            //log.Info($"** {records.Count} registros listos para Upsert. Enviando a Zoho...");
 
             #endregion
 
-            try
-            {
-                string upsertEndpoint = apiEndpoint.EndsWith("/upsert", StringComparison.OrdinalIgnoreCase) ? apiEndpoint : apiEndpoint.TrimEnd('/') + "/upsert";
-                JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
-                ProcesarRespuestaZoho_Send(response, configKey, records, entityConfig.SapKeyField);
+            //try
+            //{
+            //    string upsertEndpoint = apiEndpoint.EndsWith("/upsert", StringComparison.OrdinalIgnoreCase) ? apiEndpoint : apiEndpoint.TrimEnd('/') + "/upsert";
+            //    JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
+            //    ProcesarRespuestaZoho_Send(response, configKey, records, entityConfig.SapKeyField);
 
-                string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                log.Info("Actualizando tabla de sincronización.");
-                company.ActualizarUltimaFechaSincronizacionEnSAP(configKey, fechaHoraActual, log);
-                log.Info("Tabla de sincronización actualizada con exito.");
-            }
-            catch (Exception ex)
+            //    string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            //    log.Info("Actualizando tabla de sincronización.");
+            //    company.ActualizarUltimaFechaSincronizacionEnSAP(configKey, fechaHoraActual, log);
+            //    log.Info("Tabla de sincronización actualizada con exito.");
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error($"**** Excepción crítica al enviar {configKey} a Zoho ****", ex);
+            //}
+
+            #endregion
+
+            #region Configuración de Lotes y Endpoint
+            int batchSize = 100;
+            string[] camposComoTexto = { "Product_Code" };
+            string upsertEndpoint = apiEndpoint.EndsWith("/upsert", StringComparison.OrdinalIgnoreCase) ? apiEndpoint : apiEndpoint.TrimEnd('/') + "/upsert";
+
+            bool hasErrors = false;
+            #endregion
+
+            for (int i = 0; i < records.Count; i += batchSize)
             {
-                log.Error($"**** Excepción crítica al enviar {configKey} a Zoho ****", ex);
+                var batchRecords = records.Skip(i).Take(batchSize).ToList();
+
+                #region Formato a Json (Solo para el lote actual)
+                var normalizedRecords = batchRecords.Select(record =>
+                    record.ToDictionary(
+                        kvp => kvp.Key,
+                        kvp =>
+                        {
+                            var val = kvp.Value;
+                            if (val == null) return null;
+
+                            string strVal = val.ToString().Trim();
+
+                            if (camposComoTexto.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase))
+                                return strVal;
+
+                            if (strVal.Equals("true", StringComparison.OrdinalIgnoreCase) || strVal.Equals("false", StringComparison.OrdinalIgnoreCase))
+                                return bool.Parse(strVal);
+
+                            if (strVal.Equals("Y", StringComparison.OrdinalIgnoreCase) || strVal.Equals("N", StringComparison.OrdinalIgnoreCase))
+                                return strVal.Equals("Y", StringComparison.OrdinalIgnoreCase);
+
+                            if (decimal.TryParse(strVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal decVal))
+                                return decVal;
+
+                            return val;
+                        }
+                    )
+                ).ToList();
+
+                var apiPayload = new { data = normalizedRecords };
+                string jsonPayload = JsonConvert.SerializeObject(apiPayload);
+
+                int currentBatch = (i / batchSize) + 1;
+                int totalBatches = (int)Math.Ceiling((double)records.Count / batchSize);
+
+                log.Debug(jsonPayload);
+                log.Info($"** Lote {currentBatch}/{totalBatches}: {batchRecords.Count} registros listos para Upsert. Enviando a Zoho...");
+                #endregion
+
+                try
+                {
+                    JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
+                    ProcesarRespuestaZoho_Send(response, configKey, batchRecords, entityConfig.SapKeyField);
+                }
+                catch (Exception ex)
+                {
+                    log.Error($"**** Excepción crítica al enviar el lote {currentBatch} de {configKey} a Zoho ****", ex);
+                    hasErrors = true;
+                    break;
+                }
+            }
+
+            if (!hasErrors)
+            {
+                try
+                {
+                    string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    log.Info("Actualizando tabla de sincronización en SAP (Todos los lotes procesados).");
+                    company.ActualizarUltimaFechaSincronizacionEnSAP(configKey, fechaHoraActual, log);
+                    log.Info("Tabla de sincronización actualizada con éxito.");
+                }
+                catch (Exception ex)
+                {
+                    log.Error($"Error al actualizar la tabla de sincronización de {configKey}", ex);
+                }
             }
         }
 
@@ -925,37 +1012,6 @@ namespace AVS_ZohoIntegration.Manager
 
                         var validDetailRecords = new List<Dictionary<string, object>>();
 
-                        //foreach (var detail in detailRecords)
-                        //{
-                        //    string subnodeSapKey = detail.ContainsKey("DocEntry") ? detail["DocEntry"]?.ToString() : string.Empty;
-                        //    bool isValid = true;
-
-                        //    if (detail.ContainsKey("id") && detail["id"]?.ToString() == "")
-                        //        detail.Remove("id");
-
-                        //    string llaveAdjuntoActual = posiblesNombresAdjunto.FirstOrDefault(k => detail.ContainsKey(k) && detail[k] != null);
-
-                        //    if (llaveAdjuntoActual != null)
-                        //    {
-                        //        string filePath = detail[llaveAdjuntoActual].ToString().Trim();
-                        //        if (!string.IsNullOrEmpty(filePath) && !System.IO.File.Exists(filePath))
-                        //        {
-                        //            log.Warn($"El archivo adjunto del subnodo no existe en disco: '{filePath}'. Registro SAP Key: {subnodeSapKey}");
-
-                        //            if (!string.IsNullOrEmpty(subnodeSapKey))
-                        //            {
-                        //                log.Info($"Actualizando campos de usuario en SAP (ORDR) con estatus de Error por archivo ausente para DocEntry: {subnodeSapKey}");
-                        //                UpdateUserFieldsSAP("ORDR", subnodeSapKey, "Error", $"El archivo adjunto no existe en la ruta: {filePath}");
-                        //            }
-
-                        //            isValid = false;
-                        //        }
-                        //    }
-
-                        //    if (isValid)
-                        //        validDetailRecords.Add(detail);
-                        //}
-
                         foreach (var detail in detailRecords)
                         {
                             string subnodeSapKey = detail.TryGetValue("DocEntry", out var docObj) ? docObj?.ToString() : string.Empty;
@@ -1032,7 +1088,8 @@ namespace AVS_ZohoIntegration.Manager
                                     kvp =>
                                     {
                                         var val = kvp.Value;
-                                        if (val == null) return null;
+                                        if (val == null) 
+                                            return null;
 
                                         if (val is List<Dictionary<string, string>> || val is List<object>)
                                             return val;
