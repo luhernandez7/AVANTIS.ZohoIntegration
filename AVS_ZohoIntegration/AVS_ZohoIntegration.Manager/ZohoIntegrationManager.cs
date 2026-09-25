@@ -39,7 +39,7 @@ namespace AVS_ZohoIntegration.Manager
             LicManager lm = new LicManager();
             log.Debug("Validando licencia...");
             var licFilePath = ConfigurationManager.AppSettings["licFilePath"];
-            //lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
+            lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
             log.Info("Licencia valida.");
             #endregion
         }
@@ -690,64 +690,6 @@ namespace AVS_ZohoIntegration.Manager
                     }
                 }
             }
-            #endregion
-
-            #region OLD
-            #region Formato a Json
-
-            //string[] camposComoTexto = { "Product_Code" };
-
-            //var normalizedRecords = records.Select(record =>
-            //    record.ToDictionary(
-            //        kvp => kvp.Key,
-            //        kvp =>
-            //        {
-            //            var val = kvp.Value;
-            //            if (val == null)
-            //                return null;
-
-            //            string strVal = val.ToString().Trim();
-
-            //            if (camposComoTexto.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase))
-            //                return strVal;
-
-            //            if (strVal.Equals("true", StringComparison.OrdinalIgnoreCase) || strVal.Equals("false", StringComparison.OrdinalIgnoreCase))
-            //                return bool.Parse(strVal);
-
-            //            if (strVal.Equals("Y", StringComparison.OrdinalIgnoreCase) || strVal.Equals("N", StringComparison.OrdinalIgnoreCase))
-            //                return strVal.Equals("Y", StringComparison.OrdinalIgnoreCase);
-
-            //            if (decimal.TryParse(strVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal decVal))
-            //                return decVal;
-
-            //            return val;
-            //        }
-            //    )
-            //).ToList();
-
-            //var apiPayload = new { data = normalizedRecords };
-            //string jsonPayload = JsonConvert.SerializeObject(apiPayload);
-            //log.Debug(jsonPayload);
-            //log.Info($"** {records.Count} registros listos para Upsert. Enviando a Zoho...");
-
-            #endregion
-
-            //try
-            //{
-            //    string upsertEndpoint = apiEndpoint.EndsWith("/upsert", StringComparison.OrdinalIgnoreCase) ? apiEndpoint : apiEndpoint.TrimEnd('/') + "/upsert";
-            //    JObject response = await PostTransactionAsync(upsertEndpoint, jsonPayload);
-            //    ProcesarRespuestaZoho_Send(response, configKey, records, entityConfig.SapKeyField);
-
-            //    string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            //    log.Info("Actualizando tabla de sincronización.");
-            //    company.ActualizarUltimaFechaSincronizacionEnSAP(configKey, fechaHoraActual, log);
-            //    log.Info("Tabla de sincronización actualizada con exito.");
-            //}
-            //catch (Exception ex)
-            //{
-            //    log.Error($"**** Excepción crítica al enviar {configKey} a Zoho ****", ex);
-            //}
-
             #endregion
 
             #region Configuración de Lotes y Endpoint
