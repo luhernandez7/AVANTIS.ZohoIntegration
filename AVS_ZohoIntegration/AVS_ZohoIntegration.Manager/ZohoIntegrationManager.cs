@@ -1082,12 +1082,28 @@ namespace AVS_ZohoIntegration.Manager
 
             #region Formato a Json del nodo principal
             log.Info($"Normalizando registros de cabecera y removiendo 'DocEntry' interno para la serialización final.");
-            var normalizedRecords = records.Select(record =>
+
+            var normalizedRecords = records
+            .Where(record =>
+            {
+                var dict = record as IDictionary<string, object> ?? new Dictionary<string, object>(record);
+                if (IsNodeEmpty(dict, "Documentos_SAP") || IsNodeEmpty(dict, "Informaci_n_de_Doc_SAP"))
+                    return false;
+
+                return true; 
+            })
+            .Select(record =>
             {
                 var cleanRecord = new Dictionary<string, object>(record);
                 cleanRecord.Remove("DocEntry");
                 return cleanRecord;
             }).ToList();
+
+            if (normalizedRecords.Count == 0)
+            {
+                log.Info("No hay elementos pendientes de actualizar en Zoho. Revisar los detalles de error");
+                return;
+            }
 
             var apiPayload = new { data = normalizedRecords };
             string jsonPayload = JsonConvert.SerializeObject(apiPayload);
@@ -1330,6 +1346,30 @@ namespace AVS_ZohoIntegration.Manager
                     log.Error($"Error procesando línea de subforma del Deal {dealId}: {ex}");
                 }
             }
+        }
+
+        private bool IsNodeEmpty(IDictionary<string, object> dictionary, string key)
+        {
+            if (!dictionary.TryGetValue(key, out object value))
+                return false; // El nodo no existe, por lo que no está "vacío"
+
+            if (value == null) return true;
+
+            if (value is JArray jArray)
+                return jArray.Count == 0;
+
+            if (value is string str)
+                return string.IsNullOrWhiteSpace(str);
+
+            if (value is System.Collections.IEnumerable enumerable)
+            {
+                var enumerator = enumerable.GetEnumerator();
+                bool isEmpty = !enumerator.MoveNext();
+                if (enumerator is IDisposable disposable) disposable.Dispose();
+                return isEmpty;
+            }
+
+            return false;
         }
         #endregion
 
