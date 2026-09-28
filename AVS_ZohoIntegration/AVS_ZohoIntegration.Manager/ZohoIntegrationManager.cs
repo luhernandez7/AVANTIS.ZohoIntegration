@@ -65,32 +65,32 @@ namespace AVS_ZohoIntegration.Manager
 
                     case "SENDPURCHASES_DOCUMENTOSSAP":
                         log.Info("Iniciando proceso de envío de pedidos a Documentos SAP...");
-                        SendEntityToZohoAsync_DocumentosSAP("ORDR", "Pedidos").GetAwaiter().GetResult();
+                        SendEntityToZohoAsync_DocumentosSAP("ORDR", "Pedido").GetAwaiter().GetResult();
                         break;
 
                     case "SENDDELIVERIES_DOCUMENTOSSAP":
                         log.Info("Iniciando proceso de envío de entregas a Documentos SAP...");
-                        SendEntityToZohoAsync_DocumentosSAP("ODLN", "Entregas").GetAwaiter().GetResult();
+                        SendEntityToZohoAsync_DocumentosSAP("ODLN", "Nota de Entrega").GetAwaiter().GetResult();
                         break;
 
                     case "SENDINVOICES_DOCUMENTOSSAP":
                         log.Info("Iniciando proceso de envío de facturas a Documentos SAP...");
-                        SendEntityToZohoAsync_DocumentosSAP("OINV", "Facturas").GetAwaiter().GetResult();
+                        SendEntityToZohoAsync_DocumentosSAP("OINV", "Factura").GetAwaiter().GetResult();
                         break;
 
                     case "SENDCREDITNOTES_DOCUMENTOSSAP":
                         log.Info("Iniciando proceso de envío de notas de crédito a Documentos SAP...");
-                        SendEntityToZohoAsync_DocumentosSAP("ORIN", "Notas de crédito").GetAwaiter().GetResult();
+                        SendEntityToZohoAsync_DocumentosSAP("ORIN", "Notas de Crédito").GetAwaiter().GetResult();
                         break;
 
                     case "SENDPAYMENTS_DOCUMENTOSSAP":
                         log.Info("Iniciando proceso de envío de pagos a Documentos SAP...");
-                        SendEntityToZohoAsync_DocumentosSAP("ORCT", "Pagos").GetAwaiter().GetResult();
+                        SendEntityToZohoAsync_DocumentosSAP("ORCT", "Pago").GetAwaiter().GetResult();
                         break;
 
                     case "SENDDOWNPAYMENTS_DOCUMENTOSSAP":
                         log.Info("Iniciando proceso de envío de facturas de anticipo a Documentos SAP...");
-                        SendEntityToZohoAsync_DocumentosSAP("ODPI", "Facturas de anticipo").GetAwaiter().GetResult();
+                        SendEntityToZohoAsync_DocumentosSAP("ODPI", "Anticipo").GetAwaiter().GetResult();
                         break;
 
                     case "RECEIVEPURCHASES":
@@ -1140,7 +1140,7 @@ namespace AVS_ZohoIntegration.Manager
                 if (detailConfig != null)
                 {
                     string subForma = detailConfig.DetailArrayName;
-                    await ProcesarRespuestaZoho_DocumentosSAP(response, configKey, records, entityConfig.SapKeyField, subForma);
+                    await ProcesarRespuestaZoho_DocumentosSAP(response, configKey, records, entityConfig.SapKeyField, subForma, entityDescription);
                 }
 
                 log.Info($"*** Proceso de envío para '{configKey}' finalizado correctamente. ***");
@@ -1200,7 +1200,7 @@ namespace AVS_ZohoIntegration.Manager
             return null;
         }
 
-        private async Task ProcesarRespuestaZoho_DocumentosSAP(JObject response, string table, List<Dictionary<string, object>> recordsEnviados, string sapKeyField, string subForma)
+        private async Task ProcesarRespuestaZoho_DocumentosSAP(JObject response, string table, List<Dictionary<string, object>> recordsEnviados, string sapKeyField, string subForma, string TipoDocSAP)
         {
             var dataArray = response["data"] as JArray;
             if (dataArray == null)
@@ -1277,7 +1277,7 @@ namespace AVS_ZohoIntegration.Manager
                             continue;
                         }
 
-                        ProcesarSubformDeal(dealCompleto, table, subForma, sapKey);
+                        ProcesarSubformDeal(dealCompleto, table, subForma, TipoDocSAP);
                     }
                     catch (Exception ex)
                     {
@@ -1293,7 +1293,7 @@ namespace AVS_ZohoIntegration.Manager
             }
         }
 
-        private void ProcesarSubformDeal(JObject dealResponse, string table, string subForma, string sapKey)
+        private void ProcesarSubformDeal(JObject dealResponse, string table, string subForma, string TipoDocSAP)
         {
             JArray data = dealResponse["data"] as JArray;
             if (data == null || data.Count == 0)
@@ -1327,6 +1327,17 @@ namespace AVS_ZohoIntegration.Manager
                 {
                     string zohoSubformId = linea["id"]?.ToString();
                     string noDoc = linea["No_Doc"]?.ToString() ?? linea["No_Documento"]?.ToString();
+                    string tipoDoc = linea["Tipo_Doc"]?.ToString() ?? linea["Tipo_de_Doc"]?.ToString();
+
+                    string docSap = TipoDocSAP?.Trim() ?? string.Empty;
+                    string docZoho = tipoDoc?.Trim() ?? string.Empty;
+
+                    bool esFacturaOAnexo =  string.Equals(docSap, "factura", StringComparison.OrdinalIgnoreCase) && string.Equals(docZoho, "nota de débito", StringComparison.OrdinalIgnoreCase);
+                    if (!esFacturaOAnexo)
+                    {
+                        if (!string.Equals(docSap, docZoho, StringComparison.OrdinalIgnoreCase))
+                            continue;
+                    }
 
                     if (string.IsNullOrWhiteSpace(noDoc))
                     {
@@ -1343,12 +1354,12 @@ namespace AVS_ZohoIntegration.Manager
                     log.Info($"Procesando subforma. Deal: {dealId}, No_Doc: {noDoc}, SubformID: {zohoSubformId}");
 
                     string docNumEscaped = noDoc.Replace("'", "''");
-                    string query = $"SELECT T0.\"DocEntry\" FROM {table} T0 WHERE T0.\"DocNum\" = '{docNumEscaped}'";
+                    string query = $"SELECT T0.\"DocEntry\" FROM {table} T0 WHERE T0.\"DocNum\" = '{docNumEscaped}' AND T0.\"U_AVS_Zoho_Sync\" = 0";
                     log.Info($"Buscando documento SAP. Query: {query}");
                     var recordSet = company.ExecuteQuery(query);
                     if (recordSet == null || recordSet.Count == 0)
                     {
-                        log.Warn($"No se encontró documento SAP para No_Doc: {noDoc}. Deal: {dealId}");
+                        log.Warn($"Documento ya actualizado previamente {noDoc}. Deal: {dealId}");
                         continue;
                     }
 
