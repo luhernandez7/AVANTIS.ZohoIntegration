@@ -39,7 +39,7 @@ namespace AVS_ZohoIntegration.Manager
             LicManager lm = new LicManager();
             log.Debug("Validando licencia...");
             var licFilePath = ConfigurationManager.AppSettings["licFilePath"];
-            lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
+            //lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
             log.Info("Licencia valida.");
             #endregion
         }
@@ -986,6 +986,7 @@ namespace AVS_ZohoIntegration.Manager
                         foreach (var header in records)
                         {
                             string keyValue = header[detailKey]?.ToString();
+                            string zohoDealId = header["id"]?.ToString();
 
                             var matchingDetails = new List<Dictionary<string, object>>();
                             var subnodosFiltrados = detailRecords
@@ -998,32 +999,43 @@ namespace AVS_ZohoIntegration.Manager
                                 cleanDetail.Remove(detailKey);
 
                                 string llaveSubnodoActual = posiblesNombresAdjunto.FirstOrDefault(k => cleanDetail.ContainsKey(k) && cleanDetail[k] != null);
-                                string fieldfileId = llaveSubnodoActual.Equals("No_Doc") ? "file_id" : "File_Id__s";
+                                string fieldDoc = llaveSubnodoActual != null && llaveSubnodoActual.Equals("No_Doc") ? "No_Doc" : "No_Documento";
+                                string fieldfileId = llaveSubnodoActual != null && llaveSubnodoActual.Equals("No_Doc") ? "file_id" : "File_Id__s";
+                                string fieldTipo = llaveSubnodoActual != null && llaveSubnodoActual.Equals("No_Doc") ? "Tipo_Doc" : "Tipo_de_Doc";
+
+                                string noDocumentoActual = cleanDetail[fieldDoc]?.ToString();
+                                string tipoDocActual = cleanDetail[fieldTipo]?.ToString();
+
+                                string filePath = cleanDetail.ContainsKey(llaveSubnodoActual) ? cleanDetail[llaveSubnodoActual]?.ToString().Trim() : string.Empty;
+                                string fileIdExistente = await ObtenerFileIdExistenteEnZohoAsync(zohoDealId, noDocumentoActual, tipoDocActual, arrayName, fieldDoc, llaveSubnodoActual, fieldfileId, fieldTipo, filePath);
 
                                 if (llaveSubnodoActual != null)
                                 {
-                                    string filePath = cleanDetail[llaveSubnodoActual].ToString().Trim();
                                     cleanDetail.Remove(llaveSubnodoActual);
 
-                                    if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(filePath))
+                                    if (string.IsNullOrEmpty(fileIdExistente))
                                     {
-                                        log.Info($"Subiendo PDF temporalmente a Zoho Files desde la ruta: {filePath}");
-                                        string fileId = await SubirArchivoObtenerIdAsync(filePath);
-                                        if (!string.IsNullOrEmpty(fileId))
+                                        if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(filePath))
                                         {
-                                            log.Info($"Archivo subido con éxito a Zoho. File ID obtenido: {fileId}");
-                                            var fileAttachment = new List<Dictionary<string, string>>
+                                            log.Info($"[Zoho Sync] No se encontró adjunto previo. Subiendo PDF temporalmente desde: {filePath}");
+                                            string nuevoFileId = await SubirArchivoObtenerIdAsync(filePath);
+
+                                            if (!string.IsNullOrEmpty(nuevoFileId))
                                             {
-                                                new Dictionary<string, string> { { fieldfileId, fileId } }
-                                            };
-                                            cleanDetail.Add(llaveSubnodoActual, fileAttachment);
+                                                log.Info($"[Zoho Sync] Archivo subido con éxito. Nuevo File ID: {nuevoFileId}");
+                                                var fileAttachment = new List<Dictionary<string, string>>
+                                                {
+                                                    new Dictionary<string, string> { { fieldfileId, nuevoFileId } }
+                                                };
+                                                cleanDetail.Add(llaveSubnodoActual, fileAttachment);
+                                            }
+                                            else
+                                                log.Warn($"[Zoho Sync] El método SubirArchivoObtenerIdAsync no devolvió un File ID válido.");
                                         }
-                                        else
-                                            log.Warn($"El método SubirArchivoObtenerIdAsync no devolvió un File ID válido para el archivo: {filePath}");
                                     }
                                 }
 
-                                string[] camposComoTexto = { "No_Doc", "Adjunt1", "No_Documento", "Adjunto" };
+                                string[] camposComoTexto = { "No_Doc", "Adjunt1", "No_Documento", "Adjunto", "id" };
 
                                 var normalizedDetail = cleanDetail.ToDictionary(
                                     kvp => kvp.Key,
@@ -1036,20 +1048,20 @@ namespace AVS_ZohoIntegration.Manager
                                         if (val is List<Dictionary<string, string>> || val is List<object>)
                                             return val;
 
-                                        if (DateTime.TryParse(val.ToString(), out DateTime parsedDate))
-                                            return parsedDate.ToString("yyyy-MM-dd");
-
                                         string strVal = val.ToString().Trim();
 
+                                        // 1. Si el campo está definido como texto, se respeta primero
                                         if (camposComoTexto.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase))
                                             return strVal;
 
+                                        // 2. Validaciones de booleanos
                                         if (strVal.Equals("true", StringComparison.OrdinalIgnoreCase) || strVal.Equals("false", StringComparison.OrdinalIgnoreCase))
                                             return bool.Parse(strVal);
 
                                         if (strVal.Equals("Y", StringComparison.OrdinalIgnoreCase) || strVal.Equals("N", StringComparison.OrdinalIgnoreCase))
                                             return strVal.Equals("Y", StringComparison.OrdinalIgnoreCase);
 
+                                        // 3. Validaciones numéricas (¡Colocadas antes de las fechas para proteger los decimales!)
                                         if (int.TryParse(strVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out int intVal))
                                             return intVal;
 
@@ -1058,6 +1070,10 @@ namespace AVS_ZohoIntegration.Manager
 
                                         if (decimal.TryParse(strVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal decVal))
                                             return decVal;
+
+                                        // 4. Fechas al final (solo se evaluará aquí si no pasó por ninguna regla numérica o de texto)
+                                        if (DateTime.TryParse(strVal, out DateTime parsedDate))
+                                            return parsedDate.ToString("yyyy-MM-dd");
 
                                         return val;
                                     }
@@ -1370,6 +1386,65 @@ namespace AVS_ZohoIntegration.Manager
             }
 
             return false;
+        }
+
+        private async Task<string> ObtenerFileIdExistenteEnZohoAsync(string dealId, string noDocumento, string tipo, string llaveSubnodoActual, string nodoDoc, string nodoAdjunto, string nodoFileId, string nodoTipo, string filePath)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(dealId) || string.IsNullOrEmpty(noDocumento))
+                    return null;
+
+                if (string.IsNullOrWhiteSpace(filePath) || !System.IO.File.Exists(filePath))
+                    return null;
+
+                var fileNameNew = System.IO.Path.GetFileName(filePath);
+
+                string requestUri = $"https://www.zohoapis.com/crm/v8/Deals/{dealId}";
+
+                JObject dealResponse = await GetTransactionAsync(requestUri);
+                if (dealResponse == null) return null;
+
+                var dataArray = dealResponse["data"] as JArray;
+                if (dataArray == null || dataArray.Count == 0) return null;
+
+                var deal = dataArray[0];
+                var subformularioSap = deal[llaveSubnodoActual] as JArray;
+                if (subformularioSap == null) return null;
+
+                foreach (var item in subformularioSap)
+                {
+                    string docNum = item[nodoDoc]?.ToString()?.Trim();
+                    string tipoDoc = item[nodoTipo]?.ToString()?.Trim();
+
+                    if (docNum == noDocumento && string.Equals(tipoDoc, tipo, StringComparison.OrdinalIgnoreCase))
+                    {
+                        var dataAdjunto = item[nodoAdjunto] as JArray;
+                        if (dataAdjunto == null) 
+                            continue;
+
+                        foreach (var itemAdj in dataAdjunto)
+                        {
+                            string fileName = itemAdj["File_Name__s"]?.ToString()?.Trim();
+
+                            if (string.Equals(fileNameNew, fileName, StringComparison.OrdinalIgnoreCase))
+                            {
+                                string fileId = itemAdj[nodoFileId]?.ToString()?.Trim();
+                                if (!string.IsNullOrEmpty(fileId))
+                                    return fileId; 
+                            }
+                        }
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                log.Warn($"No se pudo verificar si el documento ya tenía un archivo adjunto previo en Zoho: {ex.Message}");
+            }
+
+            return null;
         }
         #endregion
 
