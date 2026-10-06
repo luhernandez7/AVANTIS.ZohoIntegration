@@ -39,7 +39,7 @@ namespace AVS_ZohoIntegration.Manager
             LicManager lm = new LicManager();
             log.Debug("Validando licencia...");
             var licFilePath = ConfigurationManager.AppSettings["licFilePath"];
-            //lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
+            lm.LicenseValidator("AVS_ZohoIntegration", RFC, licFilePath);
             log.Info("Licencia valida.");
             #endregion
         }
