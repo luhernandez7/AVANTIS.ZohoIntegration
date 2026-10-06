@@ -355,6 +355,55 @@ namespace AVS_ZohoIntegration.Manager
             company.CrearEstructuras(tablas, campos, udos, log);
         }
 
+        //public async Task<string> GetValidAccessTokenAsync()
+        //{
+        //    if (!string.IsNullOrEmpty(_currentAccessToken) && DateTime.Now < _tokenExpiration.AddMinutes(-5))
+        //    {
+        //        return _currentAccessToken;
+        //    }
+
+        //    log.Info("El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...");
+
+        //    string accountsUrl = company.Zoho_AccountsUrl;
+        //    string clientId = company.Zoho_ClientId;
+        //    string clientSecret = company.Zoho_ClientSecret;
+        //    string refreshToken = company.Zoho_RefreshToken;
+
+        //    var requestBody = new FormUrlEncodedContent(new[]
+        //    {
+        //        new KeyValuePair<string, string>("refresh_token", refreshToken),
+        //        new KeyValuePair<string, string>("client_id", clientId),
+        //        new KeyValuePair<string, string>("client_secret", clientSecret),
+        //        new KeyValuePair<string, string>("grant_type", "refresh_token")
+        //    });
+
+        //    try
+        //    {
+        //        HttpResponseMessage response = await _authClient.PostAsync(accountsUrl, requestBody);
+        //        response.EnsureSuccessStatusCode();
+
+        //        string responseJson = await response.Content.ReadAsStringAsync();
+        //        JObject tokenData = JObject.Parse(responseJson);
+
+        //        if (tokenData["access_token"] != null)
+        //        {
+        //            _currentAccessToken = tokenData["access_token"].ToString();
+        //            int expiresInSeconds = tokenData["expires_in"] != null ? (int)tokenData["expires_in"] : 3600;
+        //            _tokenExpiration = DateTime.Now.AddSeconds(expiresInSeconds);
+
+        //            log.Info("Nuevo Access Token de Zoho obtenido correctamente.");
+        //            return _currentAccessToken;
+        //        }
+        //        else
+        //            throw new Exception("La respuesta de Zoho no incluyó un Access Token.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Error crítico al intentar renovar el token de Zoho:", ex);
+        //        throw;
+        //    }
+        //}
+
         public async Task<string> GetValidAccessTokenAsync()
         {
             if (!string.IsNullOrEmpty(_currentAccessToken) && DateTime.Now < _tokenExpiration.AddMinutes(-5))
@@ -380,9 +429,14 @@ namespace AVS_ZohoIntegration.Manager
             try
             {
                 HttpResponseMessage response = await _authClient.PostAsync(accountsUrl, requestBody);
-                response.EnsureSuccessStatusCode();
 
                 string responseJson = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    log.Error($"Error de Zoho OAuth (Status {response.StatusCode}): {responseJson}");
+                    throw new Exception($"Error de autenticación en Zoho: {responseJson}");
+                }
+
                 JObject tokenData = JObject.Parse(responseJson);
 
                 if (tokenData["access_token"] != null)
@@ -395,7 +449,9 @@ namespace AVS_ZohoIntegration.Manager
                     return _currentAccessToken;
                 }
                 else
+                {
                     throw new Exception("La respuesta de Zoho no incluyó un Access Token.");
+                }
             }
             catch (Exception ex)
             {
@@ -1548,23 +1604,18 @@ namespace AVS_ZohoIntegration.Manager
 
                         try
                         {
+                            var pais = company.ObtenerPaisEmpresa(log);
+
                             #region Crear/actualizar SN
                             log.Info($"Verificando existencia del Socio de Negocios en SAP mediante RFC: {rfc}");
                             sapCardCode = ObtenerCardCodePorRfc(rfc);
                             bool existeEnSap = !string.IsNullOrEmpty(sapCardCode);
                             if (!existeEnSap)
-                            {
-                                log.Info($"El Socio de Negocios NO existe en SAP para el RFC {rfc}. Procediendo a recuperar el dato de ID_SAP...");
-
-                                if (!fullAccountData.ContainsKey("ID_SAP"))
-                                    throw new Exception("No se asignó un código de socio de negocios (ID_SAP)");
-
-                                sapCardCode = fullAccountData["ID_SAP"]?.ToString();
-                            }
+                                log.Info($"El Socio de Negocios NO existe en SAP para el RFC {rfc}. Procediendo a crear...");
                             else
                                 log.Info($"El Socio de Negocios ya existe en SAP. CardCode asociado: {sapCardCode}. Procediendo a actualizar...");
 
-                            company.ProcesarSocioNegocioDIAPI(fullAccountData, zohoContacts, sapCardCode, rfc, existeEnSap, log);
+                            company.ProcesarSocioNegocioDIAPI(fullAccountData, zohoContacts, ref sapCardCode, rfc, existeEnSap, pais, log);
                             #endregion
 
                             #region Recuperar datos completos de la cotización
@@ -1581,7 +1632,7 @@ namespace AVS_ZohoIntegration.Manager
                             #endregion
 
                             #region Crear orden de venta
-                            company.ProcesarOrdenVentaDIAPI(fullQuoteData, sapCardCode, log);
+                            company.ProcesarOrdenVentaDIAPI(fullQuoteData, sapCardCode, pais, log);
                             #endregion
 
                             company.TransactionCommit();
