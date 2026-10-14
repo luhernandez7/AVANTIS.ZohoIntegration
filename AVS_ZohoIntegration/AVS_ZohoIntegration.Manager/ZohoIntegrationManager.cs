@@ -63,6 +63,11 @@ namespace AVS_ZohoIntegration.Manager
                         SendEntityToZohoAsync("OITM", "Artículos").GetAwaiter().GetResult();
                         break;
 
+                    case "SENDQUOTATIONS_DOCUMENTOSSAP":
+                        log.Info("Iniciando proceso de envío de pedidos a Documentos SAP...");
+                        SendEntityToZohoAsync_DocumentosSAP("OQUT", "Cotización").GetAwaiter().GetResult();
+                        break;
+
                     case "SENDPURCHASES_DOCUMENTOSSAP":
                         log.Info("Iniciando proceso de envío de pedidos a Documentos SAP...");
                         SendEntityToZohoAsync_DocumentosSAP("ORDR", "Pedido").GetAwaiter().GetResult();
@@ -95,7 +100,12 @@ namespace AVS_ZohoIntegration.Manager
 
                     case "RECEIVEPURCHASES":
                         log.Info("Iniciando proceso de recepción de pedidos...");
-                        RecieveEntityFromZohoAsync("ORDR", "Pedidos").GetAwaiter().GetResult();
+                        RecieveEntityFromZohoAsync("ORDR", "Pedido").GetAwaiter().GetResult();
+                        break;
+
+                    case "RECEIVEQUOTATIONS":
+                        log.Info("Iniciando proceso de recepción de cotizaciones...");
+                        RecieveEntityFromZohoAsync("OQUT", "Cotización").GetAwaiter().GetResult();
                         break;
 
                     default:
@@ -355,61 +365,10 @@ namespace AVS_ZohoIntegration.Manager
             company.CrearEstructuras(tablas, campos, udos, log);
         }
 
-        //public async Task<string> GetValidAccessTokenAsync()
-        //{
-        //    if (!string.IsNullOrEmpty(_currentAccessToken) && DateTime.Now < _tokenExpiration.AddMinutes(-5))
-        //    {
-        //        return _currentAccessToken;
-        //    }
-
-        //    log.Info("El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...");
-
-        //    string accountsUrl = company.Zoho_AccountsUrl;
-        //    string clientId = company.Zoho_ClientId;
-        //    string clientSecret = company.Zoho_ClientSecret;
-        //    string refreshToken = company.Zoho_RefreshToken;
-
-        //    var requestBody = new FormUrlEncodedContent(new[]
-        //    {
-        //        new KeyValuePair<string, string>("refresh_token", refreshToken),
-        //        new KeyValuePair<string, string>("client_id", clientId),
-        //        new KeyValuePair<string, string>("client_secret", clientSecret),
-        //        new KeyValuePair<string, string>("grant_type", "refresh_token")
-        //    });
-
-        //    try
-        //    {
-        //        HttpResponseMessage response = await _authClient.PostAsync(accountsUrl, requestBody);
-        //        response.EnsureSuccessStatusCode();
-
-        //        string responseJson = await response.Content.ReadAsStringAsync();
-        //        JObject tokenData = JObject.Parse(responseJson);
-
-        //        if (tokenData["access_token"] != null)
-        //        {
-        //            _currentAccessToken = tokenData["access_token"].ToString();
-        //            int expiresInSeconds = tokenData["expires_in"] != null ? (int)tokenData["expires_in"] : 3600;
-        //            _tokenExpiration = DateTime.Now.AddSeconds(expiresInSeconds);
-
-        //            log.Info("Nuevo Access Token de Zoho obtenido correctamente.");
-        //            return _currentAccessToken;
-        //        }
-        //        else
-        //            throw new Exception("La respuesta de Zoho no incluyó un Access Token.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error("Error crítico al intentar renovar el token de Zoho:", ex);
-        //        throw;
-        //    }
-        //}
-
         public async Task<string> GetValidAccessTokenAsync()
         {
             if (!string.IsNullOrEmpty(_currentAccessToken) && DateTime.Now < _tokenExpiration.AddMinutes(-5))
-            {
                 return _currentAccessToken;
-            }
 
             log.Info("El Access Token de Zoho ha expirado o no existe. Solicitando uno nuevo...");
 
@@ -506,6 +465,10 @@ namespace AVS_ZohoIntegration.Manager
 
                     case "ODPI":
                         company.UPDATE_ODPI(Convert.ToInt32(sapKey), userFields);
+                        break;
+
+                    case "OQUT":
+                        company.UPDATE_OQUT(Convert.ToInt32(sapKey), userFields);
                         break;
 
                     default:
@@ -1098,7 +1061,7 @@ namespace AVS_ZohoIntegration.Manager
                                     kvp =>
                                     {
                                         var val = kvp.Value;
-                                        if (val == null) 
+                                        if (val == null)
                                             return null;
 
                                         if (val is List<Dictionary<string, string>> || val is List<object>)
@@ -1162,7 +1125,7 @@ namespace AVS_ZohoIntegration.Manager
                 if (IsNodeEmpty(dict, "Documentos_SAP") || IsNodeEmpty(dict, "Informaci_n_de_Doc_SAP"))
                     return false;
 
-                return true; 
+                return true;
             })
             .Select(record =>
             {
@@ -1256,6 +1219,184 @@ namespace AVS_ZohoIntegration.Manager
             return null;
         }
 
+        #region Old
+        //private async Task ProcesarRespuestaZoho_DocumentosSAP(JObject response, string table, List<Dictionary<string, object>> recordsEnviados, string sapKeyField, string subForma, string TipoDocSAP)
+        //{
+        //    var dataArray = response["data"] as JArray;
+        //    if (dataArray == null)
+        //    {
+        //        log.Warn($"Respuesta inesperada de Zoho: {response}");
+        //        return;
+        //    }
+
+        //    if (string.IsNullOrEmpty(sapKeyField))
+        //    {
+        //        log.Warn($"No se definió 'SapKeyField' en la configuración de {table}. No se puede actualizar SAP.");
+        //        return;
+        //    }
+
+        //    HashSet<string> dealsProcesados = new HashSet<string>();
+
+        //    for (int i = 0; i < dataArray.Count; i++)
+        //    {
+        //        var itemResponse = dataArray[i];
+
+        //        string status = itemResponse["status"]?.ToString();
+        //        string message = itemResponse["message"]?.ToString();
+
+        //        var detailsToken = itemResponse["details"];
+        //        string detailsString = string.Empty;
+
+        //        if (detailsToken != null)
+        //            detailsString = detailsToken.Type == JTokenType.Object || detailsToken.Type == JTokenType.Array ? detailsToken.ToString(Formatting.None) : detailsToken.ToString();
+
+        //        string errorCompleto = !string.IsNullOrEmpty(detailsString) ? $"{message} | Details: {detailsString}" : message;
+
+        //        if (i >= recordsEnviados.Count)
+        //        {
+        //            log.Warn($"La respuesta de Zoho contiene más registros ({dataArray.Count}) que recordsEnviados ({recordsEnviados.Count}).");
+        //            break;
+        //        }
+
+        //        string sapKey = recordsEnviados[i].ContainsKey(sapKeyField) ? recordsEnviados[i][sapKeyField]?.ToString() : string.Empty;
+        //        if (string.IsNullOrEmpty(sapKey))
+        //        {
+        //            log.Warn($"No se encontró SAP Key para el índice {i}.");
+        //            continue;
+        //        }
+
+        //        if (status == "success")
+        //        {
+        //            string action = itemResponse["action"]?.ToString();
+        //            string id = itemResponse["details"]?["id"]?.ToString();
+
+        //            log.Info($"Éxito [{action?.ToUpper()}] para el registro {sapKey}. Zoho ID: {id}");
+
+        //            if (string.IsNullOrEmpty(id))
+        //            {
+        //                log.Warn($"Zoho no devolvió un ID para el registro SAP {sapKey}.");
+        //                continue;
+        //            }
+
+        //            if (dealsProcesados.Contains(id))
+        //            {
+        //                log.Info($"El Deal de Zoho {id} ya fue procesado anteriormente. Se omite el GET y procesamiento de subforma para SAP {sapKey}.");
+        //                continue;
+        //            }
+
+        //            dealsProcesados.Add(id);
+
+        //            try
+        //            {
+        //                string apiEndpoint = $"https://www.zohoapis.com/crm/v8/Deals/{id}";
+        //                log.Info($"Iniciando petición HTTP hacia Zoho: {apiEndpoint}");
+        //                JObject dealCompleto = await GetTransactionAsync(apiEndpoint);
+        //                if (dealCompleto == null || !dealCompleto.ContainsKey("data"))
+        //                {
+        //                    log.Warn($"No se encontraron datos para procesar en la respuesta de Zoho para el Deal {id}.");
+        //                    continue;
+        //                }
+
+        //                ProcesarSubformDeal(dealCompleto, table, subForma, TipoDocSAP);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                log.Error($"Error obteniendo/procesando la subforma del Deal {id} para SAP {sapKey}: {ex}");
+        //                UpdateUserFieldsSAP(table, sapKey, "1", $"Deal enviado correctamente a Zoho, pero ocurrió un error recuperando la subforma: {ex.Message}", id);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            log.Error($"Error en Zoho para el registro {sapKey}: {message}");
+        //            UpdateUserFieldsSAP(table, sapKey, "1", errorCompleto);
+        //        }
+        //    }
+        //}
+
+        //private void ProcesarSubformDeal(JObject dealResponse, string table, string subForma, string TipoDocSAP)
+        //{
+        //    JArray data = dealResponse["data"] as JArray;
+        //    if (data == null || data.Count == 0)
+        //    {
+        //        log.Warn($"El Deal no contiene información en 'data'.");
+        //        return;
+        //    }
+
+        //    JObject deal = data[0] as JObject;
+        //    if (deal == null)
+        //    {
+        //        log.Warn($"No se pudo interpretar el Deal.");
+        //        return;
+        //    }
+
+        //    string dealId = deal["id"]?.ToString();
+        //    log.Info($"Deal obtenido correctamente. Zoho ID: {dealId}");
+
+        //    JArray subform = deal[subForma] as JArray;
+        //    if (subform == null)
+        //    {
+        //        log.Warn($"La subforma '{subForma}' no existe en la respuesta del Deal {dealId}.");
+        //        return;
+        //    }
+
+        //    log.Info($"Subforma '{subForma}' encontrada. Registros: {subform.Count}");
+
+        //    foreach (JToken linea in subform)
+        //    {
+        //        try
+        //        {
+        //            string zohoSubformId = linea["id"]?.ToString();
+        //            string noDoc = linea["No_Doc"]?.ToString() ?? linea["No_Documento"]?.ToString();
+        //            string tipoDoc = linea["Tipo_Doc"]?.ToString() ?? linea["Tipo_de_Doc"]?.ToString();
+
+        //            string docSap = TipoDocSAP?.Trim() ?? string.Empty;
+        //            string docZoho = tipoDoc?.Trim() ?? string.Empty;
+
+        //            bool esFacturaOAnexo = string.Equals(docSap, "factura", StringComparison.OrdinalIgnoreCase) && string.Equals(docZoho, "nota de débito", StringComparison.OrdinalIgnoreCase);
+        //            if (!esFacturaOAnexo)
+        //            {
+        //                if (!string.Equals(docSap, docZoho, StringComparison.OrdinalIgnoreCase))
+        //                    continue;
+        //            }
+
+        //            if (string.IsNullOrWhiteSpace(noDoc))
+        //            {
+        //                log.Warn($"La línea de subforma no contiene No_Doc. Deal: {dealId}. Línea: {linea}");
+        //                continue;
+        //            }
+
+        //            if (string.IsNullOrWhiteSpace(zohoSubformId))
+        //            {
+        //                log.Warn($"La línea de subforma no contiene ID. No_Doc: {noDoc}. Deal: {dealId}");
+        //                continue;
+        //            }
+
+        //            log.Info($"Procesando subforma. Deal: {dealId}, No_Doc: {noDoc}, SubformID: {zohoSubformId}");
+
+        //            string docNumEscaped = noDoc.Replace("'", "''");
+        //            string query = $"SELECT T0.\"DocEntry\" FROM {table} T0 WHERE T0.\"DocNum\" = '{docNumEscaped}' AND T0.\"U_AVS_Zoho_Sync\" = 0";
+        //            log.Info($"Buscando documento SAP. Query: {query}");
+        //            var recordSet = company.ExecuteQuery(query);
+        //            if (recordSet == null || recordSet.Count == 0)
+        //            {
+        //                log.Warn($"Documento ya actualizado previamente {noDoc}. Deal: {dealId}");
+        //                continue;
+        //            }
+
+        //            string docEntry = Convert.ToString(recordSet[0]["DocEntry"]);
+        //            log.Info($"Documento SAP encontrado. No_Doc: {noDoc}, DocEntry: {docEntry}, Zoho Subform ID: {zohoSubformId}");
+        //            UpdateUserFieldsSAP(table, docEntry, "3", "", zohoSubformId.Trim());
+        //            log.Info($"Documento SAP actualizado correctamente. DocEntry: {docEntry}, No_Doc: {noDoc}");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            log.Error($"Error procesando línea de subforma del Deal {dealId}: {ex}");
+        //        }
+        //    }
+        //}
+
+        #endregion
+
         private async Task ProcesarRespuestaZoho_DocumentosSAP(JObject response, string table, List<Dictionary<string, object>> recordsEnviados, string sapKeyField, string subForma, string TipoDocSAP)
         {
             var dataArray = response["data"] as JArray;
@@ -1267,89 +1408,79 @@ namespace AVS_ZohoIntegration.Manager
 
             if (string.IsNullOrEmpty(sapKeyField))
             {
-                log.Warn($"No se definió 'SapKeyField' en la configuración de {table}. No se puede actualizar SAP.");
+                log.Warn($"No se definió 'SapKeyField' en la configuración de {table}.");
                 return;
             }
 
-            HashSet<string> dealsProcesados = new HashSet<string>();
+            var dealToSapKeysMapping = new Dictionary<string, List<string>>();
 
             for (int i = 0; i < dataArray.Count; i++)
             {
                 var itemResponse = dataArray[i];
-
                 string status = itemResponse["status"]?.ToString();
                 string message = itemResponse["message"]?.ToString();
 
-                var detailsToken = itemResponse["details"];
-                string detailsString = string.Empty;
-
-                if (detailsToken != null)
-                    detailsString = detailsToken.Type == JTokenType.Object || detailsToken.Type == JTokenType.Array ? detailsToken.ToString(Formatting.None) : detailsToken.ToString();
-
-                string errorCompleto = !string.IsNullOrEmpty(detailsString) ? $"{message} | Details: {detailsString}" : message;
-
-                if (i >= recordsEnviados.Count)
-                {
-                    log.Warn($"La respuesta de Zoho contiene más registros ({dataArray.Count}) que recordsEnviados ({recordsEnviados.Count}).");
-                    break;
-                }
+                if (i >= recordsEnviados.Count) break;
 
                 string sapKey = recordsEnviados[i].ContainsKey(sapKeyField) ? recordsEnviados[i][sapKeyField]?.ToString() : string.Empty;
-                if (string.IsNullOrEmpty(sapKey))
-                {
-                    log.Warn($"No se encontró SAP Key para el índice {i}.");
-                    continue;
-                }
+                if (string.IsNullOrEmpty(sapKey)) continue;
 
                 if (status == "success")
                 {
-                    string action = itemResponse["action"]?.ToString();
                     string id = itemResponse["details"]?["id"]?.ToString();
-
-                    log.Info($"Éxito [{action?.ToUpper()}] para el registro {sapKey}. Zoho ID: {id}");
-
                     if (string.IsNullOrEmpty(id))
                     {
                         log.Warn($"Zoho no devolvió un ID para el registro SAP {sapKey}.");
                         continue;
                     }
 
-                    if (dealsProcesados.Contains(id))
-                    {
-                        log.Info($"El Deal de Zoho {id} ya fue procesado anteriormente. Se omite el GET y procesamiento de subforma para SAP {sapKey}.");
-                        continue;
-                    }
+                    if (!dealToSapKeysMapping.ContainsKey(id))
+                        dealToSapKeysMapping[id] = new List<string>();
 
-                    dealsProcesados.Add(id);
-
-                    try
-                    {
-                        string apiEndpoint = $"https://www.zohoapis.com/crm/v8/Deals/{id}";
-                        log.Info($"Iniciando petición HTTP hacia Zoho: {apiEndpoint}");
-                        JObject dealCompleto = await GetTransactionAsync(apiEndpoint);
-                        if (dealCompleto == null || !dealCompleto.ContainsKey("data"))
-                        {
-                            log.Warn($"No se encontraron datos para procesar en la respuesta de Zoho para el Deal {id}.");
-                            continue;
-                        }
-
-                        ProcesarSubformDeal(dealCompleto, table, subForma, TipoDocSAP);
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error($"Error obteniendo/procesando la subforma del Deal {id} para SAP {sapKey}: {ex}");
-                        UpdateUserFieldsSAP(table, sapKey, "1", $"Deal enviado correctamente a Zoho, pero ocurrió un error recuperando la subforma: {ex.Message}", id);
-                    }
+                    dealToSapKeysMapping[id].Add(sapKey);
                 }
                 else
                 {
+                    var detailsToken = itemResponse["details"];
+                    string detailsString = detailsToken != null ? detailsToken.ToString(Formatting.None) : string.Empty;
+                    string errorCompleto = !string.IsNullOrEmpty(detailsString) ? $"{message} | Details: {detailsString}" : message;
+
                     log.Error($"Error en Zoho para el registro {sapKey}: {message}");
                     UpdateUserFieldsSAP(table, sapKey, "1", errorCompleto);
                 }
             }
+
+            foreach (var kvp in dealToSapKeysMapping)
+            {
+                string dealId = kvp.Key;
+                List<string> sapKeysDelDeal = kvp.Value;
+
+                try
+                {
+                    string apiEndpoint = $"https://www.zohoapis.com/crm/v8/Deals/{dealId}";
+                    log.Info($"Iniciando petición HTTP hacia Zoho para Deal ID: {dealId} (Afecta a {sapKeysDelDeal.Count} registros SAP)");
+
+                    JObject dealCompleto = await GetTransactionAsync(apiEndpoint);
+                    if (dealCompleto == null || !dealCompleto.ContainsKey("data"))
+                    {
+                        log.Warn($"No se encontraron datos para procesar en la respuesta de Zoho para el Deal {dealId}.");
+                        continue;
+                    }
+
+                    ProcesarSubformDealOptimizado(dealCompleto, table, subForma, TipoDocSAP, sapKeysDelDeal);
+                }
+                catch (Exception ex)
+                {
+                    log.Error($"Error obteniendo/procesando la subforma del Deal {dealId}: {ex}");
+                    foreach (var sapKey in sapKeysDelDeal)
+                    {
+                        UpdateUserFieldsSAP(table, sapKey, "1", $"Deal enviado correctamente a Zoho, pero ocurrió un error recuperando la subforma: {ex.Message}", dealId);
+                    }
+                }
+            }
         }
 
-        private void ProcesarSubformDeal(JObject dealResponse, string table, string subForma, string TipoDocSAP)
+        private void ProcesarSubformDealOptimizado(JObject dealResponse, string table, string subForma, string TipoDocSAP, List<string> sapKeysDelDeal)
         {
             JArray data = dealResponse["data"] as JArray;
             if (data == null || data.Count == 0)
@@ -1366,7 +1497,7 @@ namespace AVS_ZohoIntegration.Manager
             }
 
             string dealId = deal["id"]?.ToString();
-            log.Info($"Deal obtenido correctamente. Zoho ID: {dealId}");
+            log.Info($"Deal obtenido correctamente para procesamiento optimizado. Zoho ID: {dealId}");
 
             JArray subform = deal[subForma] as JArray;
             if (subform == null)
@@ -1375,7 +1506,7 @@ namespace AVS_ZohoIntegration.Manager
                 return;
             }
 
-            log.Info($"Subforma '{subForma}' encontrada. Registros: {subform.Count}");
+            log.Info($"Subforma '{subForma}' encontrada. Registros totales en subforma: {subform.Count}. Buscando coincidencias para {sapKeysDelDeal.Count} registros SAP.");
 
             foreach (JToken linea in subform)
             {
@@ -1385,42 +1516,40 @@ namespace AVS_ZohoIntegration.Manager
                     string noDoc = linea["No_Doc"]?.ToString() ?? linea["No_Documento"]?.ToString();
                     string tipoDoc = linea["Tipo_Doc"]?.ToString() ?? linea["Tipo_de_Doc"]?.ToString();
 
+                    if (string.IsNullOrWhiteSpace(noDoc))
+                        continue; 
+
+                    if (string.IsNullOrWhiteSpace(zohoSubformId))
+                    {
+                        log.Warn($"La línea de subforma no contiene ID de subforma. No_Doc: {noDoc}. Deal: {dealId}");
+                        continue;
+                    }
+
                     string docSap = TipoDocSAP?.Trim() ?? string.Empty;
                     string docZoho = tipoDoc?.Trim() ?? string.Empty;
 
-                    bool esFacturaOAnexo =  string.Equals(docSap, "factura", StringComparison.OrdinalIgnoreCase) && string.Equals(docZoho, "nota de débito", StringComparison.OrdinalIgnoreCase);
+                    bool esFacturaOAnexo = string.Equals(docSap, "factura", StringComparison.OrdinalIgnoreCase) && string.Equals(docZoho, "nota de débito", StringComparison.OrdinalIgnoreCase);
                     if (!esFacturaOAnexo)
                     {
                         if (!string.Equals(docSap, docZoho, StringComparison.OrdinalIgnoreCase))
                             continue;
                     }
 
-                    if (string.IsNullOrWhiteSpace(noDoc))
-                    {
-                        log.Warn($"La línea de subforma no contiene No_Doc. Deal: {dealId}. Línea: {linea}");
-                        continue;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(zohoSubformId))
-                    {
-                        log.Warn($"La línea de subforma no contiene ID. No_Doc: {noDoc}. Deal: {dealId}");
-                        continue;
-                    }
-
-                    log.Info($"Procesando subforma. Deal: {dealId}, No_Doc: {noDoc}, SubformID: {zohoSubformId}");
-
                     string docNumEscaped = noDoc.Replace("'", "''");
-                    string query = $"SELECT T0.\"DocEntry\" FROM {table} T0 WHERE T0.\"DocNum\" = '{docNumEscaped}' AND T0.\"U_AVS_Zoho_Sync\" = 0";
-                    log.Info($"Buscando documento SAP. Query: {query}");
+
+                    string query = $"SELECT T0.\"DocEntry\", T0.\"DocNum\" FROM {table} T0 WHERE T0.\"DocNum\" = '{docNumEscaped}' AND T0.\"U_AVS_Zoho_Sync\" = 0";
+                    log.Info($"Buscando documento SAP para línea de subforma. Query: {query}");
+
                     var recordSet = company.ExecuteQuery(query);
                     if (recordSet == null || recordSet.Count == 0)
-                    {
-                        log.Warn($"Documento ya actualizado previamente {noDoc}. Deal: {dealId}");
                         continue;
-                    }
 
                     string docEntry = Convert.ToString(recordSet[0]["DocEntry"]);
-                    log.Info($"Documento SAP encontrado. No_Doc: {noDoc}, DocEntry: {docEntry}, Zoho Subform ID: {zohoSubformId}");
+                    string docNumEncontrado = Convert.ToString(recordSet[0]["DocNum"]);
+                    if (!sapKeysDelDeal.Contains(docNumEncontrado) && !sapKeysDelDeal.Contains(docEntry))
+                        continue;
+
+                    log.Info($"Coincidencia encontrada. Actualizando SAP -> No_Doc: {noDoc}, DocEntry: {docEntry}, Zoho Subform ID: {zohoSubformId}");
                     UpdateUserFieldsSAP(table, docEntry, "3", "", zohoSubformId.Trim());
                     log.Info($"Documento SAP actualizado correctamente. DocEntry: {docEntry}, No_Doc: {noDoc}");
                 }
@@ -1487,7 +1616,7 @@ namespace AVS_ZohoIntegration.Manager
                     if (docNum == noDocumento && string.Equals(tipoDoc, tipo, StringComparison.OrdinalIgnoreCase))
                     {
                         var dataAdjunto = item[nodoAdjunto] as JArray;
-                        if (dataAdjunto == null) 
+                        if (dataAdjunto == null)
                             continue;
 
                         foreach (var itemAdj in dataAdjunto)
@@ -1498,7 +1627,7 @@ namespace AVS_ZohoIntegration.Manager
                             {
                                 string fileId = itemAdj[nodoFileId]?.ToString()?.Trim();
                                 if (!string.IsNullOrEmpty(fileId))
-                                    return fileId; 
+                                    return fileId;
                             }
                         }
                     }
@@ -1631,8 +1760,8 @@ namespace AVS_ZohoIntegration.Manager
                             log.Info($"Detalle de cotización {quoteId} obtenido. Procediendo a crear la Orden de Venta en SAP para el cliente {sapCardCode}...");
                             #endregion
 
-                            #region Crear orden de venta
-                            company.ProcesarOrdenVentaDIAPI(fullQuoteData, sapCardCode, pais, log);
+                            #region Crear documento de venta
+                            company.ProcesarDocumentoVentaDIAPI(fullQuoteData, sapCardCode, pais, configKey, log);                                
                             #endregion
 
                             company.TransactionCommit();
