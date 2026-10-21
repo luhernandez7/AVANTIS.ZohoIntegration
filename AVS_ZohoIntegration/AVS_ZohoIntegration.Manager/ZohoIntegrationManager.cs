@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -1516,8 +1517,13 @@ namespace AVS_ZohoIntegration.Manager
                     string noDoc = linea["No_Doc"]?.ToString() ?? linea["No_Documento"]?.ToString();
                     string tipoDoc = linea["Tipo_Doc"]?.ToString() ?? linea["Tipo_de_Doc"]?.ToString();
 
+                    log.Info($"No. Documento: {noDoc}, Tipo Documento: {tipoDoc}, Zoho Subform Id: {zohoSubformId}");
+
                     if (string.IsNullOrWhiteSpace(noDoc))
-                        continue; 
+                    {
+                        log.Warn($"La línea de subforma no contiene numero de documento. Deal: {dealId}");
+                        continue;
+                    }
 
                     if (string.IsNullOrWhiteSpace(zohoSubformId))
                     {
@@ -1528,11 +1534,25 @@ namespace AVS_ZohoIntegration.Manager
                     string docSap = TipoDocSAP?.Trim() ?? string.Empty;
                     string docZoho = tipoDoc?.Trim() ?? string.Empty;
 
-                    bool esFacturaOAnexo = string.Equals(docSap, "factura", StringComparison.OrdinalIgnoreCase) && string.Equals(docZoho, "nota de débito", StringComparison.OrdinalIgnoreCase);
-                    if (!esFacturaOAnexo)
+                    //bool esFacturaOAnexo = string.Equals(docSap, "factura", StringComparison.OrdinalIgnoreCase) && string.Equals(docZoho, "nota de débito", StringComparison.OrdinalIgnoreCase);
+                    //if (!esFacturaOAnexo)
+                    //{
+                    //    if (!string.Equals(docSap, docZoho, StringComparison.OrdinalIgnoreCase))
+                    //        continue;
+                    //}
+
+                    bool esFacturaOAnexo = SonIgualesSinAcentos(docSap, "factura") && SonIgualesSinAcentos(docZoho, "nota de debito");
+                    bool sonIguales = SonIgualesSinAcentos(docSap, docZoho);
+
+                    // 3. Registramos en el log y aplicamos la lógica
+                    if (esFacturaOAnexo)
+                        log.Info($"Regla de excepción aplicada: docSAP '{docSap}' y docZoho '{docZoho}' procesados como Factura/Nota de débito.");
+                    else if (sonIguales)
+                        log.Info($"Documentos coincidentes: docSAP y docZoho son '{docSap}'.");
+                    else
                     {
-                        if (!string.Equals(docSap, docZoho, StringComparison.OrdinalIgnoreCase))
-                            continue;
+                        log.Warn($"Discrepancia en tipos de documento: docSAP '{docSap}' vs docZoho '{docZoho}'. Se saltará esta iteración.");
+                        continue;
                     }
 
                     string docNumEscaped = noDoc.Replace("'", "''");
@@ -1542,12 +1562,15 @@ namespace AVS_ZohoIntegration.Manager
 
                     var recordSet = company.ExecuteQuery(query);
                     if (recordSet == null || recordSet.Count == 0)
+                    {
+                        log.Warn("No encontro coincidencia");
                         continue;
+                    }
 
                     string docEntry = Convert.ToString(recordSet[0]["DocEntry"]);
-                    string docNumEncontrado = Convert.ToString(recordSet[0]["DocNum"]);
-                    if (!sapKeysDelDeal.Contains(docNumEncontrado) && !sapKeysDelDeal.Contains(docEntry))
-                        continue;
+                    //string docNumEncontrado = Convert.ToString(recordSet[0]["DocNum"]);
+                    //if (!sapKeysDelDeal.Contains(docNumEncontrado) && !sapKeysDelDeal.Contains(docEntry))
+                    //    continue;
 
                     log.Info($"Coincidencia encontrada. Actualizando SAP -> No_Doc: {noDoc}, DocEntry: {docEntry}, Zoho Subform ID: {zohoSubformId}");
                     UpdateUserFieldsSAP(table, docEntry, "3", "", zohoSubformId.Trim());
@@ -1558,6 +1581,14 @@ namespace AVS_ZohoIntegration.Manager
                     log.Error($"Error procesando línea de subforma del Deal {dealId}: {ex}");
                 }
             }
+        }
+
+        bool SonIgualesSinAcentos(string str1, string str2)
+        {
+            if (str1 == null || str2 == null) 
+                return str1 == str2;
+
+            return string.Compare(str1, str2, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace) == 0;
         }
 
         private bool IsNodeEmpty(IDictionary<string, object> dictionary, string key)
